@@ -1,3 +1,4 @@
+
 import { ArrowRight, Heart, Leaf, Smile } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import Button from "@/components/Button";
@@ -580,23 +581,24 @@ const Index = () => {
                 <CarouselNext className="relative static ml-2 right-0 translate-y-0" />
               </div>
             </Carousel>
-        </div>
+          </div>
 
-        <div 
-          className="mt-12 text-center transform transition-all duration-500"
-          style={{
-            transform: `translateY(${Math.min((scrollY - viewportHeight * 1.5) * 0.1, 30)}px)`,
-            opacity: Math.min(1, Math.max(0, (scrollY - viewportHeight * 1.3) * 0.002))
-          }}
-        >
-          <Link to="/products">
-            <button className="btn-future group relative overflow-hidden rounded-md px-6 py-3 text-white font-medium">
-              <span className="relative z-10 flex items-center">
-                View All Products
-                <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </button>
-          </Link>
+          <div 
+            className="mt-12 text-center transform transition-all duration-500"
+            style={{
+              transform: `translateY(${Math.min((scrollY - viewportHeight * 1.5) * 0.1, 30)}px)`,
+              opacity: Math.min(1, Math.max(0, (scrollY - viewportHeight * 1.3) * 0.002))
+            }}
+          >
+            <Link to="/products">
+              <button className="btn-future group relative overflow-hidden rounded-md px-6 py-3 text-white font-medium">
+                <span className="relative z-10 flex items-center">
+                  View All Products
+                  <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -678,3 +680,74 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-green-900/30 to-emerald-700/30 opacity-70 z-10"></div>
               <OptimizedImage
                 src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
+                alt="Sustainability Timeline"
+                className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                width={600}
+                height={400}
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
+                <h3 className="text-2xl font-bold text-white mb-2">Sustainability Journey</h3>
+                <p className="text-white/90 mb-4">Explore our sustainability milestones and environmental commitments.</p>
+                <Link 
+                  to="/sustainability#timeline"
+                  className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
+                >
+                  <span>View Timeline</span>
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Flower Availability Tracker */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 to-cyan-700/30 opacity-70 z-10"></div>
+              <OptimizedImage
+                src="https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
+                alt="Flower Availability Tracker"
+                className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                width={600}
+                height={400}
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
+                <h3 className="text-2xl font-bold text-white mb-2">Availability Tracker</h3>
+                <p className="text-white/90 mb-4">Check our real-time flower availability calendar throughout the seasons.</p>
+                <Link 
+                  to="/features#flower-tracker"
+                  className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
+                >
+                  <span>Check Availability</span>
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Customer Community */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/30 to-amber-700/30 opacity-70 z-10"></div>
+              <OptimizedImage
+                src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
+                alt="Customer Community"
+                className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                width={600}
+                height={400}
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
+                <h3 className="text-2xl font-bold text-white mb-2">Customer Community</h3>
+                <p className="text-white/90 mb-4">Join our community of flower enthusiasts and share your arrangements.</p>
+                <Link 
+                  to="/features#community"
+                  className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
+                >
+                  <span>Join Community</span>
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Index;
