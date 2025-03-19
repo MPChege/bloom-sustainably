@@ -20,6 +20,9 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'sonner', '@radix-ui/react-carousel']
+  },
   build: {
     // Optimize build output
     minify: 'terser',
@@ -38,7 +41,12 @@ export default defineConfig(({ mode }) => ({
       }
     }
   },
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom']
+  css: {
+    // Optimize CSS
+    devSourcemap: false, // Disable sourcemaps in dev for better performance
+  },
+  // Enhance development experience
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' }
   },
 }));

@@ -28,8 +28,13 @@ const OptimizedImage = ({
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(priority ? src : "");
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
+    // Reset states when src changes
+    setIsLoaded(false);
+    setHasError(false);
+    
     // Only load non-priority images when they might be needed
     if (!priority && !imageSrc) {
       const timer = setTimeout(() => {
@@ -37,19 +42,32 @@ const OptimizedImage = ({
       }, 100);
       return () => clearTimeout(timer);
     }
+    
+    // If priority changed to true, load the image
+    if (priority && !imageSrc) {
+      setImageSrc(src);
+    }
   }, [priority, imageSrc, src]);
 
   // Extract dimensions from URL if using Unsplash
+  // Use lower quality images for faster loading
   const optimizedSrc = src.includes("unsplash.com") 
-    ? src.replace(/w=\d+/, `w=${width || 800}`).replace(/q=\d+/, "q=75") 
+    ? src.replace(/w=\d+/, `w=${width || 400}`).replace(/q=\d+/, "q=60") 
     : src;
 
   const transform3dStyles = transform3d ? {
-    transform: "perspective(1000px) rotateX(5deg) rotateY(5deg)",
+    transform: "perspective(1000px) rotateX(3deg) rotateY(3deg)",
     transition: "transform 0.5s ease-out",
-    boxShadow: "0 20px 50px rgba(0, 0, 0, 0.3)",
+    boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
     ...style
   } : style;
+
+  // Fallback for error loading
+  const handleError = () => {
+    console.log("Error loading image:", optimizedSrc);
+    setHasError(true);
+    setIsLoaded(true); // Consider it "loaded" to remove skeleton
+  };
 
   return (
     <div 
@@ -64,19 +82,25 @@ const OptimizedImage = ({
       }}
     >
       {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
-      {imageSrc && (
+      
+      {hasError ? (
+        <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground text-sm">
+          {alt || "Image failed to load"}
+        </div>
+      ) : imageSrc && (
         <img
           src={optimizedSrc}
           alt={alt}
           className={cn(
             "w-full h-full object-cover transition-opacity duration-300",
-            isLoaded ? "opacity-100" : "opacity-0",
-            transform3d && "hover:scale-105 transition-all duration-500"
+            isLoaded ? "opacity-100" : "opacity-0"
           )}
           width={width}
           height={height}
           onLoad={() => setIsLoaded(true)}
+          onError={handleError}
           onClick={onClick}
+          loading={priority ? "eager" : "lazy"}
         />
       )}
     </div>
