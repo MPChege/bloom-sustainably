@@ -6,22 +6,25 @@ import { cn } from "@/lib/utils";
 import Cart from "./Cart";
 import LanguageSelector from "./LanguageSelector";
 import CurrencySelector from "./CurrencySelector";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Our Farm", href: "/our-farm" },
-  { name: "Products", href: "/products" },
-  { name: "Sustainability", href: "/sustainability" },
-  { name: "CSR", href: "/csr" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t, isRTL } = useLanguage();
+
+  // Navigation items with translation keys
+  const navigation = [
+    { name: "nav.home", href: "/" },
+    { name: "nav.about", href: "/about" },
+    { name: "nav.farm", href: "/our-farm" },
+    { name: "nav.products", href: "/products" },
+    { name: "nav.sustainability", href: "/sustainability" },
+    { name: "nav.csr", href: "/csr" },
+    { name: "nav.blog", href: "/blog" },
+    { name: "nav.contact", href: "/contact" },
+  ];
 
   // Handle scroll effect
   useEffect(() => {
@@ -47,7 +50,8 @@ const Navbar = () => {
         "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out",
         isScrolled 
           ? "bg-white shadow-md py-3" 
-          : "bg-white/90 backdrop-blur-lg py-4 border-b border-purple/10"
+          : "bg-white/90 backdrop-blur-lg py-4 border-b border-purple/10",
+        isRTL ? "rtl" : ""
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -64,7 +68,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className={`hidden md:flex ${isRTL ? "space-x-reverse space-x-8" : "space-x-8"}`}>
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -77,20 +81,20 @@ const Navbar = () => {
                 "link-underline py-2"
               )}
             >
-              {item.name}
+              {t(item.name)}
             </Link>
           ))}
         </nav>
 
         {/* Language, Currency and Cart - Desktop */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className={`hidden md:flex items-center ${isRTL ? "space-x-reverse space-x-4" : "space-x-4"}`}>
           <LanguageSelector />
           <CurrencySelector />
           <Cart />
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex items-center space-x-3 md:hidden">
+        <div className={`flex items-center ${isRTL ? "space-x-reverse space-x-3" : "space-x-3"} md:hidden`}>
           <LanguageSelector />
           <CurrencySelector />
           <Cart />
@@ -112,7 +116,8 @@ const Navbar = () => {
       <div
         className={cn(
           "fixed inset-0 z-40 bg-white transition-all duration-300 ease-in-out md:hidden",
-          isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
+          isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
+          isRTL ? "rtl" : ""
         )}
       >
         <div className="flex flex-col h-full pt-20 pb-6 px-6">
@@ -128,7 +133,7 @@ const Navbar = () => {
                     : "text-primary"
                 )}
               >
-                {item.name}
+                {t(item.name)}
               </Link>
             ))}
           </nav>
