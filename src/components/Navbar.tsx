@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Cart from "./Cart";
+import LanguageSelector from "./LanguageSelector";
+import CurrencySelector from "./CurrencySelector";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -80,13 +82,17 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Cart Icon - Desktop */}
-        <div className="hidden md:block">
+        {/* Language, Currency and Cart - Desktop */}
+        <div className="hidden md:flex items-center space-x-4">
+          <LanguageSelector />
+          <CurrencySelector />
           <Cart />
         </div>
 
         {/* Mobile menu button */}
         <div className="flex items-center space-x-3 md:hidden">
+          <LanguageSelector />
+          <CurrencySelector />
           <Cart />
           <button
             className="focus:outline-none bg-purple/10 p-2 rounded-md"
