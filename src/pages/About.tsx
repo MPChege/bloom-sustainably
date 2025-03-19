@@ -2,6 +2,8 @@
 import HeroSection from "@/components/HeroSection";
 import { CheckCircle, Users, Calendar, Target, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import TestimonialCard from "@/components/TestimonialCard";
 
 const About = () => {
   const timeline = [
@@ -60,94 +62,152 @@ const About = () => {
     }
   ];
 
+  const testimonials = [
+    {
+      content: "The quality of flowers I receive from Credible Blooms is consistently outstanding. Their roses last much longer than any other supplier I've used.",
+      author: "Sophia Davis",
+      role: "Wedding Planner",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      content: "Their commitment to sustainable farming practices while maintaining exceptional quality is why we've partnered with them for over 5 years.",
+      author: "Marcus Johnson",
+      role: "Hotel Chain Purchasing Manager",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+    },
+    {
+      content: "The variety and consistent quality from Credible Blooms helps our floral shop maintain its reputation for premium arrangements.",
+      author: "Emma Rodriguez",
+      role: "Boutique Florist Owner",
+      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+    }
+  ];
+
+  // Animation variants
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-16 bg-gradient-to-br from-white via-purple-50 to-white">
       <HeroSection 
         title="About Credible Blooms"
         subtitle="Our journey to becoming Kenya's premier flower farm"
-        backgroundImage="https://images.unsplash.com/photo-1524593656068-76ff73f3e4d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       
       {/* Mission and Vision */}
-      <section className="page-section bg-white">
+      <section className="page-section bg-white shadow-md rounded-lg mx-4 md:mx-8 lg:mx-auto -mt-8 relative z-10 max-w-7xl">
         <div className="container-tight">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+            >
+              <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full inline-block mb-2">
                 Our Purpose
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
+              <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6 text-purple-900">
                 Mission & Vision
               </h2>
               
               <div className="space-y-6">
-                <div className="glass-panel p-6">
-                  <h3 className="text-xl font-medium mb-2">Our Mission</h3>
-                  <p className="text-muted-foreground">
+                <div className="glass-panel p-6 border-l-4 border-primary shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <h3 className="text-xl font-medium mb-2 text-primary">Our Mission</h3>
+                  <p className="text-gray-700">
                     To grow and supply premium quality flowers using sustainable practices 
                     that protect our environment, support our communities, and deliver 
                     exceptional value to our customers around the world.
                   </p>
                 </div>
                 
-                <div className="glass-panel p-6">
-                  <h3 className="text-xl font-medium mb-2">Our Vision</h3>
-                  <p className="text-muted-foreground">
+                <div className="glass-panel p-6 border-l-4 border-red-500 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <h3 className="text-xl font-medium mb-2 text-red-500">Our Vision</h3>
+                  <p className="text-gray-700">
                     To be recognized globally as the leading sustainable flower farm in Africa, 
                     setting the standard for quality, innovation, and environmental stewardship 
                     in the floriculture industry.
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="relative">
+            <motion.div 
+              className="relative"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+            >
               <img 
-                src="https://images.unsplash.com/photo-1599809726351-7343ff8a7ad0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Flower farm fields" 
+                src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Beautiful flower fields" 
                 className="w-full h-auto object-cover rounded-lg shadow-lg"
               />
               <div className="absolute -bottom-6 -left-6 w-1/2 h-auto">
                 <img 
-                  src="https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
                   alt="Close up of roses" 
                   className="w-full h-auto object-cover rounded-lg shadow-lg border-4 border-white"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
       
       {/* Our Values */}
-      <section className="page-section bg-cream/50">
+      <section className="page-section bg-gradient-to-r from-purple-50 to-red-50">
         <div className="container-tight">
-          <div className="text-center mb-16">
-            <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+          >
+            <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full inline-block">
               What We Stand For
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6 text-purple-900">
               Our Core Values
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               These principles guide everything we do at Credible Blooms, from how we grow our flowers 
               to how we treat our employees and interact with our community.
             </p>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {values.map((value, index) => (
-              <div 
+              <motion.div
                 key={index} 
-                className="glass-panel p-8 flex items-start"
+                className="glass-panel p-8 flex items-start bg-white/90 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    transition: { 
+                      duration: 0.5,
+                      delay: index * 0.1
+                    } 
+                  }
+                }}
               >
-                <div className="mr-4 mt-1">{value.icon}</div>
+                <div className="mr-4 mt-1 p-3 bg-primary/10 rounded-full">{value.icon}</div>
                 <div>
-                  <h3 className="text-xl font-medium mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.description}</p>
+                  <h3 className="text-xl font-medium mb-2 text-primary">{value.title}</h3>
+                  <p className="text-gray-700">{value.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -156,18 +216,24 @@ const About = () => {
       {/* Our Team */}
       <section className="page-section bg-white">
         <div className="container-tight">
-          <div className="text-center mb-16">
-            <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+          >
+            <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full inline-block">
               The People Behind Our Success
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6 text-purple-900">
               Our Leadership Team
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               Meet the dedicated professionals who lead Credible Blooms with expertise, 
               passion, and a commitment to excellence.
             </p>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
@@ -187,7 +253,24 @@ const About = () => {
                 image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
               }
             ].map((member, index) => (
-              <div key={index} className="glass-card overflow-hidden">
+              <motion.div 
+                key={index} 
+                className="glass-card overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    transition: { 
+                      duration: 0.5,
+                      delay: index * 0.2
+                    } 
+                  }
+                }}
+              >
                 <div className="h-64 overflow-hidden">
                   <img 
                     src={member.image} 
@@ -195,62 +278,111 @@ const About = () => {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-medium">{member.name}</h3>
-                  <p className="text-muted-foreground">{member.role}</p>
+                <div className="p-6 text-center border-t-4 border-primary">
+                  <h3 className="text-xl font-medium text-purple-900">{member.name}</h3>
+                  <p className="text-gray-600">{member.role}</p>
                 </div>
-              </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Testimonials Section */}
+      <section className="page-section bg-gradient-to-br from-purple-50 to-red-50">
+        <div className="container-tight">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+          >
+            <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full inline-block">
+              What Our Clients Say
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6 text-purple-900">
+              Testimonials
+            </h2>
+            <p className="text-gray-700 max-w-2xl mx-auto">
+              Don't just take our word for it - see what our valued clients have to say about Credible Blooms.
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={index} testimonial={testimonial} index={index} />
             ))}
           </div>
         </div>
       </section>
       
       {/* Our History Timeline */}
-      <section className="page-section bg-sage/10">
+      <section className="page-section bg-white">
         <div className="container-tight">
-          <div className="text-center mb-16">
-            <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+          >
+            <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full inline-block">
               Our Journey
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6 text-purple-900">
               The Credible Blooms Story
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               From humble beginnings to a leading flower exporter, our journey has been marked 
               by growth, innovation, and an unwavering commitment to quality.
             </p>
-          </div>
+          </motion.div>
           
           <div className="relative">
             {/* Timeline center line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-sage/50 hidden md:block"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-300 via-primary to-red-300 rounded-full hidden md:block"></div>
             
             <div className="space-y-12">
               {timeline.map((item, index) => (
-                <div 
+                <motion.div 
                   key={index} 
                   className={cn(
                     "relative flex flex-col md:flex-row gap-8 items-center",
                     index % 2 !== 0 ? "md:flex-row-reverse" : ""
                   )}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={{
+                    hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+                    visible: { 
+                      opacity: 1, 
+                      x: 0, 
+                      transition: { 
+                        duration: 0.5,
+                        delay: index * 0.1
+                      } 
+                    }
+                  }}
                 >
                   {/* Year bubble */}
-                  <div className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10 bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center font-medium shadow-md">
+                  <div className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10 bg-gradient-to-r from-primary to-red-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-medium shadow-lg">
                     {item.year}
                   </div>
                   
                   {/* Content box */}
                   <div className={cn(
-                    "glass-panel p-6 md:w-[calc(50%-2rem)]",
-                    index % 2 === 0 ? "md:text-right" : "md:text-left"
+                    "glass-panel p-6 md:w-[calc(50%-2rem)] bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-t-4",
+                    index % 2 === 0 ? "md:text-right border-primary" : "md:text-left border-red-500"
                   )}>
                     <h3 className="text-xl font-medium mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
+                    <p className="text-gray-700">{item.description}</p>
                   </div>
                   
                   {/* Empty div for alignment */}
                   <div className="hidden md:block md:w-[calc(50%-2rem)]"></div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
