@@ -8,15 +8,9 @@ const NotFound = () => {
   const { t, isRTL } = useLanguage();
   
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple/5 to-white" 
-         style={{ 
-           backgroundImage: "url('https://images.unsplash.com/photo-1591591566822-2cee895ca88f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')", 
-           backgroundSize: "cover", 
-           backgroundPosition: "center",
-           backgroundBlendMode: "overlay"
-         }}>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple/5 to-white">
       <div className="container-tight">
-        <div className={`glass-card max-w-2xl mx-auto p-8 md:p-12 text-center backdrop-blur-md ${isRTL ? "rtl" : ""}`}>
+        <div className={`glass-card max-w-2xl mx-auto p-8 md:p-12 text-center ${isRTL ? "rtl" : ""}`}>
           <div className="mb-6">
             <span className="inline-block h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
               <span className="text-4xl font-display font-bold text-primary">404</span>

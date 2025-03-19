@@ -33,7 +33,7 @@ const Index = () => {
     {
       id: 1,
       name: "Premium Red Roses",
-      image: "https://images.unsplash.com/photo-1583436775199-2d9618673055?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Premium Roses",
       description: "Elegant long-stemmed red roses, perfect for luxury floral arrangements and special occasions.",
       price: 29.99
@@ -41,7 +41,7 @@ const Index = () => {
     {
       id: 2,
       name: "Spray Carnations",
-      image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Summer Flowers",
       description: "Vibrant spray carnations with multiple blooms per stem, adding texture and color to bouquets.",
       price: 19.99
@@ -49,7 +49,7 @@ const Index = () => {
     {
       id: 3,
       name: "Premium Pink Roses",
-      image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Premium Roses",
       description: "Delicate pink roses with excellent vase life and stunning bloom development.",
       price: 24.99
@@ -57,7 +57,7 @@ const Index = () => {
     {
       id: 4,
       name: "Elegant Lilies",
-      image: "https://images.unsplash.com/photo-1612966809470-bfbbeb142bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1589994160839-163cd867cfe8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Specialty Flowers",
       description: "Striking lilies with large, fragrant blooms perfect for statement arrangements.",
       price: 32.99
@@ -65,7 +65,7 @@ const Index = () => {
     {
       id: 5,
       name: "Colorful Tulips",
-      image: "https://images.unsplash.com/photo-1589392342952-1a527a7e662f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1591669246851-a3e616020049?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Spring Flowers",
       description: "Vibrant tulips in various colors, bringing freshness and charm to any arrangement.",
       price: 22.99
@@ -74,9 +74,9 @@ const Index = () => {
 
   // Banner images for parallax slider
   const bannerImages = [
-    "https://images.unsplash.com/photo-1624225010878-11814b8608fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    "https://images.unsplash.com/photo-1591550253956-cead2c3882e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    "https://images.unsplash.com/photo-1621983209364-a51c1c8a67d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    "https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "https://images.unsplash.com/photo-1627483262769-04d0a1401487?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
   ];
 
   // State for the current banner image
@@ -147,8 +147,8 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1589392342952-1a527a7e662f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDJ8fHR1bGlwc3xlbnwwfHx8fDE2OTg4ODgxNTB8MA&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating tulip" 
+          <img src="https://images.unsplash.com/photo-1589838718789-a336fafcdb2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDJ8fHN1bmZsb3dlcnxlbnwwfHx8fDE2OTg4ODgxNTB8MA&ixlib=rb-4.0.3&q=80&w=150" 
+               alt="Floating flower" 
                className="rounded-full shadow-xl w-24 h-24 object-cover" 
           />
         </div>
@@ -162,8 +162,8 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1583436425532-6e4e1474575d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDd8fHJvc2V8ZW58MHx8fHwxNjk4ODg4MjAyfDA&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating rose" 
+          <img src="https://images.unsplash.com/photo-1531064080110-0ca15383d612?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDd8fHJvc2V8ZW58MHx8fHwxNjk4ODg4MjAyfDA&ixlib=rb-4.0.3&q=80&w=150" 
+               alt="Floating flower" 
                className="rounded-full shadow-xl w-20 h-20 object-cover" 
           />
         </div>
@@ -177,7 +177,7 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDE3fHxmbG93ZXJ8ZW58MHx8fHwxNjk4ODg4MjU0fDA&ixlib=rb-4.0.3&q=80&w=150" 
+          <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDE3fHx0dWxpcHxlbnwwfHx8fDE2OTg4ODgyNTR8MA&ixlib=rb-4.0.3&q=80&w=150" 
                alt="Floating flower" 
                className="rounded-full shadow-xl w-16 h-16 object-cover" 
           />
@@ -334,7 +334,7 @@ const Index = () => {
       <section 
         className="relative py-20 md:py-28 bg-cover bg-center overflow-hidden"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
           backgroundAttachment: "fixed"
         }}
       >
