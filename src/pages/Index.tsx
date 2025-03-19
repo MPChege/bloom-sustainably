@@ -72,11 +72,11 @@ const Index = () => {
     }
   ];
 
-  // Banner images for parallax slider - UPDATING TO FLOWER IMAGES
+  // Banner images for parallax slider - ROSE FLOWERS ONLY
   const bannerImages = [
-    "https://images.unsplash.com/photo-1457089328109-e5d9bd499191?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Flower field
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Colorful flowers
-    "https://images.unsplash.com/photo-1599593752300-8a6fdd59f85c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"  // Rose greenhouse
+    "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Red roses field
+    "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Pink roses
+    "https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"  // White roses
   ];
 
   // State for the current banner image
@@ -136,7 +136,7 @@ const Index = () => {
         ref={parallaxRef}
         className="page-section bg-gradient-to-b from-sage/10 to-transparent relative overflow-hidden"
       >
-        {/* Parallax floating elements - UPDATING TO FLOWER IMAGES */}
+        {/* Parallax floating elements - ROSES ONLY */}
         <div 
           className="absolute pointer-events-none"
           style={{
@@ -147,8 +147,8 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1589838718789-a336fafcdb2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDJ8fHN1bmZsb3dlcnxlbnwwfHx8fDE2OTg4ODgxNTB8MA&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating sunflower" 
+          <img src="https://images.unsplash.com/photo-1548586196-aa5803b77379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofHx8fHJvc2V8ZW58MHx8fHx8MTY5ODg4ODIwMnww&ixlib=rb-4.0.3&q=80&w=150" 
+               alt="Floating red rose" 
                className="rounded-full shadow-xl w-24 h-24 object-cover" 
           />
         </div>
@@ -162,8 +162,8 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1531064080110-0ca15383d612?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDd8fHJvc2V8ZW58MHx8fHwxNjk4ODg4MjAyfDA&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating rose" 
+          <img src="https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofHx8fHBpbmsgcm9zZXxlbnwwfHx8fDE2OTg4ODgyMDJ8MA&ixlib=rb-4.0.3&q=80&w=150" 
+               alt="Floating pink rose" 
                className="rounded-full shadow-xl w-20 h-20 object-cover" 
           />
         </div>
@@ -177,8 +177,8 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofDE3fHx0dWxpcHxlbnwwfHx8fDE2OTg4ODgyNTR8MA&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating tulip" 
+          <img src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofHx8fHdoaXRlIHJvc2V8ZW58MHx8fHwxNjk4ODg4MjAyfDA&ixlib=rb-4.0.3&q=80&w=150" 
+               alt="Floating white rose" 
                className="rounded-full shadow-xl w-16 h-16 object-cover" 
           />
         </div>
@@ -330,11 +330,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section with parallax background - UPDATING TO FLOWER IMAGE */}
+      {/* CTA Section with parallax background - ROSE FLOWER IMAGE */}
       <section 
         className="relative py-20 md:py-28 bg-cover bg-center overflow-hidden"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
           backgroundAttachment: "fixed"
         }}
       >
