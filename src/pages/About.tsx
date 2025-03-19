@@ -94,7 +94,7 @@ const About = () => {
       <HeroSection 
         title="About Credible Blooms"
         subtitle="Our journey to becoming Kenya's premier flower farm"
-        backgroundImage="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1493957988430-a5f2e15f39a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       
@@ -144,14 +144,14 @@ const About = () => {
               variants={fadeIn}
             >
               <img 
-                src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Beautiful flower fields" 
+                src="https://images.unsplash.com/photo-1591826637271-81f9e32802b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Greenhouse with rows of flowers" 
                 className="w-full h-auto object-cover rounded-lg shadow-lg"
               />
               <div className="absolute -bottom-6 -left-6 w-1/2 h-auto">
                 <img 
-                  src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                  alt="Close up of roses" 
+                  src="https://images.unsplash.com/photo-1584304624103-2265fad26258?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  alt="Closeup of tulips" 
                   className="w-full h-auto object-cover rounded-lg shadow-lg border-4 border-white"
                 />
               </div>

@@ -42,22 +42,22 @@ const OurFarm = () => {
 
   const farmImages = [
     {
-      src: "https://images.unsplash.com/photo-1556065365-68ba325b889c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Aerial view of flower greenhouses",
-      caption: "Our state-of-the-art greenhouses viewed from above"
+      src: "https://images.unsplash.com/photo-1621983209364-a51c1c8a67d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      alt: "Modern greenhouse with rows of flowers",
+      caption: "Our state-of-the-art greenhouses with climate control systems"
     },
     {
-      src: "https://images.unsplash.com/photo-1589150688427-e0fb1febd058?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      src: "https://images.unsplash.com/photo-1611735341450-74d61e660ad2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       alt: "Workers harvesting flowers",
-      caption: "Our skilled team carefully harvesting roses"
+      caption: "Our skilled team carefully harvesting premium roses"
     },
     {
-      src: "https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      src: "https://images.unsplash.com/photo-1599595344070-c456bea6ee11?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       alt: "Inside greenhouse with rows of flowers",
       caption: "Inside view of our climate-controlled growing environment"
     },
     {
-      src: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      src: "https://images.unsplash.com/photo-1568480262333-419611a3878c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       alt: "Sorting and packing area",
       caption: "Our modern packing facility ensures flowers remain fresh during transport"
     }
@@ -68,7 +68,7 @@ const OurFarm = () => {
       <HeroSection 
         title={t('farm.title')}
         subtitle={t('farm.subtitle')}
-        backgroundImage="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       
@@ -114,13 +114,13 @@ const OurFarm = () => {
             
             <div className="relative h-[500px] w-full">
               <img 
-                src="https://images.unsplash.com/photo-1546699718-5829d5392191?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                alt="Aerial view of Credible Blooms farm" 
+                src="https://images.unsplash.com/photo-1624225010878-11814b8608fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                alt="Aerial view of Credible Blooms greenhouse complex" 
                 className="absolute w-3/4 h-auto rounded-lg shadow-lg z-10 top-0 right-0"
               />
               <img 
-                src="https://images.unsplash.com/photo-1444492417251-9c84a5fa18e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Close up of flowers in the field" 
+                src="https://images.unsplash.com/photo-1599659906005-ba22e78ba8d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Close up of flowers in greenhouse" 
                 className="absolute w-2/3 h-auto rounded-lg shadow-lg bottom-0 left-0 border-4 border-white"
               />
               <div className="absolute w-64 h-64 rounded-full bg-sage/30 -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -216,32 +216,32 @@ const OurFarm = () => {
               {
                 name: "Premium Roses",
                 description: "Our signature product with over 15 varieties in different colors and sizes.",
-                image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1583436775199-2d9618673055?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               },
               {
                 name: "Spray Roses",
                 description: "Multi-headed roses perfect for bouquets and arrangements.",
-                image: "https://images.unsplash.com/photo-1455582916367-25f75bfc6710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               },
               {
                 name: "Carnations",
                 description: "Available in standard and spray varieties with excellent vase life.",
-                image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               },
               {
                 name: "Hypericum",
                 description: "Beautiful berries that add texture and interest to arrangements.",
-                image: "https://images.unsplash.com/photo-1604323990536-e5452c0507c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1588567678465-08902ca5f8d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               },
               {
                 name: "Lisianthus",
                 description: "Elegant blooms resembling roses with delicate ruffled petals.",
-                image: "https://images.unsplash.com/photo-1567581170431-80f677314fea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1599789197514-47270cd526b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               },
               {
                 name: "Seasonal Specialties",
                 description: "Rotating selection of seasonal flowers to complement our core offerings.",
-                image: "https://images.unsplash.com/photo-1531905252325-40c449b3284e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1557968581-06d4b39ec0d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               }
             ].map((variety, index) => (
               <div key={index} className="flex flex-col items-center text-center">

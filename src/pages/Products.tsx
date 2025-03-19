@@ -12,7 +12,7 @@ const products = [
   {
     id: 1,
     name: "Red Naomi Roses",
-    image: "https://images.unsplash.com/photo-1533616688419-b7a585564566?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1583436775199-2d9618673055?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Premium Roses",
     description: "Our signature red rose with large heads, intense color, and exceptional vase life.",
     price: 29.99
@@ -28,7 +28,7 @@ const products = [
   {
     id: 3,
     name: "Pink Avalanche Roses",
-    image: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Premium Roses",
     description: "Soft pink roses with strong stems and excellent opening properties.",
     price: 26.99
@@ -46,7 +46,7 @@ const products = [
   {
     id: 5,
     name: "Peach Spray Roses",
-    image: "https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1587055677742-7667873dbb2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
     description: "Delicate peach spray roses with multiple blooms per stem.",
     price: 19.99
@@ -54,7 +54,7 @@ const products = [
   {
     id: 6,
     name: "White Spray Roses",
-    image: "https://images.unsplash.com/photo-1548198471-e5a4b755def3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1549554738-4b0804dcc162?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
     description: "Pure white spray roses, perfect for weddings and special events.",
     price: 18.99
@@ -62,7 +62,7 @@ const products = [
   {
     id: 7,
     name: "Pink Sensation Spray Roses",
-    image: "https://images.unsplash.com/photo-1530092285049-1c42085fd395?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1533979163862-1e2d5476d692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
     description: "Bright pink spray roses with excellent color retention.",
     price: 21.99
@@ -70,7 +70,7 @@ const products = [
   {
     id: 8,
     name: "Red Spray Roses",
-    image: "https://images.unsplash.com/photo-1547187042-6d945e5a5b5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1590679070884-e010ff187c99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
     description: "Vibrant red spray roses, adding drama and intensity to arrangements.",
     price: 22.99
@@ -151,7 +151,7 @@ const Products = () => {
         subtitle={isRTL 
           ? "اكتشف زهورنا عالية الجودة المزروعة بعناية في مرتفعات كينيا" 
           : "Discover our premium quality blooms grown with care in the Kenyan highlands"}
-        backgroundImage="https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1624225010878-11814b8608fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       
@@ -257,13 +257,13 @@ const Products = () => {
             
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1600703136783-bdb5ea365239?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                src="https://images.unsplash.com/photo-1611735341450-74d61e660ad2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                 alt="Quality control process" 
                 className="w-full h-auto object-cover rounded-lg shadow-lg"
               />
               <div className="absolute -bottom-6 -right-6 w-2/5 h-auto">
                 <img 
-                  src="https://images.unsplash.com/photo-1533616688419-b7a585564566?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  src="https://images.unsplash.com/photo-1590683885822-a6b4e5ff94a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
                   alt="Flower inspection" 
                   className="w-full h-auto object-cover rounded-lg shadow-lg border-4 border-white"
                 />
