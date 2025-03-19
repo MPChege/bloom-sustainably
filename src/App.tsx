@@ -16,6 +16,8 @@ import CSR from "./pages/CSR";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import VirtualTour from "./pages/VirtualTour";
+import FeatureShowcase from "./pages/FeatureShowcase";
 
 // Context
 import { CartProvider } from "./context/CartContext";
@@ -40,6 +42,8 @@ function App() {
                   <Route path="/csr" element={<CSR />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/virtual-tour" element={<VirtualTour />} />
+                  <Route path="/features" element={<FeatureShowcase />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>

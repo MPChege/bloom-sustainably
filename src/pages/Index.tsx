@@ -1,4 +1,3 @@
-
 import { ArrowRight, Heart, Leaf, Smile } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import Button from "@/components/Button";
@@ -581,31 +580,32 @@ const Index = () => {
                 <CarouselNext className="relative static ml-2 right-0 translate-y-0" />
               </div>
             </Carousel>
-          </div>
+        </div>
 
-          <div 
-            className="mt-12 text-center transform transition-all duration-500"
-            style={{
-              transform: `translateY(${Math.min((scrollY - viewportHeight * 1.5) * 0.1, 30)}px)`,
-              opacity: Math.min(1, Math.max(0, (scrollY - viewportHeight * 1.3) * 0.002))
-            }}
-          >
+        <div 
+          className="mt-12 text-center transform transition-all duration-500"
+          style={{
+            transform: `translateY(${Math.min((scrollY - viewportHeight * 1.5) * 0.1, 30)}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - viewportHeight * 1.3) * 0.002))
+          }}
+        >
+          <Link to="/products">
             <button className="btn-future group relative overflow-hidden rounded-md px-6 py-3 text-white font-medium">
               <span className="relative z-10 flex items-center">
                 View All Products
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </span>
             </button>
-          </div>
+          </Link>
         </div>
       </section>
 
-      {/* Certifications with animated hover effects - Using fewer for better performance */}
-      <section className="page-section bg-cream/50 relative overflow-hidden">
+      {/* New section: Interactive Features Showcase */}
+      <section className="page-section relative overflow-hidden bg-white/50">
         <div className="container-tight relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <span className="bg-purple-200/30 text-primary/90 text-sm font-medium px-4 py-2 rounded-full inline-block neon-glow">
-              Our Standards
+              Interactive Experiences
             </span>
             <h2 
               className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold mt-6 mb-6 futuristic-line"
@@ -617,118 +617,64 @@ const Index = () => {
                 animation: "lineFlow 3s infinite linear"
               }}
             >
-              Quality Certifications
+              Explore Our Farm Digitally
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We adhere to the highest international standards to ensure our flowers meet global quality expectations.
+              Experience our rose farm and products through innovative digital features that bring you closer to our flowers.
             </p>
           </div>
 
-          <div 
-            className="flex flex-wrap justify-center gap-6 scene-3d"
-            style={getMouseTransform(0.2)}
-          >
-            {certifications.map((cert, index) => (
-              <div 
-                key={index}
-                className="element-3d"
-                style={{
-                  transform: `
-                    perspective(1000px)
-                    rotateY(${mousePosition.x * 10}deg)
-                    rotateX(${-mousePosition.y * 5}deg)
-                    translateZ(${index * 20}px)
-                  `,
-                  transformOrigin: "center center"
-                }}
-              >
-                <CertificationBadge
-                  name={cert.name}
-                  logo={cert.logo}
-                />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Virtual Tour Feature */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 to-fuchsia-700/30 opacity-70 z-10"></div>
+              <OptimizedImage
+                src="https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
+                alt="Virtual Farm Tour"
+                className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                width={600}
+                height={400}
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
+                <h3 className="text-2xl font-bold text-white mb-2">Virtual Farm Tour</h3>
+                <p className="text-white/90 mb-4">Explore our rose fields and facilities through an immersive 3D experience.</p>
+                <Link 
+                  to="/virtual-tour"
+                  className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
+                >
+                  <span>Start Tour</span>
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* CTA Section with 3D parallax background - ROSE FLOWER IMAGE */}
-      <section 
-        className="relative py-20 md:py-28 overflow-hidden scene-3d"
-      >
-        {/* Parallax background */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75')",
-            transform: `scale(${1 + scrollPercentage * 0.2})`,
-            transition: "transform 0.2s ease-out"
-          }}
-        />
-        
-        {/* Overlay with gradient */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(135deg, rgba(106, 13, 173, 0.8) 0%, rgba(157, 78, 221, 0.7) 100%)",
-            mixBlendMode: "multiply"
-          }}
-        />
-        
-        {/* Floating particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(15)].map((_, i) => (
-            <div 
-              key={i} 
-              className="absolute rounded-full bg-white/10"
-              style={{
-                width: Math.random() * 100 + 20,
-                height: Math.random() * 100 + 20,
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                filter: "blur(8px)",
-                opacity: Math.random() * 0.3 + 0.1,
-                transform: `translateY(${scrollY * (0.05 + Math.random() * 0.05)}px)`,
-                transition: "transform 0.2s ease-out"
-              }}
-            />
-          ))}
-        </div>
-        
-        <div 
-          className="container relative z-10 text-center"
-          style={getMouseTransform(0.2)}
-        >
-          <div 
-            className="max-w-2xl mx-auto floating-card-3d bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/20"
-            style={{
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-              transform: `
-                perspective(1000px) 
-                rotateX(${mousePosition.y * -3}deg) 
-                rotateY(${mousePosition.x * 3}deg)
-              `
-            }}
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-white mb-6 drop-shadow-lg">
-              Ready to Order Premium Flowers?
-            </h2>
-            <p className="text-white/90 text-lg mb-8">
-              Contact us today to discuss your floral needs, request a quote, or learn more about our sustainable farming practices.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="btn-future group relative overflow-hidden rounded-md px-6 py-3 text-white font-medium">
-                <span className="relative z-10">Contact Us Now</span>
-              </button>
-              <button className="relative overflow-hidden rounded-md px-6 py-3 font-medium border border-white/30 text-white/90 hover:bg-white/10 transition-colors">
-                <span>Explore Products</span>
-              </button>
+            {/* Interactive Product Showcase */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-900/30 to-rose-700/30 opacity-70 z-10"></div>
+              <OptimizedImage
+                src="https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
+                alt="Interactive Product Showcase"
+                className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                width={600}
+                height={400}
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
+                <h3 className="text-2xl font-bold text-white mb-2">3D Product Showcase</h3>
+                <p className="text-white/90 mb-4">View our flower arrangements in 3D and rotate them to see from all angles.</p>
+                <Link 
+                  to="/features#product-showcase"
+                  className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
+                >
+                  <span>View Products in 3D</span>
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  );
-};
 
-export default Index;
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {/* Sustainability Timeline */}
+            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-green-900/30 to-emerald-700/30 opacity-70 z-10"></div>
+              <OptimizedImage
+                src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
