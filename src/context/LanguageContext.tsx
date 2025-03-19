@@ -77,10 +77,13 @@ const translations: Record<string, Record<string, string>> = {
     'farm.gallery': 'Farm Gallery',
     'farm.specialties': 'Our Specialties',
     'farm.whatWeGrow': 'What We Grow',
+    'farm.scheduleVisit': 'Schedule a Farm Visit',
+    'farm.visualTour': 'Visual Tour',
+    'farm.viewProducts': 'View Our Products',
     
     // Error page
     'error.pageNotFound': 'Page Not Found',
-    'error.pageMessage': 'The page you're looking for doesn't exist or has been moved.',
+    'error.pageMessage': 'The page you\'re looking for doesn\'t exist or has been moved.',
     'error.returnHome': 'Return to Homepage',
   },
   ar: {
