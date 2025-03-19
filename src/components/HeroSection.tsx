@@ -1,6 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import OptimizedImage from "./OptimizedImage";
 
 interface HeroSectionProps {
   title: string;
@@ -70,6 +71,7 @@ const HeroSection = ({
           imageLoaded ? "blur-0" : "blur-md"
         )}
         style={{ backgroundImage: `url(${backgroundImage})` }}
+        aria-hidden="true"
       />
       
       {/* Overlay */}
@@ -78,6 +80,7 @@ const HeroSection = ({
           "absolute inset-0 w-full h-full",
           overlayClasses[overlay]
         )}
+        aria-hidden="true"
       />
       
       {/* Content */}

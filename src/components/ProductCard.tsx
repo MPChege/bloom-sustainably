@@ -7,6 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
+import OptimizedImage from "./OptimizedImage";
 
 interface ProductCardProps {
   id: number;
@@ -37,17 +38,13 @@ const ProductCard = ({ id, name, image, category, description, price, className 
       )}
     >
       <div className="relative h-64 overflow-hidden">
-        <div className="absolute inset-0 bg-secondary/20 animate-pulse" 
-          style={{ display: imageLoaded ? 'none' : 'block' }} 
-        />
-        <img 
-          src={image} 
-          alt={name} 
-          className={cn(
-            "w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105",
-            imageLoaded ? "opacity-100" : "opacity-0"
-          )}
-          onLoad={() => setImageLoaded(true)}
+        <OptimizedImage 
+          src={image}
+          alt={name}
+          className="w-full h-full"
+          width={400}
+          height={256}
+          onClick={() => {}}
         />
         <div className="absolute top-3 left-3">
           <span className="bg-white/80 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-primary/90">

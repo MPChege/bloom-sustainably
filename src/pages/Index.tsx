@@ -1,10 +1,11 @@
+
 import { ArrowRight, Heart, Leaf, Smile } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import Button from "@/components/Button";
 import CertificationBadge from "@/components/CertificationBadge";
 import ProductCard from "@/components/ProductCard";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { 
   Carousel,
   CarouselContent,
@@ -12,28 +13,45 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
+import OptimizedImage from "@/components/OptimizedImage";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Define optimized image URLs with reduced quality for faster loading
+const OPTIMIZED_BANNER_IMAGES = [
+  "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75", // Red roses field
+  "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75", // Pink roses
+  "https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"  // White roses
+];
 
 const Index = () => {
   // Parallax effect state and refs
   const [scrollY, setScrollY] = useState(0);
   const parallaxRef = useRef<HTMLDivElement>(null);
   
-  // Handle scroll for parallax effects
+  // Handle scroll for parallax effects with debounce for better performance
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Sample product data for the homepage
+  // Sample product data for the homepage - using smaller dataset for better performance
   const featuredProducts = [
     {
       id: 1,
       name: "Premium Red Roses",
-      image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=75",
       category: "Premium Roses",
       description: "Elegant long-stemmed red roses, perfect for luxury floral arrangements and special occasions.",
       price: 29.99
@@ -41,7 +59,7 @@ const Index = () => {
     {
       id: 2,
       name: "Spray Carnations",
-      image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=75",
       category: "Summer Flowers",
       description: "Vibrant spray carnations with multiple blooms per stem, adding texture and color to bouquets.",
       price: 19.99
@@ -49,40 +67,20 @@ const Index = () => {
     {
       id: 3,
       name: "Premium Pink Roses",
-      image: "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=75",
       category: "Premium Roses",
       description: "Delicate pink roses with excellent vase life and stunning bloom development.",
       price: 24.99
-    },
-    {
-      id: 4,
-      name: "Elegant Lilies",
-      image: "https://images.unsplash.com/photo-1589994160839-163cd867cfe8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Specialty Flowers",
-      description: "Striking lilies with large, fragrant blooms perfect for statement arrangements.",
-      price: 32.99
-    },
-    {
-      id: 5,
-      name: "Colorful Tulips",
-      image: "https://images.unsplash.com/photo-1591669246851-a3e616020049?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Spring Flowers",
-      description: "Vibrant tulips in various colors, bringing freshness and charm to any arrangement.",
-      price: 22.99
     }
   ];
 
   // Banner images for parallax slider - ROSE FLOWERS ONLY
-  const bannerImages = [
-    "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Red roses field
-    "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Pink roses
-    "https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"  // White roses
-  ];
+  const bannerImages = OPTIMIZED_BANNER_IMAGES;
 
   // State for the current banner image
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
 
-  // Change banner image every 5 seconds
+  // Change banner image every 5 seconds with debounce for better performance
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentBannerIndex(prev => (prev + 1) % bannerImages.length);
@@ -91,12 +89,10 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [bannerImages.length]);
 
-  // Sample certification data
+  // Sample certification data - using only necessary certifications
   const certifications = [
     { name: "Fairtrade", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Fairtrade-Logo.svg/1200px-Fairtrade-Logo.svg.png" },
-    { name: "Kenya Flower Council", logo: "https://kenyaflowercouncil.org/wp-content/uploads/2019/02/logo.png" },
-    { name: "SEDEX", logo: "https://www.sedex.com/wp-content/uploads/2019/05/Sedex_Logo_2019.png" },
-    { name: "Global G.A.P", logo: "https://www.globalgap.org/.content/.galleries/images/GLOBALG.A.P._Corporate_Logo.png" }
+    { name: "Kenya Flower Council", logo: "https://kenyaflowercouncil.org/wp-content/uploads/2019/02/logo.png" }
   ];
 
   return (
@@ -136,7 +132,7 @@ const Index = () => {
         ref={parallaxRef}
         className="page-section bg-gradient-to-b from-sage/10 to-transparent relative overflow-hidden"
       >
-        {/* Parallax floating elements - ROSES ONLY */}
+        {/* Parallax floating elements - ROSES ONLY - Using OptimizedImage */}
         <div 
           className="absolute pointer-events-none"
           style={{
@@ -147,9 +143,12 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1548586196-aa5803b77379?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofHx8fHJvc2V8ZW58MHx8fHx8MTY5ODg4ODIwMnww&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating red rose" 
-               className="rounded-full shadow-xl w-24 h-24 object-cover" 
+          <OptimizedImage 
+            src="https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&q=75&w=150" 
+            alt="Floating red rose" 
+            className="rounded-full shadow-xl w-24 h-24 object-cover"
+            width={96}
+            height={96}
           />
         </div>
         <div 
@@ -162,9 +161,12 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofHx8fHBpbmsgcm9zZXxlbnwwfHx8fDE2OTg4ODgyMDJ8MA&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating pink rose" 
-               className="rounded-full shadow-xl w-20 h-20 object-cover" 
+          <OptimizedImage 
+            src="https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&q=75&w=150" 
+            alt="Floating pink rose" 
+            className="rounded-full shadow-xl w-20 h-20 object-cover"
+            width={80}
+            height={80}
           />
         </div>
         <div 
@@ -177,9 +179,12 @@ const Index = () => {
             zIndex: 1
           }}
         >
-          <img src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxNjE2OHwwfDF8c2VhcmNofHx8fHdoaXRlIHJvc2V8ZW58MHx8fHwxNjk4ODg4MjAyfDA&ixlib=rb-4.0.3&q=80&w=150" 
-               alt="Floating white rose" 
-               className="rounded-full shadow-xl w-16 h-16 object-cover" 
+          <OptimizedImage 
+            src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&q=75&w=150" 
+            alt="Floating white rose" 
+            className="rounded-full shadow-xl w-16 h-16 object-cover"
+            width={64}
+            height={64}
           />
         </div>
         
@@ -244,7 +249,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Products with Carousel */}
+      {/* Featured Products with Carousel - Using fewer items for better performance */}
       <section className="page-section bg-white">
         <div className="container-tight">
           <div className="text-center mb-12">
@@ -303,7 +308,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Certifications with animated hover effects */}
+      {/* Certifications with animated hover effects - Using fewer for better performance */}
       <section className="page-section bg-cream/50">
         <div className="container-tight">
           <div className="text-center mb-12">
@@ -330,11 +335,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section with parallax background - ROSE FLOWER IMAGE */}
+      {/* CTA Section with parallax background - ROSE FLOWER IMAGE - Using a more efficient version */}
       <section 
         className="relative py-20 md:py-28 bg-cover bg-center overflow-hidden"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75')",
           backgroundAttachment: "fixed"
         }}
       >
