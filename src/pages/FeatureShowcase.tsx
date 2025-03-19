@@ -1,7 +1,6 @@
-
 import { useRef } from "react";
 import HeroSection from "@/components/HeroSection";
-import { ArrowDown, Lightbulb, Calendar, Users, Image3D, Leaf } from "lucide-react";
+import { ArrowDown, Lightbulb, Calendar, Users, Image, Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
 import FlowerAvailabilityTracker from "@/components/FlowerAvailabilityTracker";
 import CustomerCommunity from "@/components/CustomerCommunity";
@@ -59,7 +58,7 @@ const FeatureShowcase = () => {
             { 
               title: "Virtual Farm Tour", 
               description: "Explore our farm through an immersive 3D experience.", 
-              icon: <Image3D className="h-6 w-6 text-primary" />,
+              icon: <Image className="h-6 w-6 text-primary" />,
               link: "/virtual-tour"
             },
             { 
