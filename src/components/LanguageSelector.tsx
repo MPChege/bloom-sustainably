@@ -18,10 +18,18 @@ const LanguageSelector = () => {
 
   const currentLang = languageOptions.find(lang => lang.code === currentLanguage);
 
+  // Function to render flag with country name
+  const renderLanguageOption = (lang: typeof languages[0]) => (
+    <div className="flex items-center">
+      <span className="mr-2 text-lg">{lang.flag}</span>
+      <span>{lang.name}</span>
+    </div>
+  );
+
   return (
     <div className="relative">
       <button
-        className="flex items-center space-x-1 bg-purple/10 hover:bg-purple/20 p-2 rounded-full transition-colors"
+        className="flex items-center space-x-1 bg-purple/10 hover:bg-purple/20 p-2 rounded-md transition-colors"
         onClick={toggleDropdown}
         aria-label="Select language"
       >
@@ -37,7 +45,7 @@ const LanguageSelector = () => {
             onClick={closeDropdown} 
           />
           <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg overflow-hidden z-20 border border-border">
-            <div className="py-1">
+            <div className="py-1 max-h-80 overflow-auto">
               {languageOptions.map((lang) => (
                 <button
                   key={lang.code}

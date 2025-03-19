@@ -1,13 +1,14 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-// Available languages
+// Available languages - updated to match the image
 export const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦', rtl: true },
-  { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'ar', name: 'Arabic', flag: '🇸🇦', rtl: true },
+  { code: 'nl', name: 'Dutch', flag: '🇳🇱' },
+  { code: 'fr', name: 'French', flag: '🇫🇷' },
+  { code: 'de', name: 'German', flag: '🇩🇪' },
+  { code: 'it', name: 'Italian', flag: '🇮🇹' },
+  { code: 'pt', name: 'Portuguese', flag: '🇵🇹' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
 ];
 
 // Translations
@@ -299,76 +300,227 @@ const translations: Record<string, Record<string, string>> = {
     'error.pageMessage': 'La page que vous recherchez n\'existe pas ou a été déplacée.',
     'error.returnHome': 'Retour à la Page d\'Accueil',
   },
-  es: {
+  de: {
     // Navigation
-    'nav.home': 'Inicio',
-    'nav.about': 'Acerca de',
-    'nav.products': 'Productos',
-    'nav.farm': 'Nuestra Granja',
-    'nav.sustainability': 'Sostenibilidad',
-    'nav.csr': 'RSC',
+    'nav.home': 'Startseite',
+    'nav.about': 'Über Uns',
+    'nav.products': 'Produkte',
+    'nav.farm': 'Unsere Farm',
+    'nav.sustainability': 'Nachhaltigkeit',
+    'nav.csr': 'CSR',
     'nav.blog': 'Blog',
-    'nav.contact': 'Contacto',
+    'nav.contact': 'Kontakt',
     
     // Product related
-    'product.addToCart': 'Añadir al Carrito',
-    'product.viewDetails': 'Ver Detalles',
-    'product.price': 'Precio',
-    'product.category': 'Categoría',
-    'product.description': 'Descripción',
-    'product.quantity': 'Cantidad',
-    'product.availableSoon': 'Disponible Pronto',
-    'product.outOfStock': 'Agotado',
-    'product.inStock': 'En Stock',
+    'product.addToCart': 'In den Warenkorb',
+    'product.viewDetails': 'Details Anzeigen',
+    'product.price': 'Preis',
+    'product.category': 'Kategorie',
+    'product.description': 'Beschreibung',
+    'product.quantity': 'Menge',
+    'product.availableSoon': 'Bald Verfügbar',
+    'product.outOfStock': 'Nicht auf Lager',
+    'product.inStock': 'Auf Lager',
     
     // Cart related
-    'cart.checkout': 'Pagar',
-    'cart.continueShopping': 'Seguir Comprando',
-    'cart.emptyCart': 'Tu carrito está vacío',
-    'cart.total': 'Total',
-    'cart.items': 'Artículos',
-    'cart.remove': 'Eliminar',
+    'cart.checkout': 'Zur Kasse',
+    'cart.continueShopping': 'Weiter Einkaufen',
+    'cart.emptyCart': 'Ihr Warenkorb ist leer',
+    'cart.total': 'Gesamt',
+    'cart.items': 'Artikel',
+    'cart.remove': 'Entfernen',
     
     // About page
-    'about.ourStory': 'Nuestra Historia',
-    'about.mission': 'Nuestra Misión',
-    'about.team': 'Nuestro Equipo',
-    'about.values': 'Nuestros Valores',
+    'about.ourStory': 'Unsere Geschichte',
+    'about.mission': 'Unsere Mission',
+    'about.team': 'Unser Team',
+    'about.values': 'Unsere Werte',
     
     // Blog page
-    'blog.readMore': 'Leer Más',
-    'blog.recentPosts': 'Publicaciones Recientes',
-    'blog.categories': 'Categorías',
-    'blog.postedOn': 'Publicado el',
+    'blog.readMore': 'Weiterlesen',
+    'blog.recentPosts': 'Neueste Beiträge',
+    'blog.categories': 'Kategorien',
+    'blog.postedOn': 'Veröffentlicht am',
+    'blog.by': 'von',
+    
+    // Home page
+    'home.hero.title': 'Frische, Qualitäts- und Nachhaltige Blumen aus Kenia',
+    'home.hero.subtitle': 'Schönheit Kultivieren, Exzellenz Ernten',
+    'home.viewProducts': 'Unsere Blumen Ansehen',
+    'home.getInTouch': 'Kontakt Aufnehmen',
+    'home.featuredProducts': 'Ausgewählte Blumen',
+    'home.viewAllProducts': 'Alle Produkte Ansehen',
+    'home.qualityCertifications': 'Qualitätszertifikate',
+    'home.readyToOrder': 'Bereit Premium-Blumen zu Bestellen?',
+    'home.contactUs': 'Kontaktieren Sie Uns Jetzt',
+    'home.exploreProducts': 'Produkte Erkunden',
+    
+    // Farm page
+    'farm.title': 'Unsere Farm',
+    'farm.subtitle': 'Entdecken Sie die perfekte Umgebung für den Anbau von Weltklasse-Blumen',
+    'farm.location': 'Erstklassiger Standort',
+    'farm.environment': 'Die Perfekte Wachstumsumgebung',
+    'farm.advantages': 'Unsere Vorteile',
+    'farm.special': 'Was Unsere Farm Besonders Macht',
+    'farm.gallery': 'Farm-Galerie',
+    'farm.specialties': 'Unsere Spezialitäten',
+    'farm.whatWeGrow': 'Was Wir Anbauen',
+    'farm.scheduleVisit': 'Farmbesuch Planen',
+    'farm.visualTour': 'Visuelle Tour',
+    'farm.viewProducts': 'Unsere Produkte Ansehen',
+    
+    // Error page
+    'error.pageNotFound': 'Seite Nicht Gefunden',
+    'error.pageMessage': 'Die gesuchte Seite existiert nicht oder wurde verschoben.',
+    'error.returnHome': 'Zurück zur Startseite',
+  },
+  it: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.about': 'Chi Siamo',
+    'nav.products': 'Prodotti',
+    'nav.farm': 'La Nostra Fattoria',
+    'nav.sustainability': 'Sostenibilità',
+    'nav.csr': 'RSI',
+    'nav.blog': 'Blog',
+    'nav.contact': 'Contatti',
+    
+    // Product related
+    'product.addToCart': 'Aggiungi al Carrello',
+    'product.viewDetails': 'Visualizza Dettagli',
+    'product.price': 'Prezzo',
+    'product.category': 'Categoria',
+    'product.description': 'Descrizione',
+    'product.quantity': 'Quantità',
+    'product.availableSoon': 'Presto Disponibile',
+    'product.outOfStock': 'Esaurito',
+    'product.inStock': 'Disponibile',
+    
+    // Cart related
+    'cart.checkout': 'Procedi all\'Acquisto',
+    'cart.continueShopping': 'Continua lo Shopping',
+    'cart.emptyCart': 'Il tuo carrello è vuoto',
+    'cart.total': 'Totale',
+    'cart.items': 'Articoli',
+    'cart.remove': 'Rimuovi',
+    
+    // About page
+    'about.ourStory': 'La Nostra Storia',
+    'about.mission': 'La Nostra Missione',
+    'about.team': 'Il Nostro Team',
+    'about.values': 'I Nostri Valori',
+    
+    // Blog page
+    'blog.readMore': 'Leggi di Più',
+    'blog.recentPosts': 'Post Recenti',
+    'blog.categories': 'Categorie',
+    'blog.postedOn': 'Pubblicato il',
+    'blog.by': 'da',
+    
+    // Home page
+    'home.hero.title': 'Fiori Freschi, di Qualità e Sostenibili dal Kenya',
+    'home.hero.subtitle': 'Coltivare Bellezza, Raccogliere Eccellenza',
+    'home.viewProducts': 'Visualizza i Nostri Fiori',
+    'home.getInTouch': 'Contattaci',
+    'home.featuredProducts': 'Flores in Evidenza',
+    'home.viewAllProducts': 'Visualizza Tutti i Prodotti',
+    'home.qualityCertifications': 'Certificazioni di Qualità',
+    'home.readyToOrder': 'Pronto per Ordinare Fiori Premium?',
+    'home.contactUs': 'Contattaci Ora',
+    'home.exploreProducts': 'Esplora i Prodotti',
+    
+    // Farm page
+    'farm.title': 'La Nostra Fattoria',
+    'farm.subtitle': 'Scopri l\'ambiente perfetto per coltivare fiori di classe mondiale',
+    'farm.location': 'Posizione Privilegiata',
+    'farm.environment': 'L\'Ambiente di Crescita Perfetto',
+    'farm.advantages': 'I Nostri Vantaggi',
+    'farm.special': 'Cosa Rende Speciale la Nostra Fattoria',
+    'farm.gallery': 'Galleria della Fattoria',
+    'farm.specialties': 'Le Nostre Specialità',
+    'farm.whatWeGrow': 'Cosa Coltiviamo',
+    'farm.scheduleVisit': 'Programma una Visita',
+    'farm.visualTour': 'Tour Visivo',
+    'farm.viewProducts': 'Visualizza i Nostri Prodotti',
+    
+    // Error page
+    'error.pageNotFound': 'Pagina Non Trovata',
+    'error.pageMessage': 'La pagina che stai cercando non esiste o è stata spostata.',
+    'error.returnHome': 'Torna alla Home',
+  },
+  pt: {
+    // Navigation
+    'nav.home': 'Início',
+    'nav.about': 'Sobre Nós',
+    'nav.products': 'Produtos',
+    'nav.farm': 'Nossa Fazenda',
+    'nav.sustainability': 'Sustentabilidade',
+    'nav.csr': 'RSE',
+    'nav.blog': 'Blog',
+    'nav.contact': 'Contato',
+    
+    // Product related
+    'product.addToCart': 'Adicionar ao Carrinho',
+    'product.viewDetails': 'Ver Detalhes',
+    'product.price': 'Preço',
+    'product.category': 'Categoria',
+    'product.description': 'Descrição',
+    'product.quantity': 'Quantidade',
+    'product.availableSoon': 'Disponível em Breve',
+    'product.outOfStock': 'Esgotado',
+    'product.inStock': 'Em Estoque',
+    
+    // Cart related
+    'cart.checkout': 'Finalizar Compra',
+    'cart.continueShopping': 'Continuar Comprando',
+    'cart.emptyCart': 'Seu carrinho está vazio',
+    'cart.total': 'Total',
+    'cart.items': 'Itens',
+    'cart.remove': 'Remover',
+    
+    // About page
+    'about.ourStory': 'Nossa História',
+    'about.mission': 'Nossa Missão',
+    'about.team': 'Nossa Equipe',
+    'about.values': 'Nossos Valores',
+    
+    // Blog page
+    'blog.readMore': 'Leia Mais',
+    'blog.recentPosts': 'Posts Recentes',
+    'blog.categories': 'Categorias',
+    'blog.postedOn': 'Publicado em',
     'blog.by': 'por',
     
     // Home page
-    'home.hero.title': 'Flores Frescas, de Calidad y Sostenibles de Kenia',
-    'home.hero.subtitle': 'Cultivando Belleza, Cosechando Excelencia',
-    'home.viewProducts': 'Ver Nuestras Flores',
-    'home.getInTouch': 'Ponerse en Contacto',
-    'home.featuredProducts': 'Flores Destacadas',
-    'home.viewAllProducts': 'Ver Todos los Productos',
-    'home.qualityCertifications': 'Certificaciones de Calidad',
-    'home.readyToOrder': '¿Listo para Pedir Flores Premium?',
-    'home.contactUs': 'Contáctenos Ahora',
-    'home.exploreProducts': 'Explorar Productos',
+    'home.hero.title': 'Flores Frescas, de Qualidade e Sustentáveis do Quênia',
+    'home.hero.subtitle': 'Cultivando Beleza, Colhendo Excelência',
+    'home.viewProducts': 'Ver Nossas Flores',
+    'home.getInTouch': 'Entre em Contato',
+    'home.featuredProducts': 'Flores em Destaque',
+    'home.viewAllProducts': 'Ver Todos os Produtos',
+    'home.qualityCertifications': 'Certificações de Qualidade',
+    'home.readyToOrder': 'Pronto para Encomendar Flores Premium?',
+    'home.contactUs': 'Contate-nos Agora',
+    'home.exploreProducts': 'Explorar Produtos',
     
     // Farm page
-    'farm.title': 'Nuestra Granja',
-    'farm.subtitle': 'Descubre el entorno perfecto para cultivar flores de clase mundial',
-    'farm.location': 'Ubicación Privilegiada',
-    'farm.environment': 'El Entorno de Cultivo Perfecto',
-    'farm.advantages': 'Nuestras Ventajas',
-    'farm.special': 'Lo Que Hace Especial a Nuestra Granja',
-    'farm.gallery': 'Galería de la Granja',
-    'farm.specialties': 'Nuestras Especialidades',
-    'farm.whatWeGrow': 'Lo Que Cultivamos',
+    'farm.title': 'Nossa Fazenda',
+    'farm.subtitle': 'Descubra o ambiente perfeito para o cultivo de flores de classe mundial',
+    'farm.location': 'Localização Privilegiada',
+    'farm.environment': 'O Ambiente de Crescimento Perfeito',
+    'farm.advantages': 'Nossas Vantagens',
+    'farm.special': 'O Que Torna Nossa Fazenda Especial',
+    'farm.gallery': 'Galeria da Fazenda',
+    'farm.specialties': 'Nossas Especialidades',
+    'farm.whatWeGrow': 'O Que Cultivamos',
+    'farm.scheduleVisit': 'Agende uma Visita',
+    'farm.visualTour': 'Tour Visual',
+    'farm.viewProducts': 'Ver Nossos Produtos',
     
     // Error page
-    'error.pageNotFound': 'Página No Encontrada',
-    'error.pageMessage': 'La página que estás buscando no existe o ha sido movida.',
-    'error.returnHome': 'Volver a la Página de Inicio',
+    'error.pageNotFound': 'Página Não Encontrada',
+    'error.pageMessage': 'A página que você está procurando não existe ou foi movida.',
+    'error.returnHome': 'Voltar à Página Inicial',
   },
 };
 
