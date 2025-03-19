@@ -44,8 +44,8 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out",
         isScrolled 
-          ? "bg-white/80 backdrop-blur-md shadow-sm py-3" 
-          : "bg-transparent py-5"
+          ? "bg-white shadow-md py-3" 
+          : "bg-white/90 backdrop-blur-lg py-4 border-b border-purple/10"
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -68,9 +68,11 @@ const Navbar = () => {
               key={item.name}
               to={item.href}
               className={cn(
-                "text-sm font-medium smooth-transition opacity-80 hover:opacity-100 hover:text-secondary",
-                location.pathname === item.href ? "opacity-100 font-semibold text-primary" : "",
-                "link-underline"
+                "text-sm font-medium smooth-transition hover:opacity-100 hover:text-secondary",
+                location.pathname === item.href 
+                  ? "text-secondary font-semibold border-b-2 border-secondary" 
+                  : "text-primary",
+                "link-underline py-2"
               )}
             >
               {item.name}
@@ -87,14 +89,14 @@ const Navbar = () => {
         <div className="flex items-center space-x-3 md:hidden">
           <Cart />
           <button
-            className="focus:outline-none"
+            className="focus:outline-none bg-purple/10 p-2 rounded-md"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-6 w-6 text-secondary" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6 text-primary" />
             )}
           </button>
         </div>
@@ -103,7 +105,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-white/95 backdrop-blur-md transition-all duration-300 ease-in-out md:hidden",
+          "fixed inset-0 z-40 bg-white transition-all duration-300 ease-in-out md:hidden",
           isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
         )}
       >
@@ -115,7 +117,9 @@ const Navbar = () => {
                 to={item.href}
                 className={cn(
                   "text-lg font-medium smooth-transition", 
-                  location.pathname === item.href ? "text-primary font-semibold" : "text-foreground"
+                  location.pathname === item.href 
+                    ? "text-secondary font-semibold border-b-2 border-secondary" 
+                    : "text-primary"
                 )}
               >
                 {item.name}
