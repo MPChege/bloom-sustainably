@@ -1,4 +1,3 @@
-
 import { ArrowRight, Heart, Leaf, Smile } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import Button from "@/components/Button";
@@ -36,35 +35,40 @@ const Index = () => {
       name: "Premium Red Roses",
       image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Premium Roses",
-      description: "Elegant long-stemmed red roses, perfect for luxury floral arrangements and special occasions."
+      description: "Elegant long-stemmed red roses, perfect for luxury floral arrangements and special occasions.",
+      price: 29.99
     },
     {
       id: 2,
       name: "Spray Carnations",
       image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Summer Flowers",
-      description: "Vibrant spray carnations with multiple blooms per stem, adding texture and color to bouquets."
+      description: "Vibrant spray carnations with multiple blooms per stem, adding texture and color to bouquets.",
+      price: 19.99
     },
     {
       id: 3,
       name: "Premium Pink Roses",
       image: "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Premium Roses",
-      description: "Delicate pink roses with excellent vase life and stunning bloom development."
+      description: "Delicate pink roses with excellent vase life and stunning bloom development.",
+      price: 24.99
     },
     {
       id: 4,
       name: "Elegant Lilies",
       image: "https://images.unsplash.com/photo-1589994160839-163cd867cfe8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Specialty Flowers",
-      description: "Striking lilies with large, fragrant blooms perfect for statement arrangements."
+      description: "Striking lilies with large, fragrant blooms perfect for statement arrangements.",
+      price: 32.99
     },
     {
       id: 5,
       name: "Colorful Tulips",
       image: "https://images.unsplash.com/photo-1591669246851-a3e616020049?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Spring Flowers",
-      description: "Vibrant tulips in various colors, bringing freshness and charm to any arrangement."
+      description: "Vibrant tulips in various colors, bringing freshness and charm to any arrangement.",
+      price: 22.99
     }
   ];
 
@@ -267,10 +271,12 @@ const Index = () => {
                 <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
                   <div className="p-1">
                     <ProductCard
+                      id={product.id}
                       name={product.name}
                       image={product.image}
                       category={product.category}
                       description={product.description}
+                      price={product.price}
                       className="h-full transform transition-all duration-300 hover:translate-y-[-5px]"
                     />
                   </div>
