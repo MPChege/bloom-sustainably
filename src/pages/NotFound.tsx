@@ -17,12 +17,10 @@ const NotFound = () => {
             </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-display font-semibold mb-4">
-            {isRTL ? "الصفحة غير موجودة" : "Page Not Found"}
+            {t('error.pageNotFound')}
           </h1>
           <p className="text-muted-foreground text-lg mb-8">
-            {isRTL 
-              ? "الصفحة التي تبحث عنها غير موجودة أو تم نقلها."
-              : "The page you're looking for doesn't exist or has been moved."}
+            {t('error.pageMessage')}
           </p>
           <Button 
             as="link" 
@@ -31,7 +29,7 @@ const NotFound = () => {
             icon={<Home size={18} />}
             className="bg-secondary hover:bg-secondary/90 text-white"
           >
-            {isRTL ? "العودة إلى الصفحة الرئيسية" : "Return to Homepage"}
+            {t('error.returnHome')}
           </Button>
         </div>
       </div>

@@ -2,8 +2,11 @@
 import HeroSection from "@/components/HeroSection";
 import { Droplets, Sun, Mountain, Leaf, BarChart2, Cloud } from "lucide-react";
 import Button from "@/components/Button";
+import { useLanguage } from "@/context/LanguageContext";
 
 const OurFarm = () => {
+  const { t, isRTL } = useLanguage();
+  
   const farmFeatures = [
     {
       icon: <Mountain className="h-6 w-6 text-primary" />,
@@ -61,10 +64,10 @@ const OurFarm = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className={`min-h-screen pt-16 ${isRTL ? "rtl" : ""}`}>
       <HeroSection 
-        title="Our Farm"
-        subtitle="Discover the perfect environment for growing world-class flowers"
+        title={t('farm.title')}
+        subtitle={t('farm.subtitle')}
         backgroundImage="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
@@ -75,10 +78,10 @@ const OurFarm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
               <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-                Prime Location
+                {t('farm.location')}
               </span>
               <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-                The Perfect Growing Environment
+                {t('farm.environment')}
               </h2>
               
               <div className="prose">
@@ -104,7 +107,7 @@ const OurFarm = () => {
               
               <div className="mt-8">
                 <Button as="link" href="/contact" size="lg">
-                  Schedule a Farm Visit
+                  {t('farm.scheduleVisit')}
                 </Button>
               </div>
             </div>
@@ -131,10 +134,10 @@ const OurFarm = () => {
         <div className="container-tight">
           <div className="text-center mb-16">
             <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-              Our Advantages
+              {t('farm.advantages')}
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-              What Makes Our Farm Special
+              {t('farm.special')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Our unique combination of location, climate, and technology creates 
@@ -164,10 +167,10 @@ const OurFarm = () => {
         <div className="container-tight">
           <div className="text-center mb-16">
             <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-              Visual Tour
+              {t('farm.visualTour')}
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-              Farm Gallery
+              {t('farm.gallery')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Take a visual tour of our facilities, fields, and operations.
@@ -198,10 +201,10 @@ const OurFarm = () => {
         <div className="container-tight">
           <div className="text-center mb-16">
             <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-              Our Specialties
+              {t('farm.specialties')}
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-              What We Grow
+              {t('farm.whatWeGrow')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               We specialize in a variety of premium flowers, each grown with attention to detail and quality.
@@ -257,7 +260,7 @@ const OurFarm = () => {
           
           <div className="text-center mt-16">
             <Button as="link" href="/products" size="lg">
-              View Our Complete Product Range
+              {t('farm.viewProducts')}
             </Button>
           </div>
         </div>
