@@ -23,7 +23,9 @@ const CertificationBadge = ({ name, logo, className }: CertificationBadgeProps) 
       onMouseLeave={() => setIsHovered(false)}
       style={{
         transformStyle: "preserve-3d",
-        boxShadow: isHovered ? "0 10px 20px rgba(0,0,0,0.1)" : "0 4px 6px rgba(0,0,0,0.05)",
+        boxShadow: isHovered ? "0 10px 20px rgba(93, 75, 140, 0.2)" : "0 4px 6px rgba(93, 75, 140, 0.1)",
+        background: "linear-gradient(145deg, rgba(255,255,255,0.9), rgba(252,248,255,0.7))",
+        border: "1px solid rgba(230, 57, 70, 0.1)"
       }}
     >
       <img 

@@ -5,96 +5,108 @@ import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 
-// Product data
+// Product data with prices
 const products = [
   // Premium Roses
   {
     id: 1,
     name: "Red Naomi Roses",
-    image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1533616688419-b7a585564566?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Premium Roses",
-    description: "Our signature red rose with large heads, intense color, and exceptional vase life."
+    description: "Our signature red rose with large heads, intense color, and exceptional vase life.",
+    price: 29.99
   },
   {
     id: 2,
     name: "White O'Hara Roses",
-    image: "https://images.unsplash.com/photo-1535850579364-952ef600d22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1558652093-2bf93161efc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Premium Roses",
-    description: "Elegant garden roses with multiple petals and a delicate fragrance."
+    description: "Elegant garden roses with multiple petals and a delicate fragrance.",
+    price: 27.99
   },
   {
     id: 3,
     name: "Pink Avalanche Roses",
-    image: "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Premium Roses",
-    description: "Soft pink roses with strong stems and excellent opening properties."
+    description: "Soft pink roses with strong stems and excellent opening properties.",
+    price: 26.99
   },
   {
     id: 4,
     name: "Yellow Finesse Roses",
-    image: "https://images.unsplash.com/photo-1548043518-a548a0154d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1501577316686-a5cbf6c1df7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Premium Roses",
-    description: "Vibrant yellow roses with perfect form and long stems."
+    description: "Vibrant yellow roses with perfect form and long stems.",
+    price: 28.99
   },
   
   // Spray Roses
   {
     id: 5,
     name: "Peach Spray Roses",
-    image: "https://images.unsplash.com/photo-1455582916367-25f75bfc6710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
-    description: "Delicate peach spray roses with multiple blooms per stem."
+    description: "Delicate peach spray roses with multiple blooms per stem.",
+    price: 19.99
   },
   {
     id: 6,
     name: "White Spray Roses",
-    image: "https://images.unsplash.com/photo-1587556930728-27c7a8aa0af1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1548198471-e5a4b755def3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
-    description: "Pure white spray roses, perfect for weddings and special events."
+    description: "Pure white spray roses, perfect for weddings and special events.",
+    price: 18.99
   },
   {
     id: 7,
     name: "Pink Sensation Spray Roses",
-    image: "https://images.unsplash.com/photo-1591027346487-a29a31c37f33?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1530092285049-1c42085fd395?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
-    description: "Bright pink spray roses with excellent color retention."
+    description: "Bright pink spray roses with excellent color retention.",
+    price: 21.99
   },
   {
     id: 8,
     name: "Red Spray Roses",
-    image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1547187042-6d945e5a5b5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Spray Roses",
-    description: "Vibrant red spray roses, adding drama and intensity to arrangements."
+    description: "Vibrant red spray roses, adding drama and intensity to arrangements.",
+    price: 22.99
   },
   
   // Summer Flowers
   {
     id: 9,
     name: "Carnations",
-    image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Summer Flowers",
-    description: "Available in various colors, these long-lasting flowers are versatile and durable."
+    description: "Available in various colors, these long-lasting flowers are versatile and durable.",
+    price: 16.99
   },
   {
     id: 10,
     name: "Hypericum Berries",
-    image: "https://images.unsplash.com/photo-1604323990536-e5452c0507c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1588567678465-08902ca5f8d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Summer Flowers",
-    description: "Decorative berries that add texture and interest to arrangements."
+    description: "Decorative berries that add texture and interest to arrangements.",
+    price: 15.99
   },
   {
     id: 11,
     name: "Lisianthus",
-    image: "https://images.unsplash.com/photo-1567581170431-80f677314fea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1599789197514-47270cd526b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Summer Flowers",
-    description: "Elegant flowers with ruffled petals, available in white, pink, and purple."
+    description: "Elegant flowers with ruffled petals, available in white, pink, and purple.",
+    price: 24.99
   },
   {
     id: 12,
     name: "Statice",
-    image: "https://images.unsplash.com/photo-1594502184342-2349ffc88838?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1612966809470-bfbbeb142bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Summer Flowers",
-    description: "Colorful filler flowers that dry beautifully and add texture to arrangements."
+    description: "Colorful filler flowers that dry beautifully and add texture to arrangements.",
+    price: 14.99
   }
 ];
 
@@ -135,7 +147,7 @@ const Products = () => {
                     "px-4 py-2 rounded-full text-sm font-medium transition-all",
                     selectedCategory === category
                       ? "bg-primary text-white"
-                      : "bg-sage/20 text-foreground/80 hover:bg-sage/40"
+                      : "bg-purple/20 text-foreground/80 hover:bg-purple/40"
                   )}
                 >
                   {category}
@@ -150,7 +162,7 @@ const Products = () => {
                 placeholder="Search flowers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-full border border-sage focus:outline-none focus:ring-1 focus:ring-primary bg-white"
+                className="w-full pl-10 pr-4 py-2 rounded-full border border-purple/30 focus:outline-none focus:ring-1 focus:ring-primary bg-white"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             </div>
@@ -166,10 +178,12 @@ const Products = () => {
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
+                  id={product.id}
                   name={product.name}
                   image={product.image}
                   category={product.category}
                   description={product.description}
+                  price={product.price}
                 />
               ))}
             </div>
@@ -189,7 +203,7 @@ const Products = () => {
         <div className="container-tight">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+              <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
                 Quality Assurance
               </span>
               <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
@@ -217,13 +231,13 @@ const Products = () => {
             
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                src="https://images.unsplash.com/photo-1600703136783-bdb5ea365239?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                 alt="Quality control process" 
                 className="w-full h-auto object-cover rounded-lg shadow-lg"
               />
               <div className="absolute -bottom-6 -right-6 w-2/5 h-auto">
                 <img 
-                  src="https://images.unsplash.com/photo-1552159268-59567c1a1c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  src="https://images.unsplash.com/photo-1533616688419-b7a585564566?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
                   alt="Flower inspection" 
                   className="w-full h-auto object-cover rounded-lg shadow-lg border-4 border-white"
                 />
@@ -234,10 +248,10 @@ const Products = () => {
       </section>
       
       {/* Custom Orders */}
-      <section className="page-section bg-sage/10">
+      <section className="page-section bg-purple/10">
         <div className="container-tight">
           <div className="text-center mb-12">
-            <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+            <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
               Tailored Solutions
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
@@ -262,7 +276,7 @@ const Products = () => {
                     "Timely delivery through our established logistics network"
                   ].map((step, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="bg-primary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">
+                      <span className="bg-secondary text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">
                         {index + 1}
                       </span>
                       <span>{step}</span>
@@ -282,7 +296,7 @@ const Products = () => {
                     "Seasonal or event-specific growing schedules"
                   ].map((option, index) => (
                     <div key={index} className="glass-card p-3 flex items-center">
-                      <div className="bg-sage/40 rounded-full p-2 mr-3">
+                      <div className="bg-purple/40 rounded-full p-2 mr-3">
                         <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-primary" stroke="currentColor">
                           <path d="M5 13l4 4L19 7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>

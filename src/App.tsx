@@ -1,65 +1,50 @@
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
 
-// Layout components
+// Layouts
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 // Pages
 import Index from "./pages/Index";
+import About from "./pages/About";
+import OurFarm from "./pages/OurFarm";
+import Products from "./pages/Products";
+import Sustainability from "./pages/Sustainability";
+import CSR from "./pages/CSR";
+import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-// Lazy loaded pages for better performance
-const About = lazy(() => import("./pages/About"));
-const OurFarm = lazy(() => import("./pages/OurFarm"));
-const Products = lazy(() => import("./pages/Products"));
-const Sustainability = lazy(() => import("./pages/Sustainability"));
-const CSR = lazy(() => import("./pages/CSR"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Blog = lazy(() => import("./pages/Blog"));
+// Context
+import { CartProvider } from "./context/CartContext";
 
-// Loading spinner for lazy-loaded pages
-const PageLoader = () => (
-  <div className="min-h-[70vh] flex items-center justify-center">
-    <div className="h-12 w-12 rounded-full border-t-2 border-b-2 border-primary animate-spin"></div>
-  </div>
-);
-
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+function App() {
+  return (
+    <CartProvider>
+      <Router>
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-grow">
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/our-farm" element={<OurFarm />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/sustainability" element={<Sustainability />} />
-                <Route path="/csr" element={<CSR />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/our-farm" element={<OurFarm />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/sustainability" element={<Sustainability />} />
+              <Route path="/csr" element={<CSR />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </main>
           <Footer />
         </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+        <Toaster position="top-center" richColors />
+      </Router>
+    </CartProvider>
+  );
+}
 
 export default App;

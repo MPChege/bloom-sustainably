@@ -5,7 +5,7 @@ import { Home } from "lucide-react";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-sage/5">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple/5 to-white">
       <div className="container-tight">
         <div className="glass-card max-w-2xl mx-auto p-8 md:p-12 text-center">
           <div className="mb-6">
@@ -22,6 +22,7 @@ const NotFound = () => {
             href="/" 
             size="lg" 
             icon={<Home size={18} />}
+            className="bg-secondary hover:bg-secondary/90 text-white"
           >
             Return to Homepage
           </Button>

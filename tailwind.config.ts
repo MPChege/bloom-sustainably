@@ -63,15 +63,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom colors for Credible Blooms
-				cream: "#FCF8F3",
-				sage: "#D1DAC5",
-				mint: "#E8F0E3",
-				olive: "#656D4A",
-				rose: "#F8E2E2",
-				blush: "#F9DCDC",
-				clay: "#C9A89B",
-				stone: "#A69F98",
+				// Custom colors
+				purple: "#5D4B8C",
+				red: "#e63946",
+				cream: "#FFF8F0",
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -113,8 +108,8 @@ export default {
 				'slide-in': 'slide-in 0.5s ease-out'
 			},
 			backgroundImage: {
-				'hero-pattern': "url('https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
-				'texture-pattern': "url('https://images.unsplash.com/photo-1526289034009-0240ddb68ce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80')",
+				'hero-pattern': "url('https://images.unsplash.com/photo-1530092285049-1c42085fd395?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+				'texture-pattern': "url('https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80')",
 			}
 		}
 	},

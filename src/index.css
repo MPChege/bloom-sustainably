@@ -7,23 +7,23 @@
 
 @layer base {
   :root {
-    --background: 30 33% 98%;
-    --foreground: 24 10% 10%;
+    --background: 0 0% 100%;
+    --foreground: 270 25% 25%;
 
-    --card: 30 33% 100%;
-    --card-foreground: 24 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 270 25% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 24 10% 10%;
+    --popover-foreground: 270 25% 25%;
 
-    --primary: 110 20% 35%;
-    --primary-foreground: 30 33% 98%;
+    --primary: 270 40% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 84 22% 82%;
-    --secondary-foreground: 110 20% 20%;
+    --secondary: 350 60% 45%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 84 20% 94%;
-    --muted-foreground: 24 5% 40%;
+    --muted: 270 20% 96%;
+    --muted-foreground: 270 10% 40%;
 
     --accent: 350 30% 90%;
     --accent-foreground: 350 50% 20%;
@@ -31,41 +31,41 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 10% 90%;
-    --input: 30 10% 90%;
-    --ring: 110 20% 35%;
+    --border: 270 20% 90%;
+    --input: 270 20% 90%;
+    --ring: 270 40% 40%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 24 10% 10%;
-    --foreground: 30 33% 98%;
+    --background: 270 25% 10%;
+    --foreground: 0 0% 100%;
 
-    --card: 24 10% 10%;
-    --card-foreground: 30 33% 98%;
+    --card: 270 25% 10%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 24 10% 10%;
-    --popover-foreground: 30 33% 98%;
+    --popover: 270 25% 10%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 110 20% 35%;
-    --primary-foreground: 30 33% 98%;
+    --primary: 270 40% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 84 22% 18%;
-    --secondary-foreground: 30 33% 98%;
+    --secondary: 350 60% 45%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 84 20% 15%;
-    --muted-foreground: 30 33% 70%;
+    --muted: 270 20% 15%;
+    --muted-foreground: 0 0% 80%;
 
-    --accent: 350 30% 15%;
+    --accent: 350 40% 20%;
     --accent-foreground: 350 30% 90%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 24 10% 20%;
-    --input: 24 10% 20%;
-    --ring: 110 20% 35%;
+    --border: 270 25% 20%;
+    --input: 270 25% 20%;
+    --ring: 270 40% 40%;
   }
 }
 
@@ -110,6 +110,22 @@
   
   .link-underline {
     @apply relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white px-4 py-2 rounded-md hover:bg-secondary/90 transition-colors;
+  }
+
+  .btn-outline {
+    @apply border border-primary text-primary px-4 py-2 rounded-md hover:bg-primary/10 transition-colors;
+  }
+
+  .card-hover {
+    @apply transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
 }
 
@@ -179,4 +195,57 @@
 
 .lazy-image.loaded {
   filter: blur(0);
+}
+
+/* 3D effect for cards */
+.card-3d {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Add badge styles */
+.badge {
+  @apply px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+  @apply bg-primary/20 text-primary;
+}
+
+.badge-secondary {
+  @apply bg-secondary/20 text-secondary;
+}
+
+/* Cart styles */
+.cart-icon {
+  @apply relative;
+}
+
+.cart-count {
+  @apply absolute -top-2 -right-2 bg-secondary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center;
+}
+
+.cart-drawer {
+  @apply fixed top-0 right-0 h-full w-80 bg-background shadow-xl transform transition-transform duration-300 z-50;
+}
+
+.cart-drawer.closed {
+  @apply translate-x-full;
+}
+
+.cart-drawer.open {
+  @apply translate-x-0;
+}
+
+.cart-item {
+  @apply flex items-center border-b border-border py-3;
+}
+
+.product-price {
+  @apply text-primary font-bold;
 }

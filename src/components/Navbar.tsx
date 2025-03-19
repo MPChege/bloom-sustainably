@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Cart from "./Cart";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -53,9 +54,11 @@ const Navbar = () => {
           to="/" 
           className="flex items-center space-x-2 smooth-transition"
         >
-          <h1 className="text-2xl font-display font-bold tracking-tight">
-            <span className="text-primary">Credible</span><span className="text-foreground">Blooms</span>
-          </h1>
+          <img 
+            src="/lovable-uploads/edda6dbd-9ef2-4b51-bb0c-1b0e82948a1a.png" 
+            alt="Credible Blooms Logo" 
+            className="h-10 md:h-12"
+          />
         </Link>
 
         {/* Desktop navigation */}
@@ -65,8 +68,8 @@ const Navbar = () => {
               key={item.name}
               to={item.href}
               className={cn(
-                "text-sm font-medium smooth-transition opacity-80 hover:opacity-100",
-                location.pathname === item.href ? "opacity-100 font-semibold" : "",
+                "text-sm font-medium smooth-transition opacity-80 hover:opacity-100 hover:text-secondary",
+                location.pathname === item.href ? "opacity-100 font-semibold text-primary" : "",
                 "link-underline"
               )}
             >
@@ -75,18 +78,26 @@ const Navbar = () => {
           ))}
         </nav>
 
+        {/* Cart Icon - Desktop */}
+        <div className="hidden md:block">
+          <Cart />
+        </div>
+
         {/* Mobile menu button */}
-        <button
-          className="md:hidden focus:outline-none"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        <div className="flex items-center space-x-3 md:hidden">
+          <Cart />
+          <button
+            className="focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
