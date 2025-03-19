@@ -11,6 +11,8 @@ interface OptimizedImageProps {
   height?: number;
   priority?: boolean;
   onClick?: () => void;
+  style?: React.CSSProperties;
+  transform3d?: boolean;
 }
 
 const OptimizedImage = ({
@@ -21,6 +23,8 @@ const OptimizedImage = ({
   height,
   priority = false,
   onClick,
+  style,
+  transform3d = false,
 }: OptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(priority ? src : "");
@@ -40,10 +44,24 @@ const OptimizedImage = ({
     ? src.replace(/w=\d+/, `w=${width || 800}`).replace(/q=\d+/, "q=75") 
     : src;
 
+  const transform3dStyles = transform3d ? {
+    transform: "perspective(1000px) rotateX(5deg) rotateY(5deg)",
+    transition: "transform 0.5s ease-out",
+    boxShadow: "0 20px 50px rgba(0, 0, 0, 0.3)",
+    ...style
+  } : style;
+
   return (
     <div 
-      className={cn("relative overflow-hidden", className)}
-      style={{ height: height ? `${height}px` : "auto" }}
+      className={cn(
+        "relative overflow-hidden",
+        transform3d && "transform-gpu hover:scale-105 transition-transform duration-500",
+        className
+      )}
+      style={{ 
+        height: height ? `${height}px` : "auto",
+        ...transform3dStyles
+      }}
     >
       {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
       {imageSrc && (
@@ -52,7 +70,8 @@ const OptimizedImage = ({
           alt={alt}
           className={cn(
             "w-full h-full object-cover transition-opacity duration-300",
-            isLoaded ? "opacity-100" : "opacity-0"
+            isLoaded ? "opacity-100" : "opacity-0",
+            transform3d && "hover:scale-105 transition-all duration-500"
           )}
           width={width}
           height={height}
