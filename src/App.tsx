@@ -19,31 +19,37 @@ import NotFound from "./pages/NotFound";
 
 // Context
 import { CartProvider } from "./context/CartContext";
+import { LanguageProvider } from "./context/LanguageContext";
+import { CurrencyProvider } from "./context/CurrencyContext";
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/our-farm" element={<OurFarm />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/sustainability" element={<Sustainability />} />
-              <Route path="/csr" element={<CSR />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-        <Toaster position="top-center" richColors />
-      </Router>
-    </CartProvider>
+    <LanguageProvider>
+      <CurrencyProvider>
+        <CartProvider>
+          <Router>
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/our-farm" element={<OurFarm />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/sustainability" element={<Sustainability />} />
+                  <Route path="/csr" element={<CSR />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+            <Toaster position="top-center" richColors />
+          </Router>
+        </CartProvider>
+      </CurrencyProvider>
+    </LanguageProvider>
   );
 }
 

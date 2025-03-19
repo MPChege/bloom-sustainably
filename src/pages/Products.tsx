@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Product data with prices
 const products = [
@@ -110,11 +111,18 @@ const products = [
   }
 ];
 
-const categories = ["All", "Premium Roses", "Spray Roses", "Summer Flowers"];
-
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const { t, isRTL } = useLanguage();
+
+  // Define categories with translations
+  const categories = [
+    { id: "All", en: "All", ar: "الكل", nl: "Alle", fr: "Tous", es: "Todos" },
+    { id: "Premium Roses", en: "Premium Roses", ar: "ورد فاخر", nl: "Premium Rozen", fr: "Roses Premium", es: "Rosas Premium" },
+    { id: "Spray Roses", en: "Spray Roses", ar: "ورد سبراي", nl: "Trosrozen", fr: "Roses Spray", es: "Rosas Spray" },
+    { id: "Summer Flowers", en: "Summer Flowers", ar: "زهور صيفية", nl: "Zomerbloemen", fr: "Fleurs d'Été", es: "Flores de Verano" }
+  ];
 
   // Filter products based on category and search query
   const filteredProducts = products.filter(product => {
@@ -124,11 +132,25 @@ const Products = () => {
     return matchesCategory && matchesSearch;
   });
 
+  // Get translated category name
+  const getCategoryName = (categoryId: string) => {
+    const category = categories.find(c => c.id === categoryId);
+    if (!category) return categoryId;
+    
+    // Use the appropriate language based on current language
+    if (isRTL) return category.ar;
+    
+    // For other languages we can expand this
+    return category.en;
+  };
+
   return (
-    <div className="min-h-screen pt-16">
+    <div className={`min-h-screen pt-16 ${isRTL ? "rtl" : ""}`}>
       <HeroSection 
-        title="Our Flower Collection"
-        subtitle="Discover our premium quality blooms grown with care in the Kenyan highlands"
+        title={isRTL ? "مجموعة الزهور لدينا" : "Our Flower Collection"}
+        subtitle={isRTL 
+          ? "اكتشف زهورنا عالية الجودة المزروعة بعناية في مرتفعات كينيا" 
+          : "Discover our premium quality blooms grown with care in the Kenyan highlands"}
         backgroundImage="https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
@@ -141,16 +163,16 @@ const Products = () => {
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
                   className={cn(
                     "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                    selectedCategory === category
+                    selectedCategory === category.id
                       ? "bg-primary text-white"
                       : "bg-purple/20 text-foreground/80 hover:bg-purple/40"
                   )}
                 >
-                  {category}
+                  {getCategoryName(category.id)}
                 </button>
               ))}
             </div>
@@ -159,12 +181,12 @@ const Products = () => {
             <div className="relative w-full md:w-64">
               <input
                 type="text"
-                placeholder="Search flowers..."
+                placeholder={isRTL ? "ابحث عن الزهور..." : "Search flowers..."}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 rounded-full border border-purple/30 focus:outline-none focus:ring-1 focus:ring-primary bg-white"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4`} />
             </div>
           </div>
         </div>
@@ -189,9 +211,13 @@ const Products = () => {
             </div>
           ) : (
             <div className="text-center py-16">
-              <h3 className="text-xl font-medium mb-2">No flowers found</h3>
+              <h3 className="text-xl font-medium mb-2">
+                {isRTL ? "لم يتم العثور على زهور" : "No flowers found"}
+              </h3>
               <p className="text-muted-foreground">
-                Try adjusting your search or filter criteria.
+                {isRTL 
+                  ? "حاول تعديل معايير البحث أو التصفية."
+                  : "Try adjusting your search or filter criteria."}
               </p>
             </div>
           )}

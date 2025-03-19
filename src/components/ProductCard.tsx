@@ -4,6 +4,8 @@ import { useState } from "react";
 import Button from "./Button";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useCurrency } from "@/context/CurrencyContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
 
 interface ProductCardProps {
@@ -19,6 +21,8 @@ interface ProductCardProps {
 const ProductCard = ({ id, name, image, category, description, price, className }: ProductCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { addItem } = useCart();
+  const { formatPrice } = useCurrency();
+  const { t } = useLanguage();
 
   const handleAddToCart = () => {
     addItem({ id, name, image, price });
@@ -52,7 +56,7 @@ const ProductCard = ({ id, name, image, category, description, price, className 
         </div>
         <div className="absolute top-3 right-3">
           <span className="bg-secondary/80 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-white">
-            ${price.toFixed(2)}
+            {formatPrice(price)}
           </span>
         </div>
       </div>
@@ -62,7 +66,7 @@ const ProductCard = ({ id, name, image, category, description, price, className 
         <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{description}</p>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" className="flex-grow">
-            View Details
+            {t('product.viewDetails')}
           </Button>
           <Button 
             size="sm" 
@@ -70,7 +74,7 @@ const ProductCard = ({ id, name, image, category, description, price, className 
             onClick={handleAddToCart}
             icon={<ShoppingCart size={16} />}
           >
-            Add to Cart
+            {t('product.addToCart')}
           </Button>
         </div>
       </div>

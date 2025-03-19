@@ -1,4 +1,3 @@
-
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -6,11 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrency(value: number): string {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(value);
+export function formatCurrency(value: number, currencySymbol = '$', digitsAfterDecimal = 2): string {
+  return `${currencySymbol}${value.toFixed(digitsAfterDecimal)}`;
 }
 
 export function truncateText(text: string, maxLength: number): string {
@@ -32,7 +28,14 @@ export function formatDate(date: Date): string {
   }).format(date);
 }
 
-// Payment processing simulation
+export function formatDateWithLocale(date: Date, locale: string): string {
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+}
+
 export function processPayment(paymentDetails: {
   cardNumber: string;
   expiryDate: string;
@@ -67,7 +70,6 @@ export function processPayment(paymentDetails: {
   });
 }
 
-// Shipping estimation
 export function estimateShipping(zipCode: string): {cost: number; days: number} {
   // Simple estimation logic based on zip code first digit
   const firstDigit = parseInt(zipCode.charAt(0));
@@ -88,7 +90,11 @@ export function estimateShipping(zipCode: string): {cost: number; days: number} 
   return {cost, days};
 }
 
-// Generate confirmation code
 export function generateConfirmationCode(): string {
   return `CB-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+}
+
+export function convertCurrency(amount: number, fromRate: number, toRate: number): number {
+  // Convert to base currency (USD) then to target currency
+  return (amount / fromRate) * toRate;
 }

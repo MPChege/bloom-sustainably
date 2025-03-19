@@ -1,6 +1,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
+import { cn } from '@/lib/utils';
 
 interface TestimonialProps {
   testimonial: {
@@ -13,9 +15,14 @@ interface TestimonialProps {
 }
 
 const TestimonialCard: React.FC<TestimonialProps> = ({ testimonial, index }) => {
+  const { isRTL } = useLanguage();
+
   return (
     <motion.div 
-      className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary"
+      className={cn(
+        "bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary",
+        isRTL && "text-right"
+      )}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
@@ -33,15 +40,15 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ testimonial, index }) => 
     >
       <div className="flex flex-col h-full">
         <div className="mb-4 flex-grow">
-          <div className="text-primary text-4xl font-serif leading-none mb-2">"</div>
+          <div className={cn("text-primary text-4xl font-serif leading-none mb-2", isRTL ? "text-right" : "text-left")}>"</div>
           <p className="text-gray-700 italic">
             {testimonial.content}
           </p>
-          <div className="text-primary text-4xl font-serif leading-none text-right mt-2">"</div>
+          <div className={cn("text-primary text-4xl font-serif leading-none mt-2", isRTL ? "text-left" : "text-right")}>"</div>
         </div>
         
-        <div className="flex items-center mt-4 pt-4 border-t border-gray-100">
-          <div className="w-12 h-12 rounded-full overflow-hidden mr-4 border-2 border-primary">
+        <div className={cn("flex items-center mt-4 pt-4 border-t border-gray-100", isRTL && "flex-row-reverse")}>
+          <div className={cn("w-12 h-12 rounded-full overflow-hidden border-2 border-primary", isRTL ? "ml-4" : "mr-4")}>
             <img 
               src={testimonial.avatar} 
               alt={testimonial.author} 
