@@ -1,4 +1,3 @@
-
 import HeroSection from "@/components/HeroSection";
 import { Droplets, Recycle, Sun, Sprout, Users, Heart } from "lucide-react";
 import CertificationBadge from "@/components/CertificationBadge";
@@ -12,7 +11,7 @@ const Sustainability = () => {
     },
     {
       icon: <Recycle className="h-6 w-6 text-primary" />,
-      title: "Waste Management",
+      title: "Waste Management", 
       description: "We compost 100% of organic waste and recycle all plastic and packaging materials used in our operations."
     },
     {
@@ -51,7 +50,7 @@ const Sustainability = () => {
       <HeroSection 
         title="Our Commitment to Sustainability"
         subtitle="Growing flowers in harmony with nature and communities"
-        backgroundImage="https://images.unsplash.com/photo-1470755008296-2939648ceff7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1444021465936-c6ca81d39b84?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       
@@ -61,13 +60,13 @@ const Sustainability = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1 relative h-[500px] w-full">
               <img 
-                src="https://images.unsplash.com/photo-1572078346252-f94eec3f6de1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                alt="Solar panels at Credible Blooms" 
+                src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                alt="Greenhouses with solar panels" 
                 className="absolute w-3/4 h-auto rounded-lg shadow-lg z-10 top-0 left-0"
               />
               <img 
                 src="https://images.unsplash.com/photo-1504713685952-246531f75c5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Water conservation system" 
+                alt="Water conservation system with flowers" 
                 className="absolute w-2/3 h-auto rounded-lg shadow-lg bottom-0 right-0 border-4 border-white"
               />
               <div className="absolute w-64 h-64 rounded-full bg-sage/30 -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
@@ -254,7 +253,7 @@ const Sustainability = () => {
       {/* Future Plans */}
       <section 
         className="relative py-20 md:py-24 bg-cover bg-center"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')" }}
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1496861083958-175aa34862cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')" }}
       >
         <div className="absolute inset-0 bg-primary/70 backdrop-blur-sm"></div>
         <div className="container-tight relative z-10">

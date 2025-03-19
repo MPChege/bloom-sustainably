@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import Button from "@/components/Button";
@@ -32,7 +31,7 @@ const blogPosts = [
     id: 3,
     title: "From Farm to Vase: The Journey of Kenyan Cut Flowers",
     excerpt: "Follow the fascinating journey of cut flowers from the Kenyan highlands to vases around the world, exploring the logistics, technology, and people that make it possible.",
-    image: "https://images.unsplash.com/photo-1523342451740-8f862677acbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     date: "March 18, 2023",
     author: "Grace Odhiambo",
     readTime: "6 min read",
@@ -90,7 +89,7 @@ const Blog = () => {
       <HeroSection 
         title="Flower Farm Insights"
         subtitle="Industry news, growing tips, and behind-the-scenes stories from Credible Blooms"
-        backgroundImage="https://images.unsplash.com/photo-1502977249166-824b3a8a4d6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1468327768560-75b778cbb551?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       

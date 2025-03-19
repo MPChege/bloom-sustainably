@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
@@ -257,7 +256,7 @@ const Products = () => {
             
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1600703136783-bdb5ea365239?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                src="https://images.unsplash.com/photo-1444021465936-c6ca81d39b84?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                 alt="Quality control process" 
                 className="w-full h-auto object-cover rounded-lg shadow-lg"
               />
@@ -341,3 +340,4 @@ const Products = () => {
 };
 
 export default Products;
+

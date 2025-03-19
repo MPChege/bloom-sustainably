@@ -51,7 +51,7 @@ const Contact = () => {
       <HeroSection 
         title="Contact Us"
         subtitle="Get in touch with our team to discuss your floral needs"
-        backgroundImage="https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1470755008296-2939648ceff7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       

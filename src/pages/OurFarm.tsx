@@ -42,22 +42,22 @@ const OurFarm = () => {
 
   const farmImages = [
     {
-      src: "https://images.unsplash.com/photo-1556065365-68ba325b889c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Aerial view of flower greenhouses",
-      caption: "Our state-of-the-art greenhouses viewed from above"
+      src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      alt: "Flowers in greenhouse",
+      caption: "Our state-of-the-art greenhouses with rows of flowers"
     },
     {
-      src: "https://images.unsplash.com/photo-1589150688427-e0fb1febd058?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      src: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       alt: "Workers harvesting flowers",
       caption: "Our skilled team carefully harvesting roses"
     },
     {
-      src: "https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      src: "https://images.unsplash.com/photo-1504713685952-246531f75c5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       alt: "Inside greenhouse with rows of flowers",
       caption: "Inside view of our climate-controlled growing environment"
     },
     {
-      src: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      src: "https://images.unsplash.com/photo-1468327768560-75b778cbb551?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       alt: "Sorting and packing area",
       caption: "Our modern packing facility ensures flowers remain fresh during transport"
     }
@@ -68,7 +68,7 @@ const OurFarm = () => {
       <HeroSection 
         title={t('farm.title')}
         subtitle={t('farm.subtitle')}
-        backgroundImage="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="https://images.unsplash.com/photo-1455659817273-f96807779a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         height="medium"
       />
       
@@ -114,12 +114,12 @@ const OurFarm = () => {
             
             <div className="relative h-[500px] w-full">
               <img 
-                src="https://images.unsplash.com/photo-1546699718-5829d5392191?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                alt="Aerial view of Credible Blooms farm" 
+                src="https://images.unsplash.com/photo-1589123053646-4e8b5493f439?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                alt="Aerial view of flower greenhouses" 
                 className="absolute w-3/4 h-auto rounded-lg shadow-lg z-10 top-0 right-0"
               />
               <img 
-                src="https://images.unsplash.com/photo-1444492417251-9c84a5fa18e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="https://images.unsplash.com/photo-1606041011872-596597976b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Close up of flowers in the field" 
                 className="absolute w-2/3 h-auto rounded-lg shadow-lg bottom-0 left-0 border-4 border-white"
               />
@@ -231,17 +231,17 @@ const OurFarm = () => {
               {
                 name: "Hypericum",
                 description: "Beautiful berries that add texture and interest to arrangements.",
-                image: "https://images.unsplash.com/photo-1604323990536-e5452c0507c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               },
               {
                 name: "Lisianthus",
                 description: "Elegant blooms resembling roses with delicate ruffled petals.",
-                image: "https://images.unsplash.com/photo-1567581170431-80f677314fea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               },
               {
                 name: "Seasonal Specialties",
                 description: "Rotating selection of seasonal flowers to complement our core offerings.",
-                image: "https://images.unsplash.com/photo-1531905252325-40c449b3284e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
               }
             ].map((variety, index) => (
               <div key={index} className="flex flex-col items-center text-center">
