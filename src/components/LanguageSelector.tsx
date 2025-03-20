@@ -1,30 +1,29 @@
 
 import React, { useState } from 'react';
 import { Check, ChevronDown, Globe } from 'lucide-react';
-import { useLanguage, languages } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { cn } from '@/lib/utils';
 
 const LanguageSelector = () => {
-  const { currentLanguage, setLanguage, languageOptions } = useLanguage();
+  const { currentLanguage, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
   const closeDropdown = () => setIsOpen(false);
+
+  // Filter to only show English and Dutch
+  const availableLanguages = [
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'nl', name: 'Dutch', flag: '🇳🇱' }
+  ];
 
   const handleSelect = (code: string) => {
     setLanguage(code);
     closeDropdown();
   };
 
-  const currentLang = languageOptions.find(lang => lang.code === currentLanguage);
-
-  // Function to render flag with country name
-  const renderLanguageOption = (lang: typeof languages[0]) => (
-    <div className="flex items-center">
-      <span className="mr-2 text-lg">{lang.flag}</span>
-      <span>{lang.name}</span>
-    </div>
-  );
+  const currentLang = availableLanguages.find(lang => lang.code === currentLanguage) || 
+                     availableLanguages[0];
 
   return (
     <div className="relative">
@@ -46,7 +45,7 @@ const LanguageSelector = () => {
           />
           <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg overflow-hidden z-20 border border-border">
             <div className="py-1 max-h-80 overflow-auto">
-              {languageOptions.map((lang) => (
+              {availableLanguages.map((lang) => (
                 <button
                   key={lang.code}
                   className={cn(
