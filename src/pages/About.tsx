@@ -1,9 +1,13 @@
-
 import HeroSection from "@/components/HeroSection";
 import { CheckCircle, Users, Calendar, Target, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import TestimonialCard from "@/components/TestimonialCard";
+import { lazy, Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import OptimizedImage from "@/components/OptimizedImage";
+
+const LazyTestimonialCard = lazy(() => import("@/components/TestimonialCard"));
 
 const About = () => {
   const timeline = [
@@ -83,7 +87,24 @@ const About = () => {
     }
   ];
 
-  // Animation variants
+  const leadershipTeam = [
+    {
+      name: "Mr. Njenga",
+      role: "Founder & CEO",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Mrs. Njenga",
+      role: "Manager",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Miriam Njenga",
+      role: "Director",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    }
+  ];
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
@@ -98,7 +119,6 @@ const About = () => {
         height="medium"
       />
       
-      {/* Mission and Vision */}
       <section className="page-section bg-white shadow-md rounded-lg mx-4 md:mx-8 lg:mx-auto -mt-8 relative z-10 max-w-7xl">
         <div className="container-tight">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -143,16 +163,22 @@ const About = () => {
               viewport={{ once: true }}
               variants={fadeIn}
             >
-              <img 
+              <OptimizedImage 
                 src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Beautiful flower fields" 
                 className="w-full h-auto object-cover rounded-lg shadow-lg"
+                width={800}
+                height={600}
+                priority={true}
               />
               <div className="absolute -bottom-6 -left-6 w-1/2 h-auto">
-                <img 
+                <OptimizedImage 
                   src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
                   alt="Close up of roses" 
                   className="w-full h-auto object-cover rounded-lg shadow-lg border-4 border-white"
+                  width={400}
+                  height={300}
+                  priority={true}
                 />
               </div>
             </motion.div>
@@ -160,7 +186,6 @@ const About = () => {
         </div>
       </section>
       
-      {/* Our Values */}
       <section className="page-section bg-gradient-to-r from-purple-50 to-red-50">
         <div className="container-tight">
           <motion.div 
@@ -213,7 +238,6 @@ const About = () => {
         </div>
       </section>
       
-      {/* Our Team */}
       <section className="page-section bg-white">
         <div className="container-tight">
           <motion.div 
@@ -236,23 +260,7 @@ const About = () => {
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "Founder & CEO",
-                image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-              },
-              {
-                name: "David Mwangi",
-                role: "Head of Production",
-                image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-              },
-              {
-                name: "Grace Odhiambo",
-                role: "Sustainability Director",
-                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-              }
-            ].map((member, index) => (
+            {leadershipTeam.map((member, index) => (
               <motion.div 
                 key={index} 
                 className="glass-card overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
@@ -272,10 +280,12 @@ const About = () => {
                 }}
               >
                 <div className="h-64 overflow-hidden">
-                  <img 
+                  <OptimizedImage 
                     src={member.image} 
                     alt={member.name} 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    width={600}
+                    height={400}
                   />
                 </div>
                 <div className="p-6 text-center border-t-4 border-primary">
@@ -288,7 +298,6 @@ const About = () => {
         </div>
       </section>
       
-      {/* Testimonials Section */}
       <section className="page-section bg-gradient-to-br from-purple-50 to-red-50">
         <div className="container-tight">
           <motion.div 
@@ -311,13 +320,23 @@ const About = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} testimonial={testimonial} index={index} />
+              <Suspense 
+                key={index} 
+                fallback={
+                  <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <Skeleton className="h-20 w-full mb-4" />
+                    <Skeleton className="h-10 w-1/2 mb-2" />
+                    <Skeleton className="h-6 w-1/3" />
+                  </div>
+                }
+              >
+                <LazyTestimonialCard testimonial={testimonial} index={index} />
+              </Suspense>
             ))}
           </div>
         </div>
       </section>
       
-      {/* Our History Timeline */}
       <section className="page-section bg-white">
         <div className="container-tight">
           <motion.div 
@@ -340,7 +359,6 @@ const About = () => {
           </motion.div>
           
           <div className="relative">
-            {/* Timeline center line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-300 via-primary to-red-300 rounded-full hidden md:block"></div>
             
             <div className="space-y-12">
@@ -366,12 +384,10 @@ const About = () => {
                     }
                   }}
                 >
-                  {/* Year bubble */}
                   <div className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-10 bg-gradient-to-r from-primary to-red-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-medium shadow-lg">
                     {item.year}
                   </div>
                   
-                  {/* Content box */}
                   <div className={cn(
                     "glass-panel p-6 md:w-[calc(50%-2rem)] bg-white shadow-lg hover:shadow-xl transition-all duration-300 border-t-4",
                     index % 2 === 0 ? "md:text-right border-primary" : "md:text-left border-red-500"
@@ -380,7 +396,6 @@ const About = () => {
                     <p className="text-gray-700">{item.description}</p>
                   </div>
                   
-                  {/* Empty div for alignment */}
                   <div className="hidden md:block md:w-[calc(50%-2rem)]"></div>
                 </motion.div>
               ))}

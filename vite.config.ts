@@ -21,7 +21,14 @@ export default defineConfig(({ mode }) => ({
     },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'sonner', 'embla-carousel-react']
+    include: [
+      'react', 
+      'react-dom', 
+      'react-router-dom', 
+      'sonner', 
+      'embla-carousel-react',
+      'framer-motion'
+    ]
   },
   build: {
     // Optimize build output
@@ -64,7 +71,8 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-toggle',
             '@radix-ui/react-toggle-group',
             '@radix-ui/react-tooltip'
-          ]
+          ],
+          animations: ['framer-motion']
         }
       }
     }
@@ -75,6 +83,10 @@ export default defineConfig(({ mode }) => ({
   },
   // Enhance development experience
   esbuild: {
-    logOverride: { 'this-is-undefined-in-esm': 'silent' }
+    logOverride: { 'this-is-undefined-in-esm': 'silent' },
+    // Use top-level await for more efficient code splitting
+    supported: {
+      'top-level-await': true
+    }
   },
 }));
