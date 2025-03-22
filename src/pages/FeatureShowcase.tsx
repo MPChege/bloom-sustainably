@@ -17,6 +17,13 @@ const FeatureShowcase = () => {
     featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToSection = (elementId: string) => {
+    document.getElementById(elementId)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-900/5 to-transparent">
       <HeroSection
@@ -83,17 +90,14 @@ const FeatureShowcase = () => {
               elementId: "customer-community"
             }
           ].map((feature, index) => (
-            <a
+            <div
               key={index}
-              href={feature.link || `#${feature.elementId}`}
-              className="block p-4 md:p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="block p-4 md:p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
               onClick={(e) => {
-                if (feature.elementId) {
-                  e.preventDefault();
-                  document.getElementById(feature.elementId)?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                  });
+                if (feature.link) {
+                  window.location.href = feature.link;
+                } else if (feature.elementId) {
+                  scrollToSection(feature.elementId);
                 }
               }}
             >
@@ -102,11 +106,11 @@ const FeatureShowcase = () => {
               </div>
               <h3 className="text-lg md:text-xl font-medium mb-1 md:mb-2">{feature.title}</h3>
               <p className="text-muted-foreground text-sm">{feature.description}</p>
-            </a>
+            </div>
           ))}
         </div>
 
-        {/* Interactive Product Showcase */}
+        {/* Interactive Product Showcase - Enhanced and more visible */}
         <section id="product-showcase" className="mb-12 md:mb-24 scroll-mt-24">
           <div className="text-center mb-6 md:mb-8">
             <span className="bg-purple-200/30 text-primary/90 text-sm font-medium px-4 py-2 rounded-full inline-block">
@@ -120,7 +124,9 @@ const FeatureShowcase = () => {
             </p>
           </div>
           
-          <InteractiveProductShowcase />
+          <div className="bg-white/30 backdrop-blur-sm p-6 rounded-2xl shadow-lg">
+            <InteractiveProductShowcase />
+          </div>
         </section>
 
         {/* Real-time Flower Availability */}
