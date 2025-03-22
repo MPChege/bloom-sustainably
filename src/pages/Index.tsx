@@ -3,7 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import Button from "@/components/Button";
 import CertificationBadge from "@/components/CertificationBadge";
 import ProductCard from "@/components/ProductCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { 
   Carousel,
