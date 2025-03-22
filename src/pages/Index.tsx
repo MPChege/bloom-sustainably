@@ -1,4 +1,3 @@
-
 import { ArrowRight, Heart, Leaf, Smile } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import Button from "@/components/Button";
@@ -16,15 +15,13 @@ import {
 import OptimizedImage from "@/components/OptimizedImage";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Define optimized image URLs with reduced quality for faster loading
 const OPTIMIZED_BANNER_IMAGES = [
-  "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75", // Red roses field
-  "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75", // Pink roses
-  "https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"  // White roses
+  "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+  "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
+  "https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"
 ];
 
 const Index = () => {
-  // Parallax effect state and refs
   const [scrollY, setScrollY] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [viewportHeight, setViewportHeight] = useState(0);
@@ -33,13 +30,11 @@ const Index = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
   
-  // Calculate scroll percentage for various effects
   const scrollPercentage = useMemo(() => {
     if (!viewportHeight) return 0;
     return Math.min(1, Math.max(0, scrollY / (viewportHeight * 2)));
   }, [scrollY, viewportHeight]);
   
-  // Handle scroll for parallax effects with debounce for better performance
   useEffect(() => {
     let ticking = false;
     
@@ -53,7 +48,6 @@ const Index = () => {
       }
     };
     
-    // Mouse move handler for 3D effects
     const handleMouseMove = (e: MouseEvent) => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -67,15 +61,12 @@ const Index = () => {
       }
     };
     
-    // Set initial viewport dimensions
     setViewportHeight(window.innerHeight);
     setViewportWidth(window.innerWidth);
     
-    // Add event listeners
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     
-    // Handle resize
     const handleResize = () => {
       setViewportHeight(window.innerHeight);
       setViewportWidth(window.innerWidth);
@@ -90,7 +81,6 @@ const Index = () => {
     };
   }, []);
 
-  // Sample product data for the homepage - using smaller dataset for better performance
   const featuredProducts = [
     {
       id: 1,
@@ -118,13 +108,10 @@ const Index = () => {
     }
   ];
 
-  // Banner images for parallax slider - ROSE FLOWERS ONLY
   const bannerImages = OPTIMIZED_BANNER_IMAGES;
 
-  // State for the current banner image
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
 
-  // Change banner image every 5 seconds with debounce for better performance
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentBannerIndex(prev => (prev + 1) % bannerImages.length);
@@ -133,13 +120,11 @@ const Index = () => {
     return () => clearInterval(interval);
   }, [bannerImages.length]);
 
-  // Sample certification data - using only necessary certifications
   const certifications = [
     { name: "Fairtrade", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Fairtrade-Logo.svg/1200px-Fairtrade-Logo.svg.png" },
     { name: "Kenya Flower Council", logo: "https://kenyaflowercouncil.org/wp-content/uploads/2019/02/logo.png" }
   ];
 
-  // 3D rotation based on mouse position
   const getMouseTransform = (intensity = 1) => {
     if (!mousePosition) return {};
     
@@ -152,14 +137,18 @@ const Index = () => {
     };
   };
 
+  const navigate = useNavigate();
+  
+  const navigateToFeature = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <div 
       ref={mainRef} 
       className="min-h-screen"
     >
-      {/* Hero Section with 3D effect and animated background transition */}
       <section className="relative h-screen overflow-hidden scene-3d">
-        {/* Parallax background layers */}
         <div 
           className="absolute inset-0 w-full h-full" 
           style={{
@@ -185,7 +174,6 @@ const Index = () => {
           />
         </div>
         
-        {/* Moving particles effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(20)].map((_, i) => (
             <div 
@@ -204,7 +192,6 @@ const Index = () => {
           ))}
         </div>
         
-        {/* Hero content with 3D effect */}
         <div 
           className="absolute inset-0 flex items-center justify-center"
           style={{
@@ -272,7 +259,6 @@ const Index = () => {
           </div>
         </div>
         
-        {/* Scroll indicator */}
         <div 
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white"
           style={{
@@ -290,7 +276,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 3D Parallax Intro Section */}
       <section 
         ref={parallaxRef}
         className="page-section relative overflow-hidden bg-gradient-to-b from-purple-900/10 to-transparent"
@@ -299,7 +284,6 @@ const Index = () => {
           paddingBottom: `${Math.max(100, 150 - scrollY * 0.1)}px`,
         }}
       >
-        {/* Parallax floating elements - ROSES ONLY - Using OptimizedImage with 3D transforms */}
         <div 
           className="absolute pointer-events-none"
           style={{
@@ -425,7 +409,6 @@ const Index = () => {
             </Link>
           </div>
 
-          {/* Feature boxes with 3D hover effect */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -470,7 +453,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Products with 3D Carousel - Using fewer items for better performance */}
       <section 
         ref={featuredRef}
         className="page-section relative overflow-hidden"
@@ -478,7 +460,6 @@ const Index = () => {
           background: "linear-gradient(135deg, rgba(106, 13, 173, 0.05) 0%, rgba(157, 78, 221, 0.1) 100%)"
         }}
       >
-        {/* Background decoration - moving with scroll and mouse */}
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(15)].map((_, i) => (
             <div 
@@ -602,7 +583,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* New section: Interactive Features Showcase */}
       <section className="page-section relative overflow-hidden bg-white/50">
         <div className="container-tight relative z-10">
           <div className="text-center mb-16">
@@ -627,8 +607,10 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {/* Virtual Tour Feature */}
-            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+            <div 
+              className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl cursor-pointer"
+              onClick={() => navigateToFeature('/virtual-tour')}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 to-fuchsia-700/30 opacity-70 z-10"></div>
               <OptimizedImage
                 src="https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
@@ -640,18 +622,19 @@ const Index = () => {
               <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
                 <h3 className="text-2xl font-bold text-white mb-2">Virtual Farm Tour</h3>
                 <p className="text-white/90 mb-4">Explore our rose fields and facilities through an immersive 3D experience.</p>
-                <Link 
-                  to="/virtual-tour"
+                <div 
                   className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
                 >
                   <span>Start Tour</span>
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </div>
               </div>
             </div>
 
-            {/* Interactive Product Showcase */}
-            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+            <div 
+              className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl cursor-pointer"
+              onClick={() => navigateToFeature('/features#product-showcase')}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-pink-900/30 to-rose-700/30 opacity-70 z-10"></div>
               <OptimizedImage
                 src="https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
@@ -663,20 +646,21 @@ const Index = () => {
               <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
                 <h3 className="text-2xl font-bold text-white mb-2">3D Product Showcase</h3>
                 <p className="text-white/90 mb-4">View our flower arrangements in 3D and rotate them to see from all angles.</p>
-                <Link 
-                  to="/features#product-showcase"
+                <div 
                   className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
                 >
                   <span>View Products in 3D</span>
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {/* Sustainability Timeline */}
-            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+            <div 
+              className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl cursor-pointer"
+              onClick={() => navigateToFeature('/sustainability#timeline')}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-green-900/30 to-emerald-700/30 opacity-70 z-10"></div>
               <OptimizedImage
                 src="https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
@@ -688,18 +672,19 @@ const Index = () => {
               <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
                 <h3 className="text-2xl font-bold text-white mb-2">Sustainability Journey</h3>
                 <p className="text-white/90 mb-4">Explore our sustainability milestones and environmental commitments.</p>
-                <Link 
-                  to="/sustainability#timeline"
+                <div 
                   className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
                 >
                   <span>View Timeline</span>
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </div>
               </div>
             </div>
 
-            {/* Flower Availability Tracker */}
-            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+            <div 
+              className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl cursor-pointer"
+              onClick={() => navigateToFeature('/features#flower-tracker')}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 to-cyan-700/30 opacity-70 z-10"></div>
               <OptimizedImage
                 src="https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
@@ -711,18 +696,19 @@ const Index = () => {
               <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
                 <h3 className="text-2xl font-bold text-white mb-2">Availability Tracker</h3>
                 <p className="text-white/90 mb-4">Check our real-time flower availability calendar throughout the seasons.</p>
-                <Link 
-                  to="/features#flower-tracker"
+                <div 
                   className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
                 >
                   <span>Check Availability</span>
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </div>
               </div>
             </div>
 
-            {/* Customer Community */}
-            <div className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+            <div 
+              className="group relative overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl cursor-pointer"
+              onClick={() => navigateToFeature('/features#community')}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/30 to-amber-700/30 opacity-70 z-10"></div>
               <OptimizedImage
                 src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75"
@@ -734,13 +720,12 @@ const Index = () => {
               <div className="absolute inset-0 flex flex-col justify-end p-6 z-20">
                 <h3 className="text-2xl font-bold text-white mb-2">Customer Community</h3>
                 <p className="text-white/90 mb-4">Join our community of flower enthusiasts and share your arrangements.</p>
-                <Link 
-                  to="/features#community"
+                <div 
                   className="inline-flex items-center bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-medium py-2 px-4 rounded-full transition-colors"
                 >
                   <span>Join Community</span>
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                </div>
               </div>
             </div>
           </div>

@@ -1,7 +1,8 @@
 
 import { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
-import { ArrowDown, Lightbulb, Calendar, Users, Image, Leaf } from "lucide-react";
+import { ArrowDown, Lightbulb, Calendar, Users, Image, Leaf, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import FlowerAvailabilityTracker from "@/components/FlowerAvailabilityTracker";
 import CustomerCommunity from "@/components/CustomerCommunity";
@@ -12,6 +13,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const FeatureShowcase = () => {
   const featuresRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   const scrollToFeatures = () => {
     featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -22,6 +24,14 @@ const FeatureShowcase = () => {
       behavior: 'smooth',
       block: 'start'
     });
+  };
+
+  const handleFeatureClick = (feature: { link?: string; elementId?: string }) => {
+    if (feature.link) {
+      navigate(feature.link);
+    } else if (feature.elementId) {
+      scrollToSection(feature.elementId);
+    }
   };
 
   return (
@@ -93,13 +103,7 @@ const FeatureShowcase = () => {
             <div
               key={index}
               className="block p-4 md:p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
-              onClick={(e) => {
-                if (feature.link) {
-                  window.location.href = feature.link;
-                } else if (feature.elementId) {
-                  scrollToSection(feature.elementId);
-                }
-              }}
+              onClick={() => handleFeatureClick(feature)}
             >
               <div className="mb-3 md:mb-4 bg-purple-100/50 p-3 rounded-full inline-block">
                 {feature.icon}
