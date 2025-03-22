@@ -157,7 +157,7 @@ const ProductCard = ({ id, name, image, category, description, price, className 
               
               <div className="flex gap-2 mt-auto">
                 <Button 
-                  size="default" 
+                  size="md" 
                   variant="outline"
                   className="flex-grow"
                   onClick={() => setDialogOpen(false)}
@@ -165,7 +165,7 @@ const ProductCard = ({ id, name, image, category, description, price, className 
                   Close
                 </Button>
                 <Button 
-                  size="default" 
+                  size="md" 
                   className="flex-grow bg-secondary hover:bg-secondary/90 text-white" 
                   onClick={() => {
                     handleAddToCart();
