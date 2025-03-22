@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'sonner', '@radix-ui/react-carousel']
+    include: ['react', 'react-dom', 'react-router-dom', 'sonner', 'embla-carousel-react']
   },
   build: {
     // Optimize build output
@@ -63,8 +63,7 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-toast',
             '@radix-ui/react-toggle',
             '@radix-ui/react-toggle-group',
-            '@radix-ui/react-tooltip',
-            '@radix-ui/react-carousel'
+            '@radix-ui/react-tooltip'
           ]
         }
       }
