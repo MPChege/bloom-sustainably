@@ -44,6 +44,18 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  // Prevent body scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header 
       className={cn(
@@ -112,14 +124,24 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - Fixed overlay with higher z-index */}
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-white transition-all duration-300 ease-in-out md:hidden",
+          "fixed inset-0 z-[60] bg-white transition-all duration-300 ease-in-out md:hidden",
           isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
           isRTL ? "rtl" : ""
         )}
       >
+        {/* Close button in the top-right corner of mobile menu */}
+        <div className="absolute top-4 right-4">
+          <button
+            className="p-2 rounded-full bg-purple/10"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <X className="h-6 w-6 text-secondary" />
+          </button>
+        </div>
+        
         <div className="flex flex-col h-full pt-20 pb-6 px-6">
           <nav className="flex flex-col space-y-6 items-center">
             {navigation.map((item) => (
@@ -132,6 +154,7 @@ const Navbar = () => {
                     ? "text-secondary font-semibold border-b-2 border-secondary" 
                     : "text-primary"
                 )}
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t(item.name)}
               </Link>
