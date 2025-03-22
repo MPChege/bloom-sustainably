@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['@radix-ui'],
+          ui: [/^@radix-ui\//] // Use a regex pattern to match all @radix-ui subpackages
         }
       }
     }
