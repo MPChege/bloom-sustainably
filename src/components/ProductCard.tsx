@@ -16,6 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -155,18 +156,17 @@ const ProductCard = ({ id, name, image, category, description, price, className 
                 </div>
               </div>
               
-              <div className="flex gap-2 mt-auto">
+              <DialogFooter className="flex gap-2 mt-auto sm:justify-between">
                 <Button 
                   size="md" 
                   variant="outline"
-                  className="flex-grow"
                   onClick={() => setDialogOpen(false)}
                 >
                   Close
                 </Button>
                 <Button 
                   size="md" 
-                  className="flex-grow bg-secondary hover:bg-secondary/90 text-white" 
+                  className="bg-secondary hover:bg-secondary/90 text-white" 
                   onClick={() => {
                     handleAddToCart();
                     setDialogOpen(false);
@@ -174,7 +174,7 @@ const ProductCard = ({ id, name, image, category, description, price, className 
                 >
                   Add to Cart
                 </Button>
-              </div>
+              </DialogFooter>
             </div>
           </div>
         </DialogContent>
