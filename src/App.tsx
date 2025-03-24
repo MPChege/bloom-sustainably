@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { Toaster } from "sonner";
 import { Suspense, lazy } from "react";
 
@@ -52,104 +52,102 @@ function App() {
     <LanguageProvider>
       <CurrencyProvider>
         <CartProvider>
-          <Router>
-            <div className="flex flex-col min-h-screen">
-              <Navbar />
-              <main className="flex-1">
-                <Routes>
-                  {/* Eager loaded route */}
-                  <Route path="/" element={<Index />} />
-                  
-                  {/* Lazy loaded routes */}
-                  <Route path="/about" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <About />
-                    </Suspense>
-                  } />
-                  <Route path="/our-farm" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <OurFarm />
-                    </Suspense>
-                  } />
-                  <Route path="/products" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <Products />
-                    </Suspense>
-                  } />
-                  <Route path="/sustainability" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <Sustainability />
-                    </Suspense>
-                  } />
-                  <Route path="/csr" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <CSR />
-                    </Suspense>
-                  } />
-                  <Route path="/blog" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <Blog />
-                    </Suspense>
-                  } />
-                  <Route path="/contact" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <Contact />
-                    </Suspense>
-                  } />
-                  <Route path="/virtual-tour" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <VirtualTour />
-                    </Suspense>
-                  } />
-                  <Route path="/features" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <FeatureShowcase />
-                    </Suspense>
-                  } />
-                  
-                  {/* Admin routes */}
-                  <Route path="/admin/sign-in" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <AdminSignIn />
-                    </Suspense>
-                  } />
-                  <Route path="/admin/sign-up" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <AdminSignUp />
-                    </Suspense>
-                  } />
-                  
-                  {/* Protected admin routes */}
-                  <Route path="/admin/dashboard" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <ProtectedRoute>
-                        <AdminDashboard />
-                      </ProtectedRoute>
-                    </Suspense>
-                  } />
-                  <Route path="/admin/add-product" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <ProtectedRoute>
-                        <AdminAddProduct />
-                      </ProtectedRoute>
-                    </Suspense>
-                  } />
-                  <Route path="/admin/sales-tracker" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <ProtectedRoute>
-                        <AdminSalesTracker />
-                      </ProtectedRoute>
-                    </Suspense>
-                  } />
-                  
-                  {/* 404 route */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-              <Footer />
-            </div>
-            <Toaster position="top-center" richColors />
-          </Router>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-1">
+              <Routes>
+                {/* Eager loaded route */}
+                <Route path="/" element={<Index />} />
+                
+                {/* Lazy loaded routes */}
+                <Route path="/about" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <About />
+                  </Suspense>
+                } />
+                <Route path="/our-farm" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <OurFarm />
+                  </Suspense>
+                } />
+                <Route path="/products" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Products />
+                  </Suspense>
+                } />
+                <Route path="/sustainability" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Sustainability />
+                  </Suspense>
+                } />
+                <Route path="/csr" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <CSR />
+                  </Suspense>
+                } />
+                <Route path="/blog" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Blog />
+                  </Suspense>
+                } />
+                <Route path="/contact" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Contact />
+                  </Suspense>
+                } />
+                <Route path="/virtual-tour" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <VirtualTour />
+                  </Suspense>
+                } />
+                <Route path="/features" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <FeatureShowcase />
+                  </Suspense>
+                } />
+                
+                {/* Admin routes */}
+                <Route path="/admin/sign-in" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <AdminSignIn />
+                  </Suspense>
+                } />
+                <Route path="/admin/sign-up" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <AdminSignUp />
+                  </Suspense>
+                } />
+                
+                {/* Protected admin routes */}
+                <Route path="/admin/dashboard" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <ProtectedRoute>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  </Suspense>
+                } />
+                <Route path="/admin/add-product" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <ProtectedRoute>
+                      <AdminAddProduct />
+                    </ProtectedRoute>
+                  </Suspense>
+                } />
+                <Route path="/admin/sales-tracker" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <ProtectedRoute>
+                      <AdminSalesTracker />
+                    </ProtectedRoute>
+                  </Suspense>
+                } />
+                
+                {/* 404 route */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+          <Toaster position="top-center" richColors />
         </CartProvider>
       </CurrencyProvider>
     </LanguageProvider>

@@ -1,19 +1,24 @@
 
 import { createRoot } from 'react-dom/client'
-import { StrictMode } from 'react'
 import './index.css'
 import App from './App.tsx'
 import { ClerkProvider } from '@clerk/clerk-react'
+import { BrowserRouter } from 'react-router-dom'
 
 // Your Clerk Publishable Key - in production this should be an environment variable
 const PUBLISHABLE_KEY = "pk_test_ZW5nYWdpbmctYm9hLTk0LmNsZXJrLmFjY291bnRzLmRldiQ"
 
-// Render the app - simplifying the loading approach
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+if (!PUBLISHABLE_KEY) {
+  throw new Error("Missing Clerk Publishable Key")
+}
+
+// Render the app with proper provider nesting
+const container = document.getElementById("root")
+const root = createRoot(container!)
+root.render(
+  <BrowserRouter>
     <ClerkProvider 
       publishableKey={PUBLISHABLE_KEY}
-      clerkJSVersion="5.56.0-snapshot.v20250312225817"
       signInUrl="/admin/sign-in"
       signUpUrl="/admin/sign-up"
       afterSignInUrl="/admin/dashboard"
@@ -24,5 +29,5 @@ createRoot(document.getElementById("root")!).render(
     >
       <App />
     </ClerkProvider>
-  </StrictMode>
+  </BrowserRouter>
 );
