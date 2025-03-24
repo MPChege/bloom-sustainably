@@ -1,33 +1,21 @@
 
 import { createRoot } from 'react-dom/client'
+import { lazy, Suspense } from 'react'
 import './index.css'
-import App from './App.tsx'
-import { ClerkProvider } from '@clerk/clerk-react'
-import { BrowserRouter } from 'react-router-dom'
 
-// Your Clerk Publishable Key - in production this should be an environment variable
-const PUBLISHABLE_KEY = "pk_test_ZW5nYWdpbmctYm9hLTk0LmNsZXJrLmFjY291bnRzLmRldiQ"
+// Use lazy loading for the main App component
+const App = lazy(() => import('./App.tsx'))
 
-if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Clerk Publishable Key")
-}
-
-// Render the app with proper provider nesting
-const container = document.getElementById("root")
-const root = createRoot(container!)
-root.render(
-  <BrowserRouter>
-    <ClerkProvider 
-      publishableKey={PUBLISHABLE_KEY}
-      signInUrl="/admin/sign-in"
-      signUpUrl="/admin/sign-up"
-      afterSignInUrl="/admin/dashboard"
-      afterSignUpUrl="/admin/dashboard"
-      signInFallbackRedirectUrl="/admin/dashboard"
-      signUpFallbackRedirectUrl="/admin/dashboard"
-      afterSignOutUrl="/"
-    >
-      <App />
-    </ClerkProvider>
-  </BrowserRouter>
+// Render with Suspense for better loading experience
+createRoot(document.getElementById("root")!).render(
+  <Suspense fallback={
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-white via-purple-50 to-white">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading Credible Blooms...</p>
+      </div>
+    </div>
+  }>
+    <App />
+  </Suspense>
 );

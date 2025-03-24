@@ -1,20 +1,18 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShieldCheck } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Cart from "./Cart";
 import LanguageSelector from "./LanguageSelector";
 import CurrencySelector from "./CurrencySelector";
 import { useLanguage } from "@/context/LanguageContext";
-import { useAuth } from "@clerk/clerk-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { t, isRTL } = useLanguage();
-  const { isSignedIn } = useAuth();
 
   // Navigation items with translation keys
   const navigation = [
@@ -98,23 +96,6 @@ const Navbar = () => {
               {t(item.name)}
             </Link>
           ))}
-          
-          {/* Admin link only if signed in */}
-          {isSignedIn && (
-            <Link
-              to="/admin/dashboard"
-              className={cn(
-                "text-sm font-medium smooth-transition hover:opacity-100 hover:text-secondary flex items-center",
-                location.pathname.startsWith("/admin") 
-                  ? "text-secondary font-semibold border-b-2 border-secondary" 
-                  : "text-primary",
-                "link-underline py-2"
-              )}
-            >
-              <ShieldCheck className="mr-1 h-4 w-4" />
-              Admin
-            </Link>
-          )}
         </nav>
 
         {/* Language, Currency and Cart - Desktop */}
@@ -122,17 +103,6 @@ const Navbar = () => {
           <LanguageSelector />
           <CurrencySelector />
           <Cart />
-          
-          {/* Admin login button if not signed in */}
-          {!isSignedIn && (
-            <Link
-              to="/admin/sign-in"
-              className="text-sm font-medium bg-primary/10 text-primary px-3 py-1.5 rounded-md hover:bg-primary/20 transition-colors flex items-center gap-1"
-            >
-              <ShieldCheck className="h-4 w-4" />
-              Admin
-            </Link>
-          )}
         </div>
 
         {/* Mobile menu button */}
@@ -189,21 +159,6 @@ const Navbar = () => {
                 {t(item.name)}
               </Link>
             ))}
-            
-            {/* Admin link for mobile */}
-            <Link
-              to={isSignedIn ? "/admin/dashboard" : "/admin/sign-in"}
-              className={cn(
-                "text-lg font-medium smooth-transition flex items-center", 
-                location.pathname.startsWith("/admin") 
-                  ? "text-secondary font-semibold border-b-2 border-secondary" 
-                  : "text-primary"
-              )}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <ShieldCheck className="mr-2 h-5 w-5" />
-              Admin {isSignedIn ? "Dashboard" : "Login"}
-            </Link>
           </nav>
         </div>
       </div>
