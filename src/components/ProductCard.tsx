@@ -40,7 +40,33 @@ const ProductCard = ({ id, name, image, category, description, price, className 
 
   const handleAddToCart = () => {
     addItem({ id, name, image, price });
+    
+    // Record the sale in localStorage
+    recordSale(id, name, price, 1);
+    
     toast.success(`Added ${name} to your cart!`);
+  };
+
+  const recordSale = (productId: number, productName: string, price: number, quantity: number) => {
+    // Get existing sales or initialize empty array
+    const existingSales = localStorage.getItem("sales");
+    const sales = existingSales ? JSON.parse(existingSales) : [];
+    
+    // Create new sale record
+    const saleRecord = {
+      id: Date.now(),
+      productId,
+      productName,
+      quantity,
+      price,
+      date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+    };
+    
+    // Add to sales array
+    sales.push(saleRecord);
+    
+    // Save back to localStorage
+    localStorage.setItem("sales", JSON.stringify(sales));
   };
 
   const handleViewDetails = () => {

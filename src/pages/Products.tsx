@@ -1,116 +1,130 @@
+
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
 import { cn } from "@/lib/utils";
-import { Search } from "lucide-react";
+import { Search, Plus } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { Button } from "@/components/ui/button";
 
-// Product data with prices
-const products = [
-  // Premium Roses
-  {
-    id: 1,
-    name: "Red Naomi Roses",
-    image: "https://images.unsplash.com/photo-1533616688419-b7a585564566?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Premium Roses",
-    description: "Our signature red rose with large heads, intense color, and exceptional vase life.",
-    price: 29.99
-  },
-  {
-    id: 2,
-    name: "White O'Hara Roses",
-    image: "https://images.unsplash.com/photo-1558652093-2bf93161efc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Premium Roses",
-    description: "Elegant garden roses with multiple petals and a delicate fragrance.",
-    price: 27.99
-  },
-  {
-    id: 3,
-    name: "Pink Avalanche Roses",
-    image: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Premium Roses",
-    description: "Soft pink roses with strong stems and excellent opening properties.",
-    price: 26.99
-  },
-  {
-    id: 4,
-    name: "Yellow Finesse Roses",
-    image: "https://images.unsplash.com/photo-1501577316686-a5cbf6c1df7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Premium Roses",
-    description: "Vibrant yellow roses with perfect form and long stems.",
-    price: 28.99
-  },
-  
-  // Spray Roses
-  {
-    id: 5,
-    name: "Peach Spray Roses",
-    image: "https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Spray Roses",
-    description: "Delicate peach spray roses with multiple blooms per stem.",
-    price: 19.99
-  },
-  {
-    id: 6,
-    name: "White Spray Roses",
-    image: "https://images.unsplash.com/photo-1548198471-e5a4b755def3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Spray Roses",
-    description: "Pure white spray roses, perfect for weddings and special events.",
-    price: 18.99
-  },
-  {
-    id: 7,
-    name: "Pink Sensation Spray Roses",
-    image: "https://images.unsplash.com/photo-1530092285049-1c42085fd395?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Spray Roses",
-    description: "Bright pink spray roses with excellent color retention.",
-    price: 21.99
-  },
-  {
-    id: 8,
-    name: "Red Spray Roses",
-    image: "https://images.unsplash.com/photo-1547187042-6d945e5a5b5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Spray Roses",
-    description: "Vibrant red spray roses, adding drama and intensity to arrangements.",
-    price: 22.99
-  },
-  
-  // Summer Flowers
-  {
-    id: 9,
-    name: "Carnations",
-    image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Summer Flowers",
-    description: "Available in various colors, these long-lasting flowers are versatile and durable.",
-    price: 16.99
-  },
-  {
-    id: 10,
-    name: "Hypericum Berries",
-    image: "https://images.unsplash.com/photo-1588567678465-08902ca5f8d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Summer Flowers",
-    description: "Decorative berries that add texture and interest to arrangements.",
-    price: 15.99
-  },
-  {
-    id: 11,
-    name: "Lisianthus",
-    image: "https://images.unsplash.com/photo-1599789197514-47270cd526b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Summer Flowers",
-    description: "Elegant flowers with ruffled petals, available in white, pink, and purple.",
-    price: 24.99
-  },
-  {
-    id: 12,
-    name: "Statice",
-    image: "https://images.unsplash.com/photo-1612966809470-bfbbeb142bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Summer Flowers",
-    description: "Colorful filler flowers that dry beautifully and add texture to arrangements.",
-    price: 14.99
+// Get products from localStorage or use default products as fallback
+const getProducts = () => {
+  const storedProducts = localStorage.getItem("products");
+  if (storedProducts) {
+    return JSON.parse(storedProducts);
   }
-];
+  
+  // Default product data with prices
+  return [
+    // Premium Roses
+    {
+      id: 1,
+      name: "Red Naomi Roses",
+      image: "https://images.unsplash.com/photo-1533616688419-b7a585564566?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Premium Roses",
+      description: "Our signature red rose with large heads, intense color, and exceptional vase life.",
+      price: 29.99
+    },
+    {
+      id: 2,
+      name: "White O'Hara Roses",
+      image: "https://images.unsplash.com/photo-1558652093-2bf93161efc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Premium Roses",
+      description: "Elegant garden roses with multiple petals and a delicate fragrance.",
+      price: 27.99
+    },
+    {
+      id: 3,
+      name: "Pink Avalanche Roses",
+      image: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Premium Roses",
+      description: "Soft pink roses with strong stems and excellent opening properties.",
+      price: 26.99
+    },
+    {
+      id: 4,
+      name: "Yellow Finesse Roses",
+      image: "https://images.unsplash.com/photo-1501577316686-a5cbf6c1df7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Premium Roses",
+      description: "Vibrant yellow roses with perfect form and long stems.",
+      price: 28.99
+    },
+    
+    // Spray Roses
+    {
+      id: 5,
+      name: "Peach Spray Roses",
+      image: "https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Spray Roses",
+      description: "Delicate peach spray roses with multiple blooms per stem.",
+      price: 19.99
+    },
+    {
+      id: 6,
+      name: "White Spray Roses",
+      image: "https://images.unsplash.com/photo-1548198471-e5a4b755def3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Spray Roses",
+      description: "Pure white spray roses, perfect for weddings and special events.",
+      price: 18.99
+    },
+    {
+      id: 7,
+      name: "Pink Sensation Spray Roses",
+      image: "https://images.unsplash.com/photo-1530092285049-1c42085fd395?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Spray Roses",
+      description: "Bright pink spray roses with excellent color retention.",
+      price: 21.99
+    },
+    {
+      id: 8,
+      name: "Red Spray Roses",
+      image: "https://images.unsplash.com/photo-1547187042-6d945e5a5b5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Spray Roses",
+      description: "Vibrant red spray roses, adding drama and intensity to arrangements.",
+      price: 22.99
+    },
+    
+    // Summer Flowers
+    {
+      id: 9,
+      name: "Carnations",
+      image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Summer Flowers",
+      description: "Available in various colors, these long-lasting flowers are versatile and durable.",
+      price: 16.99
+    },
+    {
+      id: 10,
+      name: "Hypericum Berries",
+      image: "https://images.unsplash.com/photo-1588567678465-08902ca5f8d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Summer Flowers",
+      description: "Decorative berries that add texture and interest to arrangements.",
+      price: 15.99
+    },
+    {
+      id: 11,
+      name: "Lisianthus",
+      image: "https://images.unsplash.com/photo-1599789197514-47270cd526b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Summer Flowers",
+      description: "Elegant flowers with ruffled petals, available in white, pink, and purple.",
+      price: 24.99
+    },
+    {
+      id: 12,
+      name: "Statice",
+      image: "https://images.unsplash.com/photo-1612966809470-bfbbeb142bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      category: "Summer Flowers",
+      description: "Colorful filler flowers that dry beautifully and add texture to arrangements.",
+      price: 14.99
+    }
+  ];
+};
 
 const Products = () => {
+  // Load products from localStorage or use default products
+  const productsData = getProducts();
+  
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const { t, isRTL } = useLanguage();
@@ -124,7 +138,7 @@ const Products = () => {
   ];
 
   // Filter products based on category and search query
-  const filteredProducts = products.filter(product => {
+  const filteredProducts = productsData.filter(product => {
     const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                          product.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -176,16 +190,39 @@ const Products = () => {
               ))}
             </div>
             
-            {/* Search bar */}
-            <div className="relative w-full md:w-64">
-              <input
-                type="text"
-                placeholder={isRTL ? "ابحث عن الزهور..." : "Search flowers..."}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-full border border-purple/30 focus:outline-none focus:ring-1 focus:ring-primary bg-white"
-              />
-              <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4`} />
+            {/* Search and Admin Actions */}
+            <div className="flex items-center gap-4 w-full md:w-auto">
+              <div className="relative flex-grow md:w-64">
+                <input
+                  type="text"
+                  placeholder={isRTL ? "ابحث عن الزهور..." : "Search flowers..."}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 rounded-full border border-purple/30 focus:outline-none focus:ring-1 focus:ring-primary bg-white"
+                />
+                <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4`} />
+              </div>
+              
+              <div className="flex gap-2">
+                <Link to="/add-product">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex items-center gap-1 border-primary text-primary hover:bg-primary/10"
+                  >
+                    <Plus size={16} />
+                    Add Product
+                  </Button>
+                </Link>
+                <Link to="/sales-tracker">
+                  <Button 
+                    variant="secondary" 
+                    size="sm"
+                  >
+                    Sales Tracker
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -340,4 +377,3 @@ const Products = () => {
 };
 
 export default Products;
-

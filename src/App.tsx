@@ -11,6 +11,8 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import OurFarm from "./pages/OurFarm";
 import Products from "./pages/Products";
+import AddProduct from "./pages/AddProduct";
+import SalesTracker from "./pages/SalesTracker";
 import Sustainability from "./pages/Sustainability";
 import CSR from "./pages/CSR";
 import Blog from "./pages/Blog";
@@ -38,6 +40,8 @@ function App() {
                   <Route path="/about" element={<About />} />
                   <Route path="/our-farm" element={<OurFarm />} />
                   <Route path="/products" element={<Products />} />
+                  <Route path="/add-product" element={<AddProduct />} />
+                  <Route path="/sales-tracker" element={<SalesTracker />} />
                   <Route path="/sustainability" element={<Sustainability />} />
                   <Route path="/csr" element={<CSR />} />
                   <Route path="/blog" element={<Blog />} />
