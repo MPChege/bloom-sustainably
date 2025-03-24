@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Search, Plus } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@clerk/clerk-react";
 
 // Get products from localStorage or use default products as fallback
 const getProducts = () => {
@@ -128,6 +129,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const { t, isRTL } = useLanguage();
+  const { isSignedIn } = useAuth();
 
   // Define categories with translations
   const categories = [
@@ -203,26 +205,41 @@ const Products = () => {
                 <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4`} />
               </div>
               
-              <div className="flex gap-2">
-                <Link to="/add-product">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="flex items-center gap-1 border-primary text-primary hover:bg-primary/10"
-                  >
-                    <Plus size={16} />
-                    Add Product
-                  </Button>
-                </Link>
-                <Link to="/sales-tracker">
+              {/* Admin buttons only visible to authenticated users */}
+              {isSignedIn && (
+                <div className="flex gap-2">
+                  <Link to="/admin/add-product">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex items-center gap-1 border-primary text-primary hover:bg-primary/10"
+                    >
+                      <Plus size={16} />
+                      Add Product
+                    </Button>
+                  </Link>
+                  <Link to="/admin/sales-tracker">
+                    <Button 
+                      variant="secondary" 
+                      size="sm"
+                    >
+                      Sales Tracker
+                    </Button>
+                  </Link>
+                </div>
+              )}
+              
+              {/* Admin login button if not signed in */}
+              {!isSignedIn && (
+                <Link to="/admin/sign-in">
                   <Button 
                     variant="secondary" 
                     size="sm"
                   >
-                    Sales Tracker
+                    Admin Login
                   </Button>
                 </Link>
-              </div>
+              )}
             </div>
           </div>
         </div>

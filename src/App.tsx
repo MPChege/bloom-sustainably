@@ -7,6 +7,9 @@ import { Suspense, lazy } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+// Admin components
+import ProtectedRoute from "./components/admin/ProtectedRoute";
+
 // Immediate load pages
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -15,14 +18,19 @@ import NotFound from "./pages/NotFound";
 const About = lazy(() => import("./pages/About"));
 const OurFarm = lazy(() => import("./pages/OurFarm"));
 const Products = lazy(() => import("./pages/Products"));
-const AddProduct = lazy(() => import("./pages/AddProduct"));
-const SalesTracker = lazy(() => import("./pages/SalesTracker"));
 const Sustainability = lazy(() => import("./pages/Sustainability"));
 const CSR = lazy(() => import("./pages/CSR"));
 const Blog = lazy(() => import("./pages/Blog"));
 const Contact = lazy(() => import("./pages/Contact"));
 const VirtualTour = lazy(() => import("./pages/VirtualTour"));
 const FeatureShowcase = lazy(() => import("./pages/FeatureShowcase"));
+
+// Admin pages
+const AdminSignIn = lazy(() => import("./pages/admin/SignIn"));
+const AdminSignUp = lazy(() => import("./pages/admin/SignUp"));
+const AdminDashboard = lazy(() => import("./pages/admin/Dashboard"));
+const AdminAddProduct = lazy(() => import("./pages/admin/AddProduct"));
+const AdminSalesTracker = lazy(() => import("./pages/admin/SalesTracker"));
 
 // Context
 import { CartProvider } from "./context/CartContext";
@@ -68,16 +76,6 @@ function App() {
                       <Products />
                     </Suspense>
                   } />
-                  <Route path="/add-product" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <AddProduct />
-                    </Suspense>
-                  } />
-                  <Route path="/sales-tracker" element={
-                    <Suspense fallback={<PageLoader />}>
-                      <SalesTracker />
-                    </Suspense>
-                  } />
                   <Route path="/sustainability" element={
                     <Suspense fallback={<PageLoader />}>
                       <Sustainability />
@@ -106,6 +104,41 @@ function App() {
                   <Route path="/features" element={
                     <Suspense fallback={<PageLoader />}>
                       <FeatureShowcase />
+                    </Suspense>
+                  } />
+                  
+                  {/* Admin routes */}
+                  <Route path="/admin/sign-in" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <AdminSignIn />
+                    </Suspense>
+                  } />
+                  <Route path="/admin/sign-up" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <AdminSignUp />
+                    </Suspense>
+                  } />
+                  
+                  {/* Protected admin routes */}
+                  <Route path="/admin/dashboard" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <ProtectedRoute>
+                        <AdminDashboard />
+                      </ProtectedRoute>
+                    </Suspense>
+                  } />
+                  <Route path="/admin/add-product" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <ProtectedRoute>
+                        <AdminAddProduct />
+                      </ProtectedRoute>
+                    </Suspense>
+                  } />
+                  <Route path="/admin/sales-tracker" element={
+                    <Suspense fallback={<PageLoader />}>
+                      <ProtectedRoute>
+                        <AdminSalesTracker />
+                      </ProtectedRoute>
                     </Suspense>
                   } />
                   
