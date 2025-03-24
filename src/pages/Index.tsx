@@ -16,6 +16,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const OPTIMIZED_BANNER_IMAGES = [
+  "public/lovable-uploads/22f7e7c9-cf18-4710-b3e9-e017c5638637.png",
   "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
   "https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75",
   "https://images.unsplash.com/photo-1559563362-c667ba5f5480?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=75"
@@ -736,3 +737,4 @@ const Index = () => {
 };
 
 export default Index;
+
