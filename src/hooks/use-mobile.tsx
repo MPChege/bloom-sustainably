@@ -18,3 +18,6 @@ export function useIsMobile() {
 
   return !!isMobile
 }
+
+// Export the alias for backward compatibility
+export const useMobile = useIsMobile
