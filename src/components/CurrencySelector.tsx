@@ -19,13 +19,13 @@ const CurrencySelector = () => {
   return (
     <div className="relative">
       <button
-        className="flex items-center space-x-1 bg-purple/10 hover:bg-purple/20 p-2 rounded-full transition-colors"
+        className="flex items-center gap-1 text-gray-700 hover:text-primary transition-colors"
         onClick={toggleDropdown}
         aria-label="Select currency"
       >
-        <DollarSign className="w-4 h-4 text-primary" />
-        <span className="text-sm font-medium hidden sm:inline">{currentCurrency.code}</span>
-        <ChevronDown className="w-3 h-3 text-primary" />
+        <DollarSign className="w-4 h-4" />
+        <span className="text-sm font-medium">{currentCurrency.code}</span>
+        <ChevronDown className="w-3 h-3" />
       </button>
       
       {isOpen && (

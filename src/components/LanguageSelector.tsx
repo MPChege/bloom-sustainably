@@ -22,19 +22,18 @@ const LanguageSelector = () => {
     closeDropdown();
   };
 
-  const currentLang = availableLanguages.find(lang => lang.code === currentLanguage) || 
-                     availableLanguages[0];
+  const currentLang = availableLanguages.find(lang => lang.code === currentLanguage) || availableLanguages[0];
 
   return (
     <div className="relative">
       <button
-        className="flex items-center space-x-1 bg-purple/10 hover:bg-purple/20 p-2 rounded-md transition-colors"
+        className="flex items-center gap-1 text-gray-700 hover:text-primary transition-colors"
         onClick={toggleDropdown}
         aria-label="Select language"
       >
-        <Globe className="w-4 h-4 text-primary" />
-        <span className="text-sm font-medium hidden sm:inline">{currentLang?.flag}</span>
-        <ChevronDown className="w-3 h-3 text-primary" />
+        <Globe className="w-4 h-4" />
+        <span className="text-sm font-medium">{currentLang?.flag}</span>
+        <ChevronDown className="w-3 h-3" />
       </button>
       
       {isOpen && (

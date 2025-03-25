@@ -1,11 +1,13 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import Button from "./Button";
 import LanguageSelector from "./LanguageSelector";
 import CurrencySelector from "./CurrencySelector";
 import { useLanguage } from "@/context/LanguageContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +48,6 @@ const Navbar = () => {
     { name: t('nav.about'), path: '/about' },
     { name: t('nav.ourFarm'), path: '/our-farm' },
     { name: t('nav.products'), path: '/products' },
-    { name: t('nav.videoGallery'), path: '/video-gallery' },
     { name: t('nav.sustainability'), path: '/sustainability' },
     { name: t('nav.csr'), path: '/csr' },
     { name: t('nav.blog'), path: '/blog' },
@@ -55,27 +56,28 @@ const Navbar = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-gray-100'}`}
     >
-      <div className="container-tight">
-        <nav className={`flex items-center justify-between py-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+      <div className="container mx-auto px-4">
+        <nav className={`flex items-center justify-between py-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
           <Link to="/" className="z-10">
             <div className="flex items-center gap-2">
-              <div className="font-serif text-xl font-bold">
-                <span className="text-primary">Credible</span>
-                <span className="text-secondary">Blooms</span>
-              </div>
+              <img src="/lovable-uploads/c91f75de-a991-4a12-b5ae-9d1029b5be9a.png" alt="Credible Blooms Logo" className="h-10" />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-2 text-sm font-medium ${location.pathname === link.path ? 'text-primary' : 'text-gray-600 hover:text-primary'} transition-colors`}
+                className={`relative py-2 text-sm font-medium transition-colors ${
+                  location.pathname === link.path 
+                    ? 'text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary' 
+                    : 'text-gray-700 hover:text-primary'
+                }`}
               >
                 {link.name}
               </Link>
@@ -83,17 +85,15 @@ const Navbar = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className={`hidden md:flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <div className={`hidden md:flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
             <LanguageSelector />
             <CurrencySelector />
-            <Button 
-              as="link" 
-              href="/contact" 
-              size="sm"
-              className="bg-secondary hover:bg-secondary/90 text-white"
-            >
-              {t('nav.getInTouch')}
-            </Button>
+            <div className="relative">
+              <Link to="/cart" className="flex items-center justify-center w-10 h-10 rounded-full bg-purple/10 text-primary">
+                <ShoppingCart className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">1</span>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -136,6 +136,13 @@ const Navbar = () => {
                   <LanguageSelector />
                   <CurrencySelector />
                 </div>
+                <Link 
+                  to="/cart"
+                  className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white w-full py-2 rounded-md"
+                >
+                  <ShoppingCart className="h-5 w-5" />
+                  <span>Cart (1)</span>
+                </Link>
                 <Button 
                   as="link" 
                   href="/contact" 
@@ -149,6 +156,7 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
+      <div className="h-0.5 w-full bg-red-500"></div>
     </header>
   );
 };
