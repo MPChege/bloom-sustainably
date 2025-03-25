@@ -1,18 +1,12 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Button from "./Button";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/context/LanguageContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,17 +41,11 @@ const Navbar = () => {
     };
   }, []);
 
-  // Farm dropdown items
-  const farmItems = [
-    { name: "CB1", path: '/our-farm/cb1' },
-    { name: "CB2", path: '/our-farm/cb2' },
-  ];
-
   // Navigation links
   const navLinks = [
     { name: t('nav.home'), path: '/' },
     { name: t('nav.about'), path: '/about' },
-    { name: t('nav.farm'), path: '/our-farm', hasDropdown: true, dropdownItems: farmItems },
+    { name: t('nav.farm'), path: '/our-farm' },
     { name: t('nav.products'), path: '/products' },
     { name: t('nav.sustainability'), path: '/sustainability' },
     { name: t('nav.csr'), path: '/csr' },
@@ -85,44 +73,17 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              link.hasDropdown ? (
-                <DropdownMenu key={link.path}>
-                  <DropdownMenuTrigger className="flex items-center gap-1 focus:outline-none">
-                    <span className={`relative font-medium transition-colors ${
-                      location.pathname === link.path || location.pathname.startsWith(link.path + '/') 
-                        ? 'text-primary' 
-                        : 'text-gray-700 hover:text-primary'
-                    }`}>
-                      {link.name}
-                    </span>
-                    <ChevronDown className="h-4 w-4" />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="center" className="bg-white shadow-md rounded-md p-2 z-50">
-                    {link.dropdownItems?.map((item) => (
-                      <DropdownMenuItem key={item.path} asChild>
-                        <Link 
-                          to={item.path}
-                          className="block w-full px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md cursor-pointer"
-                        >
-                          {item.name}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`relative font-medium transition-colors ${
-                    location.pathname === link.path 
-                      ? 'text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary' 
-                      : 'text-gray-700 hover:text-primary'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              )
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`relative font-medium transition-colors ${
+                  location.pathname === link.path || location.pathname.startsWith(link.path + '/') 
+                    ? 'text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary' 
+                    : 'text-gray-700 hover:text-primary'
+                }`}
+              >
+                {link.name}
+              </Link>
             ))}
           </div>
 
@@ -171,40 +132,18 @@ const Navbar = () => {
             <div className="flex-1 overflow-y-auto py-4 px-6">
               <div className="flex flex-col space-y-3">
                 {navLinks.map((link) => (
-                  link.hasDropdown ? (
-                    <div key={link.path} className="py-3 border-b border-gray-100">
-                      <div className={`text-lg ${
-                        location.pathname.startsWith(link.path) ? 'text-primary font-medium' : 'text-gray-700'
-                      }`}>
-                        {link.name}
-                      </div>
-                      <div className="ml-4 mt-2 flex flex-col space-y-2">
-                        {link.dropdownItems?.map((item) => (
-                          <Link
-                            key={item.path}
-                            to={item.path}
-                            className={`text-sm py-1 ${
-                              location.pathname === item.path ? 'text-primary font-medium' : 'text-gray-600'
-                            }`}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <Link
-                      key={link.path}
-                      to={link.path}
-                      className={`py-3 text-lg border-b border-gray-100 ${
-                        location.pathname === link.path ? 'text-primary font-medium' : 'text-gray-700'
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
-                  )
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`py-3 text-lg border-b border-gray-100 ${
+                      location.pathname === link.path || location.pathname.startsWith(link.path + '/') 
+                        ? 'text-primary font-medium' 
+                        : 'text-gray-700'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
                 ))}
               </div>
 
