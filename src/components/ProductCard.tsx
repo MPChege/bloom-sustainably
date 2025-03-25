@@ -1,24 +1,10 @@
 
-import { cn } from "@/lib/utils";
-import { useState } from "react";
-import Button from "./Button";
-import { ShoppingCart, Eye } from "lucide-react";
-import { useCart } from "@/context/CartContext";
-import { useCurrency } from "@/context/CurrencyContext";
-import { useLanguage } from "@/context/LanguageContext";
-import { toast } from "sonner";
-import OptimizedImage from "./OptimizedImage";
-import { Link } from "react-router-dom";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Card, CardContent } from "@/components/ui/card";
+import React, { useState } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import { useCurrency } from '@/context/CurrencyContext';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import FlowerRequestForm from './FlowerRequestForm';
+import { Badge } from '@/components/ui/badge';
 
 interface ProductCardProps {
   id: number;
@@ -26,157 +12,93 @@ interface ProductCardProps {
   image: string;
   category: string;
   description: string;
-  price: number;
-  className?: string;
+  headSize?: string;
+  stemLength?: string;
+  colors?: string[];
 }
 
-const ProductCard = ({ id, name, image, category, description, price, className }: ProductCardProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const { addItem } = useCart();
-  const { formatPrice } = useCurrency();
-  const { t } = useLanguage();
-
-  const handleAddToCart = () => {
-    addItem({ id, name, image, price });
-    toast.success(`Added ${name} to your cart!`);
-  };
-
-  const handleViewDetails = () => {
-    setDialogOpen(true);
-  };
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
+  name,
+  image,
+  category,
+  description,
+  headSize,
+  stemLength,
+  colors
+}) => {
+  const { t, isRTL } = useLanguage();
+  const { formatCurrency } = useCurrency();
+  const [openDialog, setOpenDialog] = useState(false);
 
   return (
     <>
-      <div 
-        className={cn(
-          "group glass-card overflow-hidden transition-all duration-500 hover:shadow-lg hover:translate-y-[-5px] card-3d",
-          hovered ? "scale-105" : "scale-100",
-          className
-        )}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          transform: hovered ? "perspective(1000px) rotateY(10deg)" : "perspective(1000px) rotateY(0deg)",
-          transition: "transform 0.6s ease-out, scale 0.4s ease-out",
-        }}
-      >
-        <div className="relative h-64 overflow-hidden">
-          <OptimizedImage 
+      <div className="group relative bg-white rounded-lg overflow-hidden shadow-md transition-shadow hover:shadow-lg border border-purple/10">
+        <div className="relative h-56 overflow-hidden">
+          <img
             src={image}
             alt={name}
-            className={cn(
-              "w-full h-full transition-transform duration-700",
-              hovered ? "scale-110" : "scale-100"
-            )}
-            width={400}
-            height={256}
-            transform3d={true}
+            loading="lazy"
+            className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute top-3 left-3">
-            <span className="bg-white/80 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-primary/90">
+            <Badge variant="secondary" className="text-xs font-medium">
               {category}
-            </span>
+            </Badge>
           </div>
-          <div className="absolute top-3 right-3">
-            <span className="bg-secondary/80 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-white">
-              {formatPrice(price)}
-            </span>
-          </div>
-          
-          {/* 3D hover effect overlay */}
-          <div 
-            className={cn(
-              "absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent opacity-0 transition-opacity duration-300",
-              hovered ? "opacity-100" : "opacity-0"
-            )}
-          />
         </div>
-        
-        <div className="p-6">
-          <h3 className="text-xl font-serif font-medium mb-2">{name}</h3>
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{description}</p>
-          <div className="flex gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="flex-grow"
-              onClick={handleViewDetails}
+
+        <div className="p-5">
+          <h3 className="text-lg font-medium">{name}</h3>
+          
+          {(headSize || stemLength || colors) && (
+            <div className="mt-2 space-y-1 text-sm text-muted-foreground">
+              {headSize && (
+                <p>Head Size: {headSize}</p>
+              )}
+              {stemLength && (
+                <p>Stem Length: {stemLength}</p>
+              )}
+              {colors && colors.length > 0 && (
+                <div className="flex items-center gap-1">
+                  <span>Colors:</span>
+                  <div className="flex gap-1">
+                    {colors.map((color, index) => (
+                      <span 
+                        key={index}
+                        className="inline-block px-2 py-0.5 text-xs bg-purple/10 rounded-full"
+                      >
+                        {color}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          
+          <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+            {description}
+          </p>
+
+          <div className="mt-4">
+            <button
+              onClick={() => setOpenDialog(true)}
+              className="w-full py-2.5 px-4 bg-secondary hover:bg-secondary/90 text-white rounded-md transition-colors"
             >
-              <Eye size={16} className="mr-1" />
-              {t('product.viewDetails')}
-            </Button>
-            <Button 
-              size="sm" 
-              className="bg-secondary hover:bg-secondary/90 text-white" 
-              onClick={handleAddToCart}
-              icon={<ShoppingCart size={16} />}
-            >
-              {t('product.addToCart')}
-            </Button>
+              Request Flowers
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Product Details Dialog */}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="sm:max-w-[700px]">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-serif">{name}</DialogTitle>
-            <DialogDescription>
-              {category} - {formatPrice(price)}
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div className="overflow-hidden rounded-lg">
-              <OptimizedImage 
-                src={image}
-                alt={name}
-                className="w-full h-auto object-cover transform-gpu hover:scale-110 transition-transform duration-700"
-                width={350}
-                height={350}
-                transform3d={true}
-              />
-            </div>
-            
-            <div className="flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-medium mb-2">Product Details</h3>
-                <p className="text-sm text-gray-600 mb-4">{description}</p>
-                <div className="bg-muted/50 p-3 rounded-md mb-4">
-                  <h4 className="font-medium text-sm mb-1">Care Instructions</h4>
-                  <ul className="text-xs text-gray-600 list-disc pl-4 space-y-1">
-                    <li>Keep in fresh water and change daily</li>
-                    <li>Cut stems at an angle before placing in water</li>
-                    <li>Keep away from direct sunlight and heat sources</li>
-                    <li>Remove leaves that will be below the water line</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <DialogFooter className="flex gap-2 mt-auto sm:justify-between">
-                <Button 
-                  size="md" 
-                  variant="outline"
-                  onClick={() => setDialogOpen(false)}
-                >
-                  Close
-                </Button>
-                <Button 
-                  size="md" 
-                  className="bg-secondary hover:bg-secondary/90 text-white" 
-                  onClick={() => {
-                    handleAddToCart();
-                    setDialogOpen(false);
-                  }}
-                >
-                  Add to Cart
-                </Button>
-              </DialogFooter>
-            </div>
-          </div>
+      {/* Request Form Dialog */}
+      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+        <DialogContent className="sm:max-w-[600px]">
+          <FlowerRequestForm 
+            flowerName={name} 
+            onClose={() => setOpenDialog(false)} 
+          />
         </DialogContent>
       </Dialog>
     </>

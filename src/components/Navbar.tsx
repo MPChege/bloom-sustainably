@@ -2,31 +2,30 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
-import Cart from "./Cart";
+import Button from "./Button";
 import LanguageSelector from "./LanguageSelector";
 import CurrencySelector from "./CurrencySelector";
 import { useLanguage } from "@/context/LanguageContext";
+import { useMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { t, isRTL } = useLanguage();
+  const isMobile = useMobile();
 
-  // Navigation items with translation keys
-  const navigation = [
-    { name: "nav.home", href: "/" },
-    { name: "nav.about", href: "/about" },
-    { name: "nav.farm", href: "/our-farm" },
-    { name: "nav.products", href: "/products" },
-    { name: "nav.sustainability", href: "/sustainability" },
-    { name: "nav.csr", href: "/csr" },
-    { name: "nav.blog", href: "/blog" },
-    { name: "nav.contact", href: "/contact" },
-  ];
+  // Toggle mobile menu
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
-  // Handle scroll effect
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -35,132 +34,121 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
-
-  // Prevent body scrolling when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
+  // Navigation links
+  const navLinks = [
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.ourFarm'), path: '/our-farm' },
+    { name: t('nav.products'), path: '/products' },
+    { name: t('nav.videoGallery'), path: '/video-gallery' },
+    { name: t('nav.sustainability'), path: '/sustainability' },
+    { name: t('nav.csr'), path: '/csr' },
+    { name: t('nav.blog'), path: '/blog' },
+    { name: t('nav.contact'), path: '/contact' }
+  ];
 
   return (
     <header 
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out",
-        isScrolled 
-          ? "bg-white shadow-md py-3" 
-          : "bg-white/90 backdrop-blur-lg py-4 border-b border-purple/10",
-        isRTL ? "rtl" : ""
-      )}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo */}
-        <Link 
-          to="/" 
-          className="flex items-center space-x-2 smooth-transition"
-        >
-          <img 
-            src="/lovable-uploads/edda6dbd-9ef2-4b51-bb0c-1b0e82948a1a.png" 
-            alt="Credible Blooms Logo" 
-            className="h-10 md:h-12"
-          />
-        </Link>
+      <div className="container-tight">
+        <nav className={`flex items-center justify-between py-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          {/* Logo */}
+          <Link to="/" className="z-10">
+            <div className="flex items-center gap-2">
+              <div className="font-serif text-xl font-bold">
+                <span className="text-primary">Credible</span>
+                <span className="text-secondary">Blooms</span>
+              </div>
+            </div>
+          </Link>
 
-        {/* Desktop navigation */}
-        <nav className={`hidden md:flex ${isRTL ? "space-x-reverse space-x-8" : "space-x-8"}`}>
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              to={item.href}
-              className={cn(
-                "text-sm font-medium smooth-transition hover:opacity-100 hover:text-secondary",
-                location.pathname === item.href 
-                  ? "text-secondary font-semibold border-b-2 border-secondary" 
-                  : "text-primary",
-                "link-underline py-2"
-              )}
-            >
-              {t(item.name)}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Language, Currency and Cart - Desktop */}
-        <div className={`hidden md:flex items-center ${isRTL ? "space-x-reverse space-x-4" : "space-x-4"}`}>
-          <LanguageSelector />
-          <CurrencySelector />
-          <Cart />
-        </div>
-
-        {/* Mobile menu button */}
-        <div className={`flex items-center ${isRTL ? "space-x-reverse space-x-3" : "space-x-3"} md:hidden`}>
-          <LanguageSelector />
-          <CurrencySelector />
-          <Cart />
-          <button
-            className="focus:outline-none bg-purple/10 p-2 rounded-md"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-secondary" />
-            ) : (
-              <Menu className="h-6 w-6 text-primary" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu - Fixed overlay with higher z-index */}
-      <div
-        className={cn(
-          "fixed inset-0 z-[60] bg-white transition-all duration-300 ease-in-out md:hidden",
-          isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
-          isRTL ? "rtl" : ""
-        )}
-      >
-        {/* Close button in the top-right corner of mobile menu */}
-        <div className="absolute top-4 right-4">
-          <button
-            className="p-2 rounded-full bg-purple/10"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <X className="h-6 w-6 text-secondary" />
-          </button>
-        </div>
-        
-        <div className="flex flex-col h-full pt-20 pb-6 px-6">
-          <nav className="flex flex-col space-y-6 items-center">
-            {navigation.map((item) => (
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {navLinks.map((link) => (
               <Link
-                key={item.name}
-                to={item.href}
-                className={cn(
-                  "text-lg font-medium smooth-transition", 
-                  location.pathname === item.href 
-                    ? "text-secondary font-semibold border-b-2 border-secondary" 
-                    : "text-primary"
-                )}
-                onClick={() => setIsMobileMenuOpen(false)}
+                key={link.path}
+                to={link.path}
+                className={`px-3 py-2 text-sm font-medium ${location.pathname === link.path ? 'text-primary' : 'text-gray-600 hover:text-primary'} transition-colors`}
               >
-                {t(item.name)}
+                {link.name}
               </Link>
             ))}
-          </nav>
-        </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className={`hidden md:flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <LanguageSelector />
+            <CurrencySelector />
+            <Button 
+              as="link" 
+              href="/contact" 
+              size="sm"
+              className="bg-secondary hover:bg-secondary/90 text-white"
+            >
+              {t('nav.getInTouch')}
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="z-10 md:hidden p-2 focus:outline-none"
+            aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
+          >
+            {isOpen ? (
+              <X className="h-6 w-6 text-foreground" />
+            ) : (
+              <Menu className="h-6 w-6 text-foreground" />
+            )}
+          </button>
+
+          {/* Mobile Menu */}
+          <div
+            className={`fixed inset-0 z-0 flex flex-col bg-white transition-transform duration-300 ease-in-out transform ${
+              isOpen ? 'translate-x-0' : 'translate-x-full'
+            } md:hidden`}
+          >
+            <div className="flex-1 overflow-y-auto pt-20 px-6">
+              <div className="flex flex-col space-y-3">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`py-3 text-lg border-b border-gray-100 ${
+                      location.pathname === link.path ? 'text-primary font-medium' : 'text-gray-700'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Mobile Actions */}
+              <div className="mt-8 flex flex-col gap-4">
+                <div className="flex justify-between">
+                  <LanguageSelector />
+                  <CurrencySelector />
+                </div>
+                <Button 
+                  as="link" 
+                  href="/contact" 
+                  size="lg"
+                  className="bg-secondary hover:bg-secondary/90 text-white w-full"
+                >
+                  {t('nav.getInTouch')}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </nav>
       </div>
     </header>
   );
