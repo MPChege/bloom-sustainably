@@ -64,7 +64,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png" 
+              src="/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png" 
               alt="Credible Blooms Logo" 
               className="h-16" 
             />
@@ -116,7 +116,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
               <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                 <img 
-                  src="/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png" 
+                  src="/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png" 
                   alt="Credible Blooms Logo" 
                   className="h-12" 
                 />

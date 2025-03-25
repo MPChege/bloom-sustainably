@@ -86,44 +86,44 @@ const OurFarm = () => {
   const farmImages = {
     cb1: [
       {
-        src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png",
         alt: "Flowers in greenhouse",
         caption: "Our state-of-the-art greenhouses with rows of flowers"
       },
       {
-        src: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png",
         alt: "Workers harvesting flowers",
         caption: "Our skilled team carefully harvesting roses"
       },
       {
-        src: "https://images.unsplash.com/photo-1504713685952-246531f75c5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/4de3e44b-ea84-4489-aab2-240d59a1688b.png",
         alt: "Inside greenhouse with rows of flowers",
         caption: "Inside view of our climate-controlled growing environment"
       },
       {
-        src: "https://images.unsplash.com/photo-1468327768560-75b778cbb551?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/22f7e7c9-cf18-4710-b3e9-e017c5638637.png",
         alt: "Sorting and packing area",
         caption: "Our modern packing facility ensures flowers remain fresh during transport"
       }
     ],
     cb2: [
       {
-        src: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png",
         alt: "Vegetable garden",
         caption: "Our diverse vegetable production using sustainable practices"
       },
       {
-        src: "https://images.unsplash.com/photo-1528825056783-3a74b27f49fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png",
         alt: "Fruit orchard",
         caption: "Seasonal fruits grown in our orchards"
       },
       {
-        src: "https://images.unsplash.com/photo-1602465350100-a3e5bb7be910?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/4de3e44b-ea84-4489-aab2-240d59a1688b.png",
         alt: "Maize field",
         caption: "Our maize production areas"
       },
       {
-        src: "https://images.unsplash.com/photo-1597916829826-02e5bb4a54e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+        src: "/lovable-uploads/22f7e7c9-cf18-4710-b3e9-e017c5638637.png",
         alt: "Tomato greenhouse",
         caption: "Greenhouse tomato cultivation for optimal quality"
       }
@@ -156,7 +156,7 @@ const OurFarm = () => {
       <HeroSection 
         title={t('farm.title')}
         subtitle={t('farm.subtitle')}
-        backgroundImage="https://images.unsplash.com/photo-1455659817273-f96807779a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        backgroundImage="/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png"
         height="medium"
       />
       
@@ -211,16 +211,16 @@ const OurFarm = () => {
             <div className="relative h-[500px] w-full">
               <img 
                 src={selectedFarm === "cb1" 
-                  ? "https://images.unsplash.com/photo-1589123053646-4e8b5493f439?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                  : "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                  ? "/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png"
+                  : "/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png"
                 } 
                 alt={selectedFarm === "cb1" ? "Aerial view of flower greenhouses" : "Diverse crop production"} 
                 className="absolute w-3/4 h-auto rounded-lg shadow-lg z-10 top-0 right-0"
               />
               <img 
                 src={selectedFarm === "cb1"
-                  ? "https://images.unsplash.com/photo-1606041011872-596597976b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  : "https://images.unsplash.com/photo-1528825056783-3a74b27f49fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  ? "/lovable-uploads/4de3e44b-ea84-4489-aab2-240d59a1688b.png"
+                  : "/lovable-uploads/22f7e7c9-cf18-4710-b3e9-e017c5638637.png"
                 } 
                 alt={selectedFarm === "cb1" ? "Close up of flowers in the field" : "Fruit production"} 
                 className="absolute w-2/3 h-auto rounded-lg shadow-lg bottom-0 left-0 border-4 border-white"
@@ -325,32 +325,32 @@ const OurFarm = () => {
                 {
                   name: "Premium Roses",
                   description: "Our signature product with over 15 varieties in different colors and sizes.",
-                  image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png"
                 },
                 {
                   name: "Spray Roses",
                   description: "Multi-headed roses perfect for bouquets and arrangements.",
-                  image: "https://images.unsplash.com/photo-1455582916367-25f75bfc6710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png"
                 },
                 {
                   name: "Carnations",
                   description: "Available in standard and spray varieties with excellent vase life.",
-                  image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/4de3e44b-ea84-4489-aab2-240d59a1688b.png"
                 },
                 {
                   name: "Hypericum",
                   description: "Beautiful berries that add texture and interest to arrangements.",
-                  image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/22f7e7c9-cf18-4710-b3e9-e017c5638637.png"
                 },
                 {
                   name: "Lisianthus",
                   description: "Elegant blooms resembling roses with delicate ruffled petals.",
-                  image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png"
                 },
                 {
                   name: "Seasonal Specialties",
                   description: "Rotating selection of seasonal flowers to complement our core offerings.",
-                  image: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png"
                 }
               ].map((variety, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
@@ -371,32 +371,32 @@ const OurFarm = () => {
                 {
                   name: "Seedlings",
                   description: "High-quality seedlings for various vegetables and flowering plants.",
-                  image: "https://images.unsplash.com/photo-1600276833003-0b90afc4b467?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/4de3e44b-ea84-4489-aab2-240d59a1688b.png"
                 },
                 {
                   name: "Fresh Fruits",
                   description: "Seasonal fruits including mangoes, avocados, and citrus varieties.",
-                  image: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/22f7e7c9-cf18-4710-b3e9-e017c5638637.png"
                 },
                 {
                   name: "Vegetables",
                   description: "Fresh vegetables grown with organic farming practices.",
-                  image: "https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png"
                 },
                 {
                   name: "Maize",
                   description: "Quality maize varieties for both human consumption and animal feed.",
-                  image: "https://images.unsplash.com/photo-1599371596008-9a08a564db4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/ea29454e-b17f-4197-aa04-c69f0511c985.png"
                 },
                 {
                   name: "Tomatoes",
                   description: "Greenhouse-grown tomatoes with excellent flavor and shelf life.",
-                  image: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/4de3e44b-ea84-4489-aab2-240d59a1688b.png"
                 },
                 {
                   name: "Other Produce",
                   description: "Various other agricultural products following seasonal availability.",
-                  image: "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "/lovable-uploads/22f7e7c9-cf18-4710-b3e9-e017c5638637.png"
                 }
               ].map((variety, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
