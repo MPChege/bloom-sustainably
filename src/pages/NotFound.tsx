@@ -13,7 +13,7 @@ const NotFound = () => {
       {/* Background with OptimizedImage */}
       <div className="absolute inset-0 w-full h-full opacity-50">
         <OptimizedImage 
-          src="/lovable-uploads/4c371b2b-a2d6-4fd0-a71d-6fb74caf3b46.png"
+          src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png"
           alt="Background Logo"
           className="w-full h-full object-contain"
           priority={true}

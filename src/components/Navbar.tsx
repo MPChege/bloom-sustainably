@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -16,17 +15,14 @@ const Navbar = () => {
   const { t, isRTL } = useLanguage();
   const isMobile = useIsMobile();
 
-  // Toggle mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -42,7 +38,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Navigation links
   const navLinks = [
     { name: t('nav.home'), path: '/' },
     { name: t('nav.about'), path: '/about' },
@@ -62,17 +57,15 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <nav className={`flex items-center justify-between h-16 ${isRTL ? 'flex-row-reverse' : ''}`}>
-          {/* Logo */}
           <Link to="/" className="flex items-center">
             <OptimizedImage 
-              src="/lovable-uploads/4c371b2b-a2d6-4fd0-a71d-6fb74caf3b46.png" 
+              src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png" 
               alt="Credible Blooms Logo" 
               className="h-16 w-auto" 
               priority={true}
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
@@ -89,14 +82,12 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Action Buttons */}
           <div className={`hidden md:flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
             <div className="flex items-center">
               <LanguageSelector />
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
             className="md:hidden p-2 focus:outline-none"
@@ -109,7 +100,6 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Mobile Menu */}
           <div
             className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform duration-300 ease-in-out transform ${
               isOpen ? 'translate-x-0' : 'translate-x-full'
@@ -118,7 +108,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
               <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                 <OptimizedImage 
-                  src="/lovable-uploads/4c371b2b-a2d6-4fd0-a71d-6fb74caf3b46.png" 
+                  src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png" 
                   alt="Credible Blooms Logo" 
                   className="h-12 w-auto" 
                   priority={true}
@@ -150,7 +140,6 @@ const Navbar = () => {
                 ))}
               </div>
 
-              {/* Mobile Actions */}
               <div className="mt-8 space-y-4">
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-500">Language:</span>
