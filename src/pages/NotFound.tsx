@@ -3,18 +3,22 @@ import { Link } from "react-router-dom";
 import Button from "@/components/Button";
 import { Home } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const NotFound = () => {
   const { t, isRTL } = useLanguage();
   
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Image with absolute URL to ensure it loads */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-50"
-        style={{ backgroundImage: `url(/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png)` }}
-        aria-hidden="true"
-      />
+      {/* Background with OptimizedImage */}
+      <div className="absolute inset-0 w-full h-full opacity-50">
+        <OptimizedImage 
+          src="/lovable-uploads/4c371b2b-a2d6-4fd0-a71d-6fb74caf3b46.png"
+          alt="Background Logo"
+          className="w-full h-full object-contain"
+          priority={true}
+        />
+      </div>
       
       {/* Blurred overlay for better text readability */}
       <div 

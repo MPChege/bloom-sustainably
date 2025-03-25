@@ -7,6 +7,7 @@ import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/context/LanguageContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
+import OptimizedImage from "./OptimizedImage";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,10 +64,11 @@ const Navbar = () => {
         <nav className={`flex items-center justify-between h-16 ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png" 
+            <OptimizedImage 
+              src="/lovable-uploads/4c371b2b-a2d6-4fd0-a71d-6fb74caf3b46.png" 
               alt="Credible Blooms Logo" 
-              className="h-16" 
+              className="h-16 w-auto" 
+              priority={true}
             />
           </Link>
 
@@ -115,10 +117,11 @@ const Navbar = () => {
           >
             <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
               <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-                <img 
-                  src="/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png" 
+                <OptimizedImage 
+                  src="/lovable-uploads/4c371b2b-a2d6-4fd0-a71d-6fb74caf3b46.png" 
                   alt="Credible Blooms Logo" 
-                  className="h-12" 
+                  className="h-12 w-auto" 
+                  priority={true}
                 />
               </Link>
               <button
