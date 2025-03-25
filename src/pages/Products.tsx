@@ -2,6 +2,7 @@
 import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import ProductCard from "@/components/ProductCard";
+import FlowerRequestForm from "@/components/FlowerRequestForm"; // Add this import
 import { cn } from "@/lib/utils";
 import { Search, Filter } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";

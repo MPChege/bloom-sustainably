@@ -15,7 +15,8 @@ interface ProductCardProps {
   headSize?: string;
   stemLength?: string;
   colors?: string[];
-  className?: string; // Added className to props
+  className?: string;
+  price?: number; // Added price as an optional prop
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -27,7 +28,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   headSize,
   stemLength,
   colors,
-  className
+  className,
+  price
 }) => {
   const { t, isRTL } = useLanguage();
   const currency = useCurrency();
