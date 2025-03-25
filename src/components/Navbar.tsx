@@ -56,24 +56,28 @@ const Navbar = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-gray-100'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-md' : 'bg-white'
+      }`}
     >
       <div className="container mx-auto px-4">
-        <nav className={`flex items-center justify-between py-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <nav className={`flex items-center justify-between h-16 ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
-          <Link to="/" className="z-10">
-            <div className="flex items-center gap-2">
-              <img src="/lovable-uploads/c91f75de-a991-4a12-b5ae-9d1029b5be9a.png" alt="Credible Blooms Logo" className="h-10" />
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/c91f75de-a991-4a12-b5ae-9d1029b5be9a.png" 
+              alt="Credible Blooms Logo" 
+              className="h-10" 
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative py-2 text-sm font-medium transition-colors ${
+                className={`relative font-medium transition-colors ${
                   location.pathname === link.path 
                     ? 'text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary' 
                     : 'text-gray-700 hover:text-primary'
@@ -85,37 +89,65 @@ const Navbar = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className={`hidden md:flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <LanguageSelector />
-            <CurrencySelector />
+          <div className={`hidden md:flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <div className="flex items-center border-r border-gray-200 pr-4 mr-4">
+              <LanguageSelector />
+              <div className="mx-2 h-4 border-r border-gray-200"></div>
+              <CurrencySelector />
+            </div>
             <div className="relative">
-              <Link to="/cart" className="flex items-center justify-center w-10 h-10 rounded-full bg-purple/10 text-primary">
+              <Link to="/cart" className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700">
                 <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">1</span>
+                <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full">1</span>
               </Link>
             </div>
+            <Button 
+              variant="primary" 
+              size="sm" 
+              as="link" 
+              href="/contact"
+              className="bg-primary hover:bg-primary/90 text-white px-4 py-2"
+            >
+              {t('nav.getInTouch')}
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="z-10 md:hidden p-2 focus:outline-none"
+            className="md:hidden p-2 focus:outline-none"
             aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
           >
             {isOpen ? (
-              <X className="h-6 w-6 text-foreground" />
+              <X className="h-6 w-6 text-gray-700" />
             ) : (
-              <Menu className="h-6 w-6 text-foreground" />
+              <Menu className="h-6 w-6 text-gray-700" />
             )}
           </button>
 
           {/* Mobile Menu */}
           <div
-            className={`fixed inset-0 z-0 flex flex-col bg-white transition-transform duration-300 ease-in-out transform ${
+            className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform duration-300 ease-in-out transform ${
               isOpen ? 'translate-x-0' : 'translate-x-full'
             } md:hidden`}
           >
-            <div className="flex-1 overflow-y-auto pt-20 px-6">
+            <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
+              <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
+                <img 
+                  src="/lovable-uploads/c91f75de-a991-4a12-b5ae-9d1029b5be9a.png" 
+                  alt="Credible Blooms Logo" 
+                  className="h-10" 
+                />
+              </Link>
+              <button
+                onClick={toggleMenu}
+                className="p-2 focus:outline-none"
+                aria-label="Close Menu"
+              >
+                <X className="h-6 w-6 text-gray-700" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto py-4 px-6">
               <div className="flex flex-col space-y-3">
                 {navLinks.map((link) => (
                   <Link
@@ -131,14 +163,17 @@ const Navbar = () => {
               </div>
 
               {/* Mobile Actions */}
-              <div className="mt-8 flex flex-col gap-4">
-                <div className="flex justify-between">
-                  <LanguageSelector />
-                  <CurrencySelector />
+              <div className="mt-8 space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-500">Language & Currency:</span>
+                  <div className="flex items-center gap-4">
+                    <LanguageSelector />
+                    <CurrencySelector />
+                  </div>
                 </div>
                 <Link 
                   to="/cart"
-                  className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white w-full py-2 rounded-md"
+                  className="flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-md"
                 >
                   <ShoppingCart className="h-5 w-5" />
                   <span>Cart (1)</span>
@@ -147,7 +182,8 @@ const Navbar = () => {
                   as="link" 
                   href="/contact" 
                   size="lg"
-                  className="bg-secondary hover:bg-secondary/90 text-white w-full"
+                  variant="primary"
+                  className="w-full"
                 >
                   {t('nav.getInTouch')}
                 </Button>
