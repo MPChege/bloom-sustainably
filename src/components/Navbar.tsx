@@ -92,15 +92,6 @@ const Navbar = () => {
             <div className="flex items-center">
               <LanguageSelector />
             </div>
-            <Button 
-              variant="primary" 
-              size="sm" 
-              as="link" 
-              href="/contact"
-              className="bg-primary hover:bg-primary/90 text-white px-4 py-2"
-            >
-              {t('nav.getInTouch')}
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -161,15 +152,6 @@ const Navbar = () => {
                     <LanguageSelector />
                   </div>
                 </div>
-                <Button 
-                  as="link" 
-                  href="/contact" 
-                  size="lg"
-                  variant="primary"
-                  className="w-full"
-                >
-                  {t('nav.getInTouch')}
-                </Button>
               </div>
             </div>
           </div>
