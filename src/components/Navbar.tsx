@@ -1,10 +1,9 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Button from "./Button";
 import LanguageSelector from "./LanguageSelector";
-import CurrencySelector from "./CurrencySelector";
 import { useLanguage } from "@/context/LanguageContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -90,16 +89,8 @@ const Navbar = () => {
 
           {/* Action Buttons */}
           <div className={`hidden md:flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <div className="flex items-center border-r border-gray-200 pr-4 mr-4">
+            <div className="flex items-center">
               <LanguageSelector />
-              <div className="mx-2 h-4 border-r border-gray-200"></div>
-              <CurrencySelector />
-            </div>
-            <div className="relative">
-              <Link to="/cart" className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-gray-700">
-                <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full">1</span>
-              </Link>
             </div>
             <Button 
               variant="primary" 
@@ -165,19 +156,11 @@ const Navbar = () => {
               {/* Mobile Actions */}
               <div className="mt-8 space-y-4">
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-500">Language & Currency:</span>
-                  <div className="flex items-center gap-4">
+                  <span className="text-gray-500">Language:</span>
+                  <div className="flex items-center">
                     <LanguageSelector />
-                    <CurrencySelector />
                   </div>
                 </div>
-                <Link 
-                  to="/cart"
-                  className="flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-md"
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  <span>Cart (1)</span>
-                </Link>
                 <Button 
                   as="link" 
                   href="/contact" 
