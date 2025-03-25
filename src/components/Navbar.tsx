@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -6,14 +5,14 @@ import Button from "./Button";
 import LanguageSelector from "./LanguageSelector";
 import CurrencySelector from "./CurrencySelector";
 import { useLanguage } from "@/context/LanguageContext";
-import { useMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { t, isRTL } = useLanguage();
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   // Toggle mobile menu
   const toggleMenu = () => {

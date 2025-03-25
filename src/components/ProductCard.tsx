@@ -15,6 +15,7 @@ interface ProductCardProps {
   headSize?: string;
   stemLength?: string;
   colors?: string[];
+  className?: string; // Added className to props
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -25,15 +26,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
   description,
   headSize,
   stemLength,
-  colors
+  colors,
+  className
 }) => {
   const { t, isRTL } = useLanguage();
-  const { formatCurrency } = useCurrency();
+  const currency = useCurrency();
   const [openDialog, setOpenDialog] = useState(false);
 
   return (
     <>
-      <div className="group relative bg-white rounded-lg overflow-hidden shadow-md transition-shadow hover:shadow-lg border border-purple/10">
+      <div className={`group relative bg-white rounded-lg overflow-hidden shadow-md transition-shadow hover:shadow-lg border border-purple/10 ${className}`}>
         <div className="relative h-56 overflow-hidden">
           <img
             src={image}
