@@ -3,8 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import LanguageSelector from "./LanguageSelector";
-import CurrencySelector from "./CurrencySelector";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
@@ -113,20 +111,6 @@ const Navbar = () => {
         isRTL ? "rtl" : ""
       )}
     >
-      {/* Top utility bar */}
-      <div className="bg-primary/10 py-1.5 hidden md:block">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="text-sm text-primary/80">
-            <span className="mr-4">Email: info@credibleblooms.com</span>
-            <span>Phone: +254 712 345 678</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <LanguageSelector />
-            <CurrencySelector />
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <Link 
@@ -291,12 +275,6 @@ const Navbar = () => {
         </div>
         
         <div className="flex flex-col h-full pt-20 pb-6 px-6">
-          {/* Language and Currency selector on mobile */}
-          <div className="flex justify-center space-x-4 mb-8">
-            <LanguageSelector />
-            <CurrencySelector />
-          </div>
-          
           {/* Mobile search */}
           <form onSubmit={handleSearch} className="mb-8">
             <div className="relative">
