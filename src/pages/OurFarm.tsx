@@ -1,9 +1,8 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin, Leaf, Droplet, Sun, Clock, ArrowRight, Flower, Image, PlaneTakeoff, Sparkles, LineChart, Gauge } from "lucide-react";
+import { MapPin, Leaf, Droplet, Sun, Clock, ArrowRight, Flower, LineChart, Gauge, Sparkles } from "lucide-react";
 import Button from "@/components/Button";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,7 +36,7 @@ const OurFarm = () => {
                 Our Locations
               </span>
               <h2 className="text-3xl md:text-4xl font-serif font-semibold mt-4 mb-6">
-                Sustainable Farming in the Heart of Kenya
+                Specialized Farms in Kenya
               </h2>
               
               <div className="prose mb-8">
@@ -398,87 +397,8 @@ const OurFarm = () => {
             </div>
           </section>
           
-          {/* Visual Tour / Farm Gallery */}
-          <section className="py-16 bg-purple/5">
-            <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-6xl">
-              <div className="text-center mb-12">
-                <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-                  Visual Tour
-                </span>
-                <h2 className="text-3xl md:text-4xl font-serif font-semibold mt-4 mb-6">
-                  Farm Gallery
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Take a visual tour of our facilities, fields, and operations.
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-                  <div className="relative aspect-video overflow-hidden">
-                    <OptimizedImage
-                      src="public/lovable-uploads/06731aa7-46f9-46ea-b7c3-01b8a12d4e90.png"
-                      alt="Our state-of-the-art greenhouses with rows of flowers"
-                      className="w-full h-full object-cover"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm text-muted-foreground">Our state-of-the-art greenhouses with rows of flowers</p>
-                  </div>
-                </div>
-                
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-                  <div className="relative aspect-video overflow-hidden">
-                    <OptimizedImage
-                      src="public/lovable-uploads/ea450926-2611-4b67-aa2f-9fa734501891.png"
-                      alt="Our skilled team carefully harvesting roses"
-                      className="w-full h-full object-cover"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm text-muted-foreground">Our skilled team carefully harvesting roses</p>
-                  </div>
-                </div>
-                
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-                  <div className="relative aspect-video overflow-hidden">
-                    <OptimizedImage
-                      src="https://images.unsplash.com/photo-1612966809470-bfbbeb142bc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                      alt="Inside view of our climate-controlled growing environment"
-                      className="w-full h-full object-cover"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm text-muted-foreground">Inside view of our climate-controlled growing environment</p>
-                  </div>
-                </div>
-                
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-                  <div className="relative aspect-video overflow-hidden">
-                    <OptimizedImage
-                      src="https://images.unsplash.com/photo-1493962853295-0fd70327578a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                      alt="Our modern packing facility ensures flowers remain fresh during transport"
-                      className="w-full h-full object-cover"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm text-muted-foreground">Our modern packing facility ensures flowers remain fresh during transport</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          
           {/* Flower Specialties Section */}
-          <section className="py-16 bg-white">
+          <section className="py-16 bg-purple/5">
             <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-6xl">
               <div className="text-center mb-12">
                 <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
