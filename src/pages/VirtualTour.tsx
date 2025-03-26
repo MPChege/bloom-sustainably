@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Globe, Map, Navigation, Flower, ChevronRight, ChevronLeft } from "lucide-react";
+import { Globe, Map, Navigation, Flower, ChevronRight, ChevronLeft, Leaf, Droplet, Sun, Mountain } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Button } from "@/components/ui/button";
