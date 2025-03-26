@@ -4,10 +4,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [farmDropdownOpen, setFarmDropdownOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
@@ -16,6 +18,7 @@ const Navbar = () => {
   const { t, isRTL } = useLanguage();
   const farmDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   // Navigation items with translation keys
   const navigation = [
@@ -56,12 +59,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setSearchVisible(false);
-  }, [location]);
-
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -78,18 +75,6 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  // Prevent body scrolling when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -240,145 +225,147 @@ const Navbar = () => {
           </div>
           
           {/* Mobile menu button */}
-          <button
-            className="focus:outline-none bg-purple/10 p-2 rounded-md md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-secondary" />
-            ) : (
-              <Menu className="h-6 w-6 text-primary" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu - Fixed overlay with higher z-index */}
-      <div
-        className={cn(
-          "fixed inset-0 z-[60] bg-white transition-all duration-300 ease-in-out md:hidden",
-          isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
-          isRTL ? "rtl" : ""
-        )}
-      >
-        {/* Close button in the top-right corner of mobile menu */}
-        <div className="absolute top-4 right-4">
-          <button
-            className="p-2 rounded-full bg-purple/10"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            <X className="h-6 w-6 text-secondary" />
-          </button>
-        </div>
-        
-        <div className="flex flex-col h-full pt-20 pb-6 px-6">
-          {/* Mobile search */}
-          <form onSubmit={handleSearch} className="mb-8">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search flowers..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-1 focus:ring-primary"
-              />
-              <button 
-                type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 bg-primary/10 rounded-full"
-              >
-                <Search className="h-4 w-4 text-primary" />
-              </button>
-            </div>
-          </form>
-          
-          {/* Mobile navigation */}
-          <nav className="flex flex-col space-y-4">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={cn(
-                  "py-2 text-lg font-medium border-b border-gray-100 transition-colors", 
-                  location.pathname === item.href 
-                    ? "text-red-600 border-b-2 border-red-600" 
-                    : "text-purple-800"
-                )}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t(item.name)}
-              </Link>
-            ))}
-            
-            {/* Mobile Our Farm dropdown */}
-            <div className="border-b border-gray-100">
-              <button
-                onClick={() => setFarmDropdownOpen(!farmDropdownOpen)}
-                className={cn(
-                  "flex items-center justify-between w-full py-2 text-lg font-medium",
-                  (location.pathname === "/our-farm" || location.pathname === "/virtual-tour") 
-                    ? "text-red-600" 
-                    : "text-purple-800"
-                )}
-              >
-                {t("nav.farm")}
-                <ChevronDown className={`h-5 w-5 transition-transform ${farmDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {farmDropdownOpen && (
-                <div className="pl-4 pb-2 space-y-2">
-                  {farmItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="block py-2 text-base text-purple-700 hover:text-red-600 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+          {isMobile && (
+            <Sheet>
+              <SheetTrigger asChild>
+                <button
+                  className="focus:outline-none bg-purple/10 p-2 rounded-md md:hidden"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className="h-6 w-6 text-primary" />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="left" className="p-0 w-full sm:max-w-md">
+                <div className="flex flex-col h-full bg-white">
+                  {/* Search */}
+                  <div className="p-4">
+                    <form onSubmit={handleSearch} className="relative">
+                      <input
+                        type="text"
+                        placeholder="Search flowers..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full px-4 py-3 pl-10 border border-gray-200 rounded-full focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    </form>
+                  </div>
+                  
+                  {/* Featured content */}
+                  <div className="relative px-4 py-6 mb-6 text-white">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple to-red opacity-90 rounded-lg"></div>
+                    <img 
+                      src="/lovable-uploads/a7420093-d82c-4372-bea1-3685f8ff918c.png" 
+                      alt="Roses background" 
+                      className="absolute inset-0 w-full h-full object-cover mix-blend-overlay rounded-lg"
+                    />
+                    <div className="relative z-10 text-center px-4 py-8">
+                      <h3 className="text-2xl font-serif mb-2">Fresh, Quality Roses</h3>
+                      <p className="text-sm mb-4">Cultivating Beauty, Harvesting Excellence</p>
+                      <Link 
+                        to="/products" 
+                        className="inline-flex items-center text-white border border-white px-4 py-2 rounded-full text-sm"
+                      >
+                        View Our Flowers <span className="ml-2">→</span>
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  {/* Primary navigation */}
+                  <nav className="px-4 space-y-1">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className={cn(
+                          "block py-3 px-4 rounded-lg text-lg",
+                          location.pathname === item.href 
+                            ? "bg-purple/10 text-purple font-medium" 
+                            : "text-gray-800 hover:bg-gray-100"
+                        )}
+                      >
+                        {t(item.name)}
+                      </Link>
+                    ))}
+                    
+                    {/* Farm link */}
+                    <div>
+                      <button
+                        onClick={() => setFarmDropdownOpen(!farmDropdownOpen)}
+                        className={cn(
+                          "flex items-center justify-between w-full py-3 px-4 rounded-lg text-lg",
+                          (location.pathname === "/our-farm" || location.pathname === "/virtual-tour")
+                            ? "bg-purple/10 text-purple font-medium"
+                            : "text-gray-800 hover:bg-gray-100"
+                        )}
+                      >
+                        {t("nav.farm")}
+                        <ChevronDown className={`h-5 w-5 transition-transform ${farmDropdownOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      {farmDropdownOpen && (
+                        <div className="ml-4 space-y-1 mt-1 mb-2">
+                          {farmItems.map((item) => (
+                            <Link
+                              key={item.name}
+                              to={item.href}
+                              className="block py-2 px-4 text-base text-gray-700 hover:bg-gray-50 rounded-md"
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Products link */}
+                    <div>
+                      <button
+                        onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
+                        className={cn(
+                          "flex items-center justify-between w-full py-3 px-4 rounded-lg text-lg",
+                          location.pathname === "/products"
+                            ? "bg-purple/10 text-purple font-medium"
+                            : "text-gray-800 hover:bg-gray-100"
+                        )}
+                      >
+                        {t("nav.products")}
+                        <ChevronDown className={`h-5 w-5 transition-transform ${productsDropdownOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      {productsDropdownOpen && (
+                        <div className="ml-4 space-y-1 mt-1 mb-2">
+                          {productItems.map((item) => (
+                            <Link
+                              key={item.name}
+                              to={item.href}
+                              className="block py-2 px-4 text-base text-gray-700 hover:bg-gray-50 rounded-md"
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </nav>
+                  
+                  <div className="mt-auto p-6">
+                    <div className="text-center">
+                      <button className="w-full py-3 px-6 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">
+                        Get in Touch
+                      </button>
+                    </div>
+                    
+                    <div className="mt-6 text-center text-gray-500 text-sm">
+                      <div>Contact Us</div>
+                      <div className="mt-1">info@credibleblooms.com</div>
+                      <div className="mt-0.5">+254 712 345 678</div>
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-            
-            {/* Mobile Products dropdown */}
-            <div className="border-b border-gray-100">
-              <button
-                onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                className={cn(
-                  "flex items-center justify-between w-full py-2 text-lg font-medium",
-                  location.pathname === "/products" 
-                    ? "text-red-600" 
-                    : "text-purple-800"
-                )}
-              >
-                {t("nav.products")}
-                <ChevronDown className={`h-5 w-5 transition-transform ${productsDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {productsDropdownOpen && (
-                <div className="pl-4 pb-2 space-y-2">
-                  {productItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="block py-2 text-base text-purple-700 hover:text-red-600 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          </nav>
-          
-          {/* Contact information */}
-          <div className="mt-auto pt-8 text-center">
-            <p className="text-base text-gray-600 mb-2">Contact Us</p>
-            <p className="text-purple-800 font-medium mb-1">info@credibleblooms.com</p>
-            <p className="text-purple-800 font-medium">+254 712 345 678</p>
-          </div>
+              </SheetContent>
+            </Sheet>
+          )}
         </div>
       </div>
     </header>
