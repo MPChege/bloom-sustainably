@@ -1,8 +1,9 @@
+
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Play, MapPin, Leaf, Droplet, Sun, Clock } from "lucide-react";
+import { Play, MapPin, Leaf, Droplet, Sun, Clock, ArrowRight } from "lucide-react";
 import Button from "@/components/Button";
 
 const OurFarm = () => {
@@ -130,6 +131,14 @@ const OurFarm = () => {
                           </p>
                         </div>
                       </div>
+                      
+                      <Link 
+                        to="/virtual-tour" 
+                        className="inline-flex items-center text-primary hover:text-primary/80 transition-colors text-sm font-medium mt-2"
+                      >
+                        Take a virtual tour of our flower farm
+                        <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
                     </div>
                   </div>
                 </TabsContent>
@@ -198,6 +207,14 @@ const OurFarm = () => {
                           </p>
                         </div>
                       </div>
+                      
+                      <Link 
+                        to="/virtual-tour" 
+                        className="inline-flex items-center text-primary hover:text-primary/80 transition-colors text-sm font-medium mt-2"
+                      >
+                        Take a virtual tour of our crops farm
+                        <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
                     </div>
                   </div>
                 </TabsContent>
