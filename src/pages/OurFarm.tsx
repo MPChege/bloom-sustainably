@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
@@ -31,122 +30,99 @@ const OurFarm = () => {
       
       <section className="py-16 bg-white">
         <div className="container-tight">
-          <div className="flex flex-col md:flex-row gap-12 items-start">
-            <div className="w-full md:w-2/5">
-              <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-                Our Locations
-              </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-semibold mt-4 mb-6">
-                Specialized Farms in Kenya
-              </h2>
-              
-              <div className="prose mb-8">
-                <p>
-                  Credible Blooms operates two specialized farms in Kenya's 
-                  highland regions, where the altitude, climate, and soil 
-                  conditions create the perfect environment for growing 
-                  premium flowers and crops.
-                </p>
-                <p>
-                  Our farms employ sustainable farming practices, 
-                  minimizing environmental impact while maximizing 
-                  quality and productivity. We take pride in our 
-                  commitment to ethical and eco-friendly cultivation methods.
-                </p>
-              </div>
-              
-              <Tabs value={activeTab} onValueChange={setActiveTab}>
-                <TabsList className="grid w-full grid-cols-2 mb-8">
-                  <TabsTrigger value="cb1" className={`text-sm ${activeTab === "cb1" ? "bg-purple/20" : ""}`}>
-                    Flower Farm
-                  </TabsTrigger>
-                  <TabsTrigger value="cb2" className={`text-sm ${activeTab === "cb2" ? "bg-purple/20" : ""}`}>
-                    Crops Farm (CB2)
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-            
-            <div className="w-full md:w-3/5">
-              <Tabs value={activeTab} className="w-full">
-                <TabsContent value="cb1" className="mt-0">
-                  <div className="glass-card overflow-hidden">
-                    <div className="relative aspect-video overflow-hidden">
-                      <img 
-                        src="https://images.unsplash.com/photo-1626809774573-c000d982bf47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                        alt="Flower Farm" 
-                        className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
-                      />
-                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center group cursor-pointer">
-                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110">
-                          <ArrowRight className="h-8 w-8 text-white fill-white" />
-                        </div>
+          <div className="mb-8">
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-8">
+                <TabsTrigger value="cb1" className={`text-sm ${activeTab === "cb1" ? "bg-purple/20" : ""}`}>
+                  Flower Farm
+                </TabsTrigger>
+                <TabsTrigger value="cb2" className={`text-sm ${activeTab === "cb2" ? "bg-purple/20" : ""}`}>
+                  Crops Farm (CB2)
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+          
+          <div className="w-full">
+            <Tabs value={activeTab} className="w-full">
+              <TabsContent value="cb1" className="mt-0">
+                <div className="glass-card overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1626809774573-c000d982bf47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                      alt="Flower Farm" 
+                      className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center group cursor-pointer">
+                      <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110">
+                        <ArrowRight className="h-8 w-8 text-white fill-white" />
                       </div>
-                    </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 text-primary/80 mb-3">
-                        <MapPin className="h-4 w-4" />
-                        <span className="text-sm">Naivasha, Kenya</span>
-                      </div>
-                      <h3 className="text-xl font-medium mb-3">The Perfect Growing Environment</h3>
-                      <p className="text-muted-foreground text-sm mb-4">
-                        Located at an altitude of 2050 meters above sea level, our farm benefits from ideal growing 
-                        conditions that are unmatched by many other regions. The combination of rich volcanic soil, 
-                        abundant sunshine, and cool temperatures creates the perfect environment for growing vibrant, 
-                        long-lasting flowers with exceptional stem length, bloom size, and color intensity.
-                      </p>
-                      
-                      <div className="grid grid-cols-2 gap-4 mb-4">
-                        <div className="bg-purple/10 p-3 rounded-lg">
-                          <div className="flex items-center gap-2 mb-1">
-                            <Leaf className="h-4 w-4 text-primary" />
-                            <span className="font-medium text-sm">Products</span>
-                          </div>
-                          <p className="text-xs text-muted-foreground pl-6">
-                            Premium roses, spray roses, carnations, hypericum, and seasonal specialties
-                          </p>
-                        </div>
-                        <div className="bg-purple/10 p-3 rounded-lg">
-                          <div className="flex items-center gap-2 mb-1">
-                            <Droplet className="h-4 w-4 text-primary" />
-                            <span className="font-medium text-sm">Water Source</span>
-                          </div>
-                          <p className="text-xs text-muted-foreground pl-6">
-                            Advanced drip irrigation and rainwater harvesting systems
-                          </p>
-                        </div>
-                        <div className="bg-purple/10 p-3 rounded-lg">
-                          <div className="flex items-center gap-2 mb-1">
-                            <Sun className="h-4 w-4 text-primary" />
-                            <span className="font-medium text-sm">Growing Method</span>
-                          </div>
-                          <p className="text-xs text-muted-foreground pl-6">
-                            Climate-controlled greenhouses spanning 35 hectares
-                          </p>
-                        </div>
-                        <div className="bg-purple/10 p-3 rounded-lg">
-                          <div className="flex items-center gap-2 mb-1">
-                            <Clock className="h-4 w-4 text-primary" />
-                            <span className="font-medium text-sm">Shipping Time</span>
-                          </div>
-                          <p className="text-xs text-muted-foreground pl-6">
-                            24-48 hours to Europe, Middle East, and Asia
-                          </p>
-                        </div>
-                      </div>
-                      
-                      <Link 
-                        to="/virtual-tour" 
-                        className="inline-flex items-center text-primary hover:text-primary/80 transition-colors text-sm font-medium mt-2"
-                      >
-                        Take a virtual tour of our flower farm
-                        <ArrowRight className="ml-1 h-4 w-4" />
-                      </Link>
                     </div>
                   </div>
-                </TabsContent>
-                
-                <TabsContent value="cb2" className="mt-0">
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-primary/80 mb-3">
+                      <MapPin className="h-4 w-4" />
+                      <span className="text-sm">Naivasha, Kenya</span>
+                    </div>
+                    <h3 className="text-xl font-medium mb-3">The Perfect Growing Environment</h3>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      Located at an altitude of 2050 meters above sea level, our farm benefits from ideal growing 
+                      conditions that are unmatched by many other regions. The combination of rich volcanic soil, 
+                      abundant sunshine, and cool temperatures creates the perfect environment for growing vibrant, 
+                      long-lasting flowers with exceptional stem length, bloom size, and color intensity.
+                    </p>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div className="bg-purple/10 p-3 rounded-lg">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Leaf className="h-4 w-4 text-primary" />
+                          <span className="font-medium text-sm">Products</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground pl-6">
+                          Premium roses, spray roses, carnations, hypericum, and seasonal specialties
+                        </p>
+                      </div>
+                      <div className="bg-purple/10 p-3 rounded-lg">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Droplet className="h-4 w-4 text-primary" />
+                          <span className="font-medium text-sm">Water Source</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground pl-6">
+                          Advanced drip irrigation and rainwater harvesting systems
+                        </p>
+                      </div>
+                      <div className="bg-purple/10 p-3 rounded-lg">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Sun className="h-4 w-4 text-primary" />
+                          <span className="font-medium text-sm">Growing Method</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground pl-6">
+                          Climate-controlled greenhouses spanning 35 hectares
+                        </p>
+                      </div>
+                      <div className="bg-purple/10 p-3 rounded-lg">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Clock className="h-4 w-4 text-primary" />
+                          <span className="font-medium text-sm">Shipping Time</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground pl-6">
+                          24-48 hours to Europe, Middle East, and Asia
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <Link 
+                      to="/virtual-tour" 
+                      className="inline-flex items-center text-primary hover:text-primary/80 transition-colors text-sm font-medium mt-2"
+                    >
+                      Take a virtual tour of our flower farm
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="cb2" className="mt-0">
                   <div className="glass-card overflow-hidden">
                     <div className="relative aspect-video overflow-hidden">
                       <img 
@@ -677,88 +653,3 @@ const OurFarm = () => {
                     className="w-full h-full object-cover"
                     width={600}
                     height={400}
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                {/* Feature 1 */}
-                <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
-                  <div className="mb-6">
-                    <div className="w-12 h-12 bg-purple/10 rounded-full flex items-center justify-center mx-auto">
-                      <Leaf className="h-6 w-6 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-medium mb-3">Organic Practices</h3>
-                  <p className="text-muted-foreground">
-                    Natural composting, crop rotation, and reduced synthetic inputs for healthier produce.
-                  </p>
-                </div>
-                
-                {/* Feature 2 */}
-                <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
-                  <div className="mb-6">
-                    <div className="w-12 h-12 bg-purple/10 rounded-full flex items-center justify-center mx-auto">
-                      <Droplet className="h-6 w-6 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-medium mb-3">Water Conservation</h3>
-                  <p className="text-muted-foreground">
-                    Drip irrigation and rainwater harvesting systems that reduce water usage by up to 60%.
-                  </p>
-                </div>
-                
-                {/* Feature 3 */}
-                <div className="bg-white p-8 rounded-2xl shadow-sm text-center">
-                  <div className="mb-6">
-                    <div className="w-12 h-12 bg-purple/10 rounded-full flex items-center justify-center mx-auto">
-                      <Gauge className="h-6 w-6 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-medium mb-3">Soil Health</h3>
-                  <p className="text-muted-foreground">
-                    Regular soil testing and natural amendments to maintain optimal growing conditions.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="text-center mt-12">
-                <Link to="/virtual-tour" className="btn-primary">
-                  Take a Virtual Tour of Our Crops Farm
-                </Link>
-              </div>
-            </div>
-          </section>
-        </>
-      )}
-      
-      {/* Farm Statistics - Common for both tabs */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-6xl">
-          <div className="glass-panel p-8 md:p-12 bg-gradient-to-br from-purple/20 to-purple/5">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-4xl font-serif font-semibold text-primary mb-2">35+</div>
-                <div className="text-sm text-muted-foreground">Hectares of Land</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-serif font-semibold text-primary mb-2">20+</div>
-                <div className="text-sm text-muted-foreground">Flower Varieties</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-serif font-semibold text-primary mb-2">450+</div>
-                <div className="text-sm text-muted-foreground">Employees</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-serif font-semibold text-primary mb-2">12+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default OurFarm;
