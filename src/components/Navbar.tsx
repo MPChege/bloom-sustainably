@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
@@ -200,25 +201,25 @@ const Navbar = () => {
           {/* Search */}
           <div className="relative">
             {searchVisible ? (
-              <form onSubmit={handleSearch} className="absolute right-0 top-0 h-10 w-64 bg-white border border-gray-200 rounded-full overflow-hidden flex items-center">
+              <form onSubmit={handleSearch} className="absolute right-0 top-0 h-8 w-56 bg-white border border-gray-200 rounded-full overflow-hidden flex items-center">
                 <input
                   type="text"
                   placeholder="Search flowers..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full h-full px-4 focus:outline-none text-sm"
+                  className="w-full h-full px-3 focus:outline-none text-xs"
                   autoFocus
                 />
-                <button type="submit" className="p-2 bg-primary/10 h-full flex items-center justify-center">
-                  <Search className="h-4 w-4 text-primary" />
+                <button type="submit" className="p-1.5 bg-primary/10 h-full flex items-center justify-center">
+                  <Search className="h-3 w-3 text-primary" />
                 </button>
               </form>
             ) : (
               <button 
                 onClick={() => setSearchVisible(true)}
-                className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
+                className="p-1.5 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors"
               >
-                <Search className="h-5 w-5 text-primary" />
+                <Search className="h-4 w-4 text-primary" />
               </button>
             )}
           </div>
@@ -244,12 +245,12 @@ const Navbar = () => {
                         placeholder="Search flowers..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full px-4 py-3 pl-10 border border-gray-200 rounded-full focus:outline-none focus:ring-1 focus:ring-primary"
+                        className="w-full px-4 py-2 pl-10 border border-gray-200 rounded-full focus:outline-none focus:ring-1 focus:ring-primary text-sm"
                       />
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     </form>
                   </div>
-                  
+                   
                   {/* Primary navigation */}
                   <nav className="px-4 space-y-1">
                     {navigation.map((item) => (
