@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
@@ -201,8 +202,7 @@ const OurFarm = () => {
               </Tabs>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       
       {/* For Flower Farm Tab - CB1 */}
       {activeTab === "cb1" && (
@@ -653,3 +653,15 @@ const OurFarm = () => {
                     className="w-full h-full object-cover"
                     width={600}
                     height={400}
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default OurFarm;
