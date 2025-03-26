@@ -18,6 +18,7 @@ const Navbar = () => {
   const { t, isRTL } = useLanguage();
   const farmDropdownRef = useRef<HTMLDivElement>(null);
   const productsDropdownRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
   // Navigation items with translation keys
@@ -59,7 +60,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdowns when clicking outside
+  // Close dropdowns and search when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (farmDropdownRef.current && !farmDropdownRef.current.contains(event.target as Node)) {
@@ -67,6 +68,9 @@ const Navbar = () => {
       }
       if (productsDropdownRef.current && !productsDropdownRef.current.contains(event.target as Node)) {
         setProductsDropdownOpen(false);
+      }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setSearchVisible(false);
       }
     };
 
@@ -199,7 +203,7 @@ const Navbar = () => {
         {/* Search and Mobile Menu Controls */}
         <div className={`flex items-center ${isRTL ? "space-x-reverse space-x-3" : "space-x-3"}`}>
           {/* Search */}
-          <div className="relative">
+          <div className="relative" ref={searchRef}>
             {searchVisible ? (
               <form onSubmit={handleSearch} className="absolute right-0 top-0 h-8 w-56 bg-white border border-gray-200 rounded-full overflow-hidden flex items-center">
                 <input
