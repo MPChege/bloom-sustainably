@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
@@ -30,9 +31,9 @@ const Navbar = () => {
     { name: "nav.contact", href: "/contact" },
   ];
 
-  // Farm dropdown items - removed Virtual Tour
+  // Farm dropdown items - updated names
   const farmItems = [
-    { name: "Main Farm (CB1)", href: "/our-farm?location=cb1", description: "Our primary flower production facility" },
+    { name: "Flower Farm (CB1)", href: "/our-farm?location=cb1", description: "Our primary flower production facility" },
     { name: "Crops Farm (CB2)", href: "/our-farm?location=cb2", description: "Seedlings, fruits, vegetables, maize and other crops" },
   ];
 
