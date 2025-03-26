@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
@@ -249,26 +248,6 @@ const Navbar = () => {
                       />
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                     </form>
-                  </div>
-                  
-                  {/* Featured content */}
-                  <div className="relative px-4 py-6 mb-6 text-white">
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple to-red opacity-90 rounded-lg"></div>
-                    <img 
-                      src="/lovable-uploads/a7420093-d82c-4372-bea1-3685f8ff918c.png" 
-                      alt="Roses background" 
-                      className="absolute inset-0 w-full h-full object-cover mix-blend-overlay rounded-lg"
-                    />
-                    <div className="relative z-10 text-center px-4 py-8">
-                      <h3 className="text-2xl font-serif mb-2">Fresh, Quality Roses</h3>
-                      <p className="text-sm mb-4">Cultivating Beauty, Harvesting Excellence</p>
-                      <Link 
-                        to="/products" 
-                        className="inline-flex items-center text-white border border-white px-4 py-2 rounded-full text-sm"
-                      >
-                        View Our Flowers <span className="ml-2">→</span>
-                      </Link>
-                    </div>
                   </div>
                   
                   {/* Primary navigation */}
