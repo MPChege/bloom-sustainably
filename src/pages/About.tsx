@@ -1,3 +1,4 @@
+
 import HeroSection from "@/components/HeroSection";
 import { CheckCircle, Users, Calendar, Target, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -84,24 +85,6 @@ const About = () => {
       author: "Emma Rodriguez",
       role: "Boutique Florist Owner",
       avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
-    }
-  ];
-
-  const leadershipTeam = [
-    {
-      name: "Mr. Njenga",
-      role: "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      name: "Mrs. Njenga",
-      role: "Manager",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      name: "Miriam Njenga",
-      role: "Director",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
     }
   ];
 
@@ -231,66 +214,6 @@ const About = () => {
                 <div>
                   <h3 className="text-xl font-medium mb-2 text-primary">{value.title}</h3>
                   <p className="text-gray-700">{value.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      <section className="page-section bg-white">
-        <div className="container-tight">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
-            <span className="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full inline-block">
-              The People Behind Our Success
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6 text-purple-900">
-              Our Leadership Team
-            </h2>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              Meet the dedicated professionals who lead Credible Blooms with expertise, 
-              passion, and a commitment to excellence.
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {leadershipTeam.map((member, index) => (
-              <motion.div 
-                key={index} 
-                className="glass-card overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0, 
-                    transition: { 
-                      duration: 0.5,
-                      delay: index * 0.2
-                    } 
-                  }
-                }}
-              >
-                <div className="h-64 overflow-hidden">
-                  <OptimizedImage 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    width={600}
-                    height={400}
-                  />
-                </div>
-                <div className="p-6 text-center border-t-4 border-primary">
-                  <h3 className="text-xl font-medium text-purple-900">{member.name}</h3>
-                  <p className="text-gray-600">{member.role}</p>
                 </div>
               </motion.div>
             ))}
