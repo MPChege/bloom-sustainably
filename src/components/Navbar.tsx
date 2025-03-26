@@ -2,28 +2,31 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import Button from "./Button";
-import LanguageSelector from "./LanguageSelector";
-import { useLanguage } from "@/context/LanguageContext";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
-import OptimizedImage from "./OptimizedImage";
+import Cart from "./Cart";
+import LanguageSelector from "./LanguageSelector";
+import CurrencySelector from "./CurrencySelector";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { t, isRTL } = useLanguage();
-  const isMobile = useIsMobile();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // Navigation items with translation keys
+  const navigation = [
+    { name: "nav.home", href: "/" },
+    { name: "nav.about", href: "/about" },
+    { name: "nav.farm", href: "/our-farm" },
+    { name: "nav.products", href: "/products" },
+    { name: "nav.sustainability", href: "/sustainability" },
+    { name: "nav.csr", href: "/csr" },
+    { name: "nav.blog", href: "/blog" },
+    { name: "nav.contact", href: "/contact" },
+  ];
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
-
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -32,128 +35,133 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.about'), path: '/about' },
-    { name: t('nav.farm'), path: '/our-farm' },
-    { name: t('nav.products'), path: '/products' },
-    { name: t('nav.sustainability'), path: '/sustainability' },
-    { name: t('nav.csr'), path: '/csr' },
-    { name: t('nav.blog'), path: '/blog' },
-    { name: t('nav.contact'), path: '/contact' }
-  ];
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
+  // Prevent body scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-white'
-      }`}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out",
+        isScrolled 
+          ? "bg-white shadow-md py-3" 
+          : "bg-white/90 backdrop-blur-lg py-4 border-b border-purple/10",
+        isRTL ? "rtl" : ""
+      )}
     >
-      <div className="container mx-auto px-4">
-        <nav className={`flex items-center justify-between h-16 ${isRTL ? 'flex-row-reverse' : ''}`}>
-          <Link to="/" className="flex items-center">
-            <OptimizedImage 
-              src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png" 
-              alt="Credible Blooms Logo" 
-              className="h-8 w-auto" 
-              priority={true}
-            />
-          </Link>
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Logo */}
+        <Link 
+          to="/" 
+          className="flex items-center space-x-2 smooth-transition"
+        >
+          <img 
+            src="/lovable-uploads/edda6dbd-9ef2-4b51-bb0c-1b0e82948a1a.png" 
+            alt="Credible Blooms Logo" 
+            className="h-10 md:h-12"
+          />
+        </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative font-medium transition-colors ${
-                  location.pathname === link.path || location.pathname.startsWith(link.path + '/') 
-                    ? 'text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary' 
-                    : 'text-gray-700 hover:text-primary'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
+        {/* Desktop navigation */}
+        <nav className={`hidden md:flex ${isRTL ? "space-x-reverse space-x-8" : "space-x-8"}`}>
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={cn(
+                "text-sm font-medium smooth-transition hover:opacity-100 hover:text-secondary",
+                location.pathname === item.href 
+                  ? "text-secondary font-semibold border-b-2 border-secondary" 
+                  : "text-primary",
+                "link-underline py-2"
+              )}
+            >
+              {t(item.name)}
+            </Link>
+          ))}
+        </nav>
 
-          <div className={`hidden md:flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <div className="flex items-center">
-              <LanguageSelector />
-            </div>
-          </div>
+        {/* Language, Currency and Cart - Desktop */}
+        <div className={`hidden md:flex items-center ${isRTL ? "space-x-reverse space-x-4" : "space-x-4"}`}>
+          <LanguageSelector />
+          <CurrencySelector />
+          <Cart />
+        </div>
 
+        {/* Mobile menu button */}
+        <div className={`flex items-center ${isRTL ? "space-x-reverse space-x-3" : "space-x-3"} md:hidden`}>
+          <LanguageSelector />
+          <CurrencySelector />
+          <Cart />
           <button
-            onClick={toggleMenu}
-            className="md:hidden p-2 focus:outline-none"
-            aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
+            className="focus:outline-none bg-purple/10 p-2 rounded-md"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {isOpen ? (
-              <X className="h-6 w-6 text-gray-700" />
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6 text-secondary" />
             ) : (
-              <Menu className="h-6 w-6 text-gray-700" />
+              <Menu className="h-6 w-6 text-primary" />
             )}
           </button>
-
-          <div
-            className={`fixed inset-0 z-50 flex flex-col bg-white transition-transform duration-300 ease-in-out transform ${
-              isOpen ? 'translate-x-0' : 'translate-x-full'
-            } md:hidden`}
-          >
-            <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
-              <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-                <OptimizedImage 
-                  src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png" 
-                  alt="Credible Blooms Logo" 
-                  className="h-6 w-auto" 
-                  priority={true}
-                />
-              </Link>
-              <button
-                onClick={toggleMenu}
-                className="p-2 focus:outline-none"
-                aria-label="Close Menu"
-              >
-                <X className="h-6 w-6 text-gray-700" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto py-4 px-6">
-              <div className="flex flex-col space-y-3">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className={`py-3 text-lg border-b border-gray-100 ${
-                      location.pathname === link.path || location.pathname.startsWith(link.path + '/') 
-                        ? 'text-primary font-medium' 
-                        : 'text-gray-700'
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-
-              <div className="mt-8 space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-500">Language:</span>
-                  <div className="flex items-center">
-                    <LanguageSelector />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
+        </div>
       </div>
-      <div className="h-0.5 w-full bg-red-500"></div>
+
+      {/* Mobile menu - Fixed overlay with higher z-index */}
+      <div
+        className={cn(
+          "fixed inset-0 z-[60] bg-white transition-all duration-300 ease-in-out md:hidden",
+          isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
+          isRTL ? "rtl" : ""
+        )}
+      >
+        {/* Close button in the top-right corner of mobile menu */}
+        <div className="absolute top-4 right-4">
+          <button
+            className="p-2 rounded-full bg-purple/10"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <X className="h-6 w-6 text-secondary" />
+          </button>
+        </div>
+        
+        <div className="flex flex-col h-full pt-20 pb-6 px-6">
+          <nav className="flex flex-col space-y-6 items-center">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={cn(
+                  "text-lg font-medium smooth-transition", 
+                  location.pathname === item.href 
+                    ? "text-secondary font-semibold border-b-2 border-secondary" 
+                    : "text-primary"
+                )}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t(item.name)}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
     </header>
   );
 };

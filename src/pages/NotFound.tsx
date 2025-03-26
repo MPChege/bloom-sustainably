@@ -10,15 +10,12 @@ const NotFound = () => {
   
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background with OptimizedImage */}
-      <div className="absolute inset-0 w-full h-full opacity-20">
-        <OptimizedImage 
-          src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png"
-          alt="Background Logo"
-          className="w-full h-full object-contain max-w-md mx-auto"
-          priority={true}
-        />
-      </div>
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-50"
+        style={{ backgroundImage: `url(public/lovable-uploads/3c3a4688-a9e1-431a-8441-c4f0e906b5d2.png)` }}
+        aria-hidden="true"
+      />
       
       {/* Blurred overlay for better text readability */}
       <div 
