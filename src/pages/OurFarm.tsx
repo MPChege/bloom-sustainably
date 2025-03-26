@@ -1,267 +1,331 @@
 
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
-import { Droplets, Sun, Mountain, Leaf, BarChart2, Cloud } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Play, MapPin, Leaf, Droplet, Sun, Clock } from "lucide-react";
 import Button from "@/components/Button";
-import { useLanguage } from "@/context/LanguageContext";
 
 const OurFarm = () => {
-  const { t, isRTL } = useLanguage();
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState("cb1");
   
-  const farmFeatures = [
-    {
-      icon: <Mountain className="h-6 w-6 text-primary" />,
-      title: "2050 Meters Above Sea Level",
-      description: "Our high-altitude location provides optimal growing conditions with cooler temperatures and intense sunlight."
-    },
-    {
-      icon: <Sun className="h-6 w-6 text-primary" />,
-      title: "Perfect Climate",
-      description: "With over 12 hours of daylight year-round and consistent temperatures, our flowers develop rich colors and strong stems."
-    },
-    {
-      icon: <Droplets className="h-6 w-6 text-primary" />,
-      title: "Water Conservation",
-      description: "Our advanced drip irrigation and rainwater harvesting systems conserve this precious resource."
-    },
-    {
-      icon: <Leaf className="h-6 w-6 text-primary" />,
-      title: "Rich Volcanic Soil",
-      description: "The naturally fertile soil of the Kenyan highlands provides ideal nutrition for our flowers."
-    },
-    {
-      icon: <BarChart2 className="h-6 w-6 text-primary" />,
-      title: "Modern Technology",
-      description: "Climate-controlled greenhouses and monitoring systems ensure optimal growing conditions."
-    },
-    {
-      icon: <Cloud className="h-6 w-6 text-primary" />,
-      title: "Low Carbon Footprint",
-      description: "Solar power and sustainable practices reduce our environmental impact."
+  useEffect(() => {
+    // Check URL parameters for location
+    const params = new URLSearchParams(location.search);
+    const farmLocation = params.get("location");
+    if (farmLocation === "cb1" || farmLocation === "cb2") {
+      setActiveTab(farmLocation);
     }
-  ];
-
-  const farmImages = [
-    {
-      src: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Flowers in greenhouse",
-      caption: "Our state-of-the-art greenhouses with rows of flowers"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Workers harvesting flowers",
-      caption: "Our skilled team carefully harvesting roses"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1504713685952-246531f75c5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Inside greenhouse with rows of flowers",
-      caption: "Inside view of our climate-controlled growing environment"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1468327768560-75b778cbb551?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      alt: "Sorting and packing area",
-      caption: "Our modern packing facility ensures flowers remain fresh during transport"
-    }
-  ];
+  }, [location]);
 
   return (
-    <div className={`min-h-screen pt-16 ${isRTL ? "rtl" : ""}`}>
+    <div className="min-h-screen pt-16">
       <HeroSection 
-        title={t('farm.title')}
-        subtitle={t('farm.subtitle')}
-        backgroundImage="https://images.unsplash.com/photo-1455659817273-f96807779a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-        height="medium"
+        title="Our Farm"
+        subtitle="Explore our state-of-the-art flower farms in Kenya"
+        backgroundImage="https://images.unsplash.com/photo-1524059228160-55d0c0142fa7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
       />
       
-      {/* Farm Location & Advantages */}
-      <section className="page-section bg-white">
+      <section className="py-16 bg-white">
         <div className="container-tight">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-                {t('farm.location')}
+          <div className="flex flex-col md:flex-row gap-12 items-start">
+            <div className="w-full md:w-2/5">
+              <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+                Our Locations
               </span>
-              <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-                {t('farm.environment')}
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold mt-4 mb-6">
+                Sustainable Farming in the Heart of Kenya
               </h2>
               
-              <div className="prose">
+              <div className="prose mb-8">
                 <p>
-                  Located in Naivasha, Kenya at an altitude of 2050 meters above sea level, 
-                  our farm benefits from ideal growing conditions that are unmatched by many other regions.
+                  Credible Blooms operates two specialized farms in Kenya's 
+                  highland regions, where the altitude, climate, and soil 
+                  conditions create the perfect environment for growing 
+                  premium flowers.
                 </p>
                 <p>
-                  The combination of rich volcanic soil, abundant sunshine, and cool temperatures 
-                  creates the perfect environment for growing vibrant, long-lasting flowers with 
-                  exceptional stem length, bloom size, and color intensity.
-                </p>
-                <p>
-                  Our farm spans over 35 hectares of land with state-of-the-art greenhouses that provide 
-                  controlled growing environments while implementing sustainable water management systems 
-                  and solar energy to minimize our environmental impact.
-                </p>
-                <p>
-                  Kenya's central location also provides logistical advantages, allowing us to ship 
-                  fresh-cut flowers to Europe, the Middle East, and Asia within 24-48 hours of harvesting.
+                  Our farms employ sustainable farming practices, 
+                  minimizing environmental impact while maximizing 
+                  quality and productivity. We take pride in our 
+                  commitment to ethical and eco-friendly cultivation methods.
                 </p>
               </div>
               
-              <div className="mt-8">
-                <Button as="link" href="/contact" size="lg">
-                  {t('farm.scheduleVisit')}
-                </Button>
+              <TabsList className="grid w-full grid-cols-2 mb-8">
+                <TabsTrigger 
+                  value="cb1" 
+                  onClick={() => setActiveTab("cb1")}
+                  className={`text-sm ${activeTab === "cb1" ? "bg-purple/20" : ""}`}
+                >
+                  Main Farm (CB1)
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="cb2" 
+                  onClick={() => setActiveTab("cb2")}
+                  className={`text-sm ${activeTab === "cb2" ? "bg-purple/20" : ""}`}
+                >
+                  Crops Farm (CB2)
+                </TabsTrigger>
+              </TabsList>
+            </div>
+            
+            <div className="w-full md:w-3/5">
+              <Tabs value={activeTab} className="w-full">
+                <TabsContent value="cb1" className="mt-0">
+                  <div className="glass-card overflow-hidden">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img 
+                        src="https://images.unsplash.com/photo-1626809774573-c000d982bf47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                        alt="CB1 - Main Flower Farm" 
+                        className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center group cursor-pointer">
+                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110">
+                          <Play className="h-8 w-8 text-white fill-white" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 text-primary/80 mb-3">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-sm">Naivasha, Kenya</span>
+                      </div>
+                      <h3 className="text-xl font-medium mb-3">CB1 - Main Flower Production</h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        Our flagship farm dedicated to the cultivation of premium flowers. 
+                        CB1 spans over 30 hectares of land, featuring state-of-the-art 
+                        greenhouse technology and advanced irrigation systems.
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Leaf className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Products</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            Premium roses, spray roses, and specialty cut flowers
+                          </p>
+                        </div>
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Droplet className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Water Source</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            Rainwater harvesting and sustainable well
+                          </p>
+                        </div>
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Sun className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Growing Method</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            Hydroponic and soil-based cultivation
+                          </p>
+                        </div>
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Clock className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Established</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            2010
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="cb2" className="mt-0">
+                  <div className="glass-card overflow-hidden">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img 
+                        src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                        alt="CB2 - Crops & Seedlings Farm" 
+                        className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+                      />
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center group cursor-pointer">
+                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110">
+                          <Play className="h-8 w-8 text-white fill-white" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 text-primary/80 mb-3">
+                        <MapPin className="h-4 w-4" />
+                        <span className="text-sm">Nakuru Region, Kenya</span>
+                      </div>
+                      <h3 className="text-xl font-medium mb-3">CB2 - Crops & Seedlings Farm</h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        Our diversified agricultural farm that focuses on seedling production, 
+                        fruits, vegetables, maize, tomatoes and other food crops. CB2 represents 
+                        our commitment to sustainable agriculture and food security.
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Leaf className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Products</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            Seedlings, fruits, vegetables, maize, tomatoes
+                          </p>
+                        </div>
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Droplet className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Water Source</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            Drip irrigation and rainwater collection
+                          </p>
+                        </div>
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Sun className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Growing Method</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            Organic farming and permaculture
+                          </p>
+                        </div>
+                        <div className="bg-purple/10 p-3 rounded-lg">
+                          <div className="flex items-center gap-2 mb-1">
+                            <Clock className="h-4 w-4 text-primary" />
+                            <span className="font-medium text-sm">Established</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground pl-6">
+                            2015
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Video Section */}
+      <section className="py-16 bg-purple/5">
+        <div className="container-tight">
+          <div className="text-center mb-12">
+            <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
+              Farm Videos
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold mt-4 mb-6">
+              Experience Our Farms
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Take a virtual tour of our operations and see how we cultivate premium 
+              flowers and crops using sustainable farming practices.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Video 1 */}
+            <div className="glass-card overflow-hidden group">
+              <div className="relative aspect-video overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Flower Cultivation" 
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110">
+                    <Play className="h-6 w-6 text-white fill-white" />
+                  </div>
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="font-medium">Flower Cultivation Process</h3>
+                <p className="text-xs text-muted-foreground mt-1">3:45 minutes</p>
               </div>
             </div>
             
-            <div className="relative h-[500px] w-full">
-              <img 
-                src="https://images.unsplash.com/photo-1589123053646-4e8b5493f439?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                alt="Aerial view of flower greenhouses" 
-                className="absolute w-3/4 h-auto rounded-lg shadow-lg z-10 top-0 right-0"
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1606041011872-596597976b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Close up of flowers in the field" 
-                className="absolute w-2/3 h-auto rounded-lg shadow-lg bottom-0 left-0 border-4 border-white"
-              />
-              <div className="absolute w-64 h-64 rounded-full bg-sage/30 -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+            {/* Video 2 */}
+            <div className="glass-card overflow-hidden group">
+              <div className="relative aspect-video overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1589927932384-eee514a6848a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Harvesting & Packaging" 
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110">
+                    <Play className="h-6 w-6 text-white fill-white" />
+                  </div>
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="font-medium">Harvesting & Packaging</h3>
+                <p className="text-xs text-muted-foreground mt-1">4:20 minutes</p>
+              </div>
+            </div>
+            
+            {/* Video 3 */}
+            <div className="glass-card overflow-hidden group">
+              <div className="relative aspect-video overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1621806939047-af6201999fce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Sustainable Practices" 
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-110">
+                    <Play className="h-6 w-6 text-white fill-white" />
+                  </div>
+                </div>
+              </div>
+              <div className="p-4">
+                <h3 className="font-medium">Our Sustainable Practices</h3>
+                <p className="text-xs text-muted-foreground mt-1">5:12 minutes</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Farm Features */}
-      <section className="page-section bg-sage/10">
-        <div className="container-tight">
-          <div className="text-center mb-16">
-            <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-              {t('farm.advantages')}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-              {t('farm.special')}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our unique combination of location, climate, and technology creates 
-              the perfect environment for growing exceptional flowers.
-            </p>
-          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {farmFeatures.map((feature, index) => (
-              <div 
-                key={index} 
-                className="glass-panel p-6 flex flex-col items-center text-center"
-              >
-                <div className="mb-4 p-3 bg-white/60 rounded-full">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-medium mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Farm Gallery */}
-      <section className="page-section bg-white">
-        <div className="container-tight">
-          <div className="text-center mb-16">
-            <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-              {t('farm.visualTour')}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-              {t('farm.gallery')}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Take a visual tour of our facilities, fields, and operations.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {farmImages.map((image, index) => (
-              <div key={index} className="glass-card overflow-hidden group">
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={image.src} 
-                    alt={image.alt} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                  />
-                </div>
-                <div className="p-4">
-                  <p className="text-muted-foreground text-sm">{image.caption}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Flower Varieties */}
-      <section className="page-section bg-cream/50">
-        <div className="container-tight">
-          <div className="text-center mb-16">
-            <span className="bg-sage/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
-              {t('farm.specialties')}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-semibold mt-4 mb-6">
-              {t('farm.whatWeGrow')}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We specialize in a variety of premium flowers, each grown with attention to detail and quality.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 gap-x-8">
-            {[
-              {
-                name: "Premium Roses",
-                description: "Our signature product with over 15 varieties in different colors and sizes.",
-                image: "https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                name: "Spray Roses",
-                description: "Multi-headed roses perfect for bouquets and arrangements.",
-                image: "https://images.unsplash.com/photo-1455582916367-25f75bfc6710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                name: "Carnations",
-                description: "Available in standard and spray varieties with excellent vase life.",
-                image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                name: "Hypericum",
-                description: "Beautiful berries that add texture and interest to arrangements.",
-                image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                name: "Lisianthus",
-                description: "Elegant blooms resembling roses with delicate ruffled petals.",
-                image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              },
-              {
-                name: "Seasonal Specialties",
-                description: "Rotating selection of seasonal flowers to complement our core offerings.",
-                image: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              }
-            ].map((variety, index) => (
-              <div key={index} className="flex flex-col items-center text-center">
-                <div className="h-40 w-40 rounded-full overflow-hidden mb-6">
-                  <img 
-                    src={variety.image} 
-                    alt={variety.name} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-medium mb-2">{variety.name}</h3>
-                <p className="text-muted-foreground">{variety.description}</p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-16">
-            <Button as="link" href="/products" size="lg">
-              {t('farm.viewProducts')}
+          <div className="text-center mt-10">
+            <Button 
+              as="link" 
+              href="/virtual-tour" 
+              className="bg-secondary hover:bg-secondary/90 text-white"
+            >
+              Take a Virtual Tour
             </Button>
+          </div>
+        </div>
+      </section>
+      
+      {/* Farm Statistics */}
+      <section className="py-16 bg-white">
+        <div className="container-tight">
+          <div className="glass-panel p-8 md:p-12 bg-gradient-to-br from-purple/20 to-purple/5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-4xl font-serif font-semibold text-primary mb-2">30+</div>
+                <div className="text-sm text-muted-foreground">Hectares of Land</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-serif font-semibold text-primary mb-2">20+</div>
+                <div className="text-sm text-muted-foreground">Flower Varieties</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-serif font-semibold text-primary mb-2">450+</div>
+                <div className="text-sm text-muted-foreground">Employees</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-serif font-semibold text-primary mb-2">12+</div>
+                <div className="text-sm text-muted-foreground">Years Experience</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
