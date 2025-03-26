@@ -1,8 +1,9 @@
+
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin, Leaf, Droplet, Sun, Clock, ArrowRight, Flower, LineChart, Gauge, Sparkles } from "lucide-react";
+import { MapPin, Leaf, Droplet, Sun, Clock, ArrowRight, Flower, LineChart, Gauge, Sparkles, Play, Video } from "lucide-react";
 import Button from "@/components/Button";
 import OptimizedImage from "@/components/OptimizedImage";
 import { Card, CardContent } from "@/components/ui/card";
@@ -57,7 +58,7 @@ const OurFarm = () => {
               <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList className="grid w-full grid-cols-2 mb-8">
                   <TabsTrigger value="cb1" className={`text-sm ${activeTab === "cb1" ? "bg-purple/20" : ""}`}>
-                    Flower Farm (CB1)
+                    Flower Farm
                   </TabsTrigger>
                   <TabsTrigger value="cb2" className={`text-sm ${activeTab === "cb2" ? "bg-purple/20" : ""}`}>
                     Crops Farm (CB2)
@@ -73,7 +74,7 @@ const OurFarm = () => {
                     <div className="relative aspect-video overflow-hidden">
                       <img 
                         src="https://images.unsplash.com/photo-1626809774573-c000d982bf47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                        alt="CB1 - Flower Farm" 
+                        alt="Flower Farm" 
                         className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
                       />
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center group cursor-pointer">
@@ -296,8 +297,113 @@ const OurFarm = () => {
             </div>
           </section>
           
-          {/* Flower Farm Advantages Section */}
+          {/* Farm Gallery Section */}
           <section className="py-16 bg-white">
+            <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-6xl">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-4 text-purple-900">
+                  Farm Gallery
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  Take a visual tour of our facilities, fields, and operations.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div className="group">
+                  <div className="overflow-hidden rounded-lg shadow-md mb-4">
+                    <OptimizedImage
+                      src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="Our state-of-the-art greenhouses with rows of flowers"
+                      className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+                      width={800}
+                      height={600}
+                    />
+                  </div>
+                  <p className="text-center text-muted-foreground">Our state-of-the-art greenhouses with rows of flowers</p>
+                </div>
+                
+                <div className="group">
+                  <div className="overflow-hidden rounded-lg shadow-md mb-4">
+                    <OptimizedImage
+                      src="https://images.unsplash.com/photo-1548586196-aa5803b77379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="Our skilled team carefully harvesting roses"
+                      className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+                      width={800}
+                      height={600}
+                    />
+                  </div>
+                  <p className="text-center text-muted-foreground">Our skilled team carefully harvesting roses</p>
+                </div>
+                
+                <div className="group">
+                  <div className="overflow-hidden rounded-lg shadow-md mb-4 bg-gray-100 flex items-center justify-center">
+                    <iframe 
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                      title="Inside greenhouse with rows of flowers"
+                      className="w-full aspect-[4/3] object-cover"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <p className="text-center text-muted-foreground">Inside greenhouse with rows of flowers</p>
+                </div>
+                
+                <div className="group">
+                  <div className="overflow-hidden rounded-lg shadow-md mb-4">
+                    <OptimizedImage
+                      src="https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="Close-up of our premium quality blooms"
+                      className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+                      width={800}
+                      height={600}
+                    />
+                  </div>
+                  <p className="text-center text-muted-foreground">Close-up of our premium quality blooms</p>
+                </div>
+              </div>
+              
+              {/* Virtual Tour Option */}
+              <div className="bg-purple-50 rounded-xl p-8 shadow-sm">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="md:w-1/2">
+                    <h3 className="text-2xl font-medium mb-4 text-purple-900">Virtual Farm Tour</h3>
+                    <p className="text-muted-foreground mb-6">
+                      Can't visit us in person? Experience our farm from anywhere with our immersive 
+                      virtual tour. Explore our greenhouses, packing facilities, and learn about our 
+                      sustainable practices from the comfort of your device.
+                    </p>
+                    <Link 
+                      to="/virtual-tour" 
+                      className="inline-flex items-center bg-primary text-white py-2 px-6 rounded-full hover:bg-primary/90 transition-colors"
+                    >
+                      <Video className="h-5 w-5 mr-2" />
+                      Start Virtual Tour
+                    </Link>
+                  </div>
+                  <div className="md:w-1/2">
+                    <div className="relative aspect-video rounded-lg overflow-hidden shadow-md">
+                      <OptimizedImage
+                        src="public/lovable-uploads/13fa4442-d787-4442-9be4-4276f09c18bc.png"
+                        alt="Virtual tour of our farm"
+                        className="w-full h-full object-cover"
+                        width={600}
+                        height={400}
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors">
+                          <Play className="h-8 w-8 text-white fill-white" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          {/* Flower Farm Advantages Section */}
+          <section className="py-16 bg-purple/5">
             <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-6xl">
               <div className="text-center mb-12">
                 <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
@@ -398,7 +504,7 @@ const OurFarm = () => {
           </section>
           
           {/* Flower Specialties Section */}
-          <section className="py-16 bg-purple/5">
+          <section className="py-16 bg-white">
             <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-6xl">
               <div className="text-center mb-12">
                 <span className="bg-purple/30 text-primary/90 text-sm font-medium px-3 py-1 rounded-full">
