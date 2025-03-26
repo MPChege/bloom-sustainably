@@ -21,8 +21,6 @@ const Navbar = () => {
   const navigation = [
     { name: "nav.home", href: "/" },
     { name: "nav.about", href: "/about" },
-    // Farm dropdown will be handled separately
-    // Products dropdown will be handled separately
     { name: "nav.sustainability", href: "/sustainability" },
     { name: "nav.csr", href: "/csr" },
     { name: "nav.blog", href: "/blog" },
@@ -283,7 +281,7 @@ const Navbar = () => {
                 placeholder="Search flowers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full px-4 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-1 focus:ring-primary"
               />
               <button 
                 type="submit"
@@ -295,16 +293,16 @@ const Navbar = () => {
           </form>
           
           {/* Mobile navigation */}
-          <nav className="flex flex-col space-y-6 items-start">
+          <nav className="flex flex-col space-y-4">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "text-lg font-medium smooth-transition w-full", 
+                  "py-2 text-lg font-medium border-b border-gray-100 transition-colors", 
                   location.pathname === item.href 
-                    ? "text-secondary font-semibold border-b border-secondary pb-1" 
-                    : "text-primary"
+                    ? "text-red-600 border-b-2 border-red-600" 
+                    : "text-purple-800"
                 )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -312,23 +310,28 @@ const Navbar = () => {
               </Link>
             ))}
             
-            {/* Mobile Farm dropdown */}
-            <div className="w-full">
+            {/* Mobile Our Farm dropdown */}
+            <div className="border-b border-gray-100">
               <button
                 onClick={() => setFarmDropdownOpen(!farmDropdownOpen)}
-                className="flex items-center justify-between w-full text-lg font-medium text-primary pb-1"
+                className={cn(
+                  "flex items-center justify-between w-full py-2 text-lg font-medium",
+                  (location.pathname === "/our-farm" || location.pathname === "/virtual-tour") 
+                    ? "text-red-600" 
+                    : "text-purple-800"
+                )}
               >
                 {t("nav.farm")}
                 <ChevronDown className={`h-5 w-5 transition-transform ${farmDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {farmDropdownOpen && (
-                <div className="mt-2 pl-4 space-y-3 border-l-2 border-purple/20">
+                <div className="pl-4 pb-2 space-y-2">
                   {farmItems.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="block text-base hover:text-secondary transition-colors"
+                      className="block py-2 text-base text-purple-700 hover:text-red-600 transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -339,22 +342,27 @@ const Navbar = () => {
             </div>
             
             {/* Mobile Products dropdown */}
-            <div className="w-full">
+            <div className="border-b border-gray-100">
               <button
                 onClick={() => setProductsDropdownOpen(!productsDropdownOpen)}
-                className="flex items-center justify-between w-full text-lg font-medium text-primary pb-1"
+                className={cn(
+                  "flex items-center justify-between w-full py-2 text-lg font-medium",
+                  location.pathname === "/products" 
+                    ? "text-red-600" 
+                    : "text-purple-800"
+                )}
               >
                 {t("nav.products")}
                 <ChevronDown className={`h-5 w-5 transition-transform ${productsDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {productsDropdownOpen && (
-                <div className="mt-2 pl-4 space-y-3 border-l-2 border-purple/20">
+                <div className="pl-4 pb-2 space-y-2">
                   {productItems.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="block text-base hover:text-secondary transition-colors"
+                      className="block py-2 text-base text-purple-700 hover:text-red-600 transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -366,12 +374,10 @@ const Navbar = () => {
           </nav>
           
           {/* Contact information */}
-          <div className="mt-auto pt-8 border-t border-gray-100">
-            <div className="text-center">
-              <p className="text-sm text-gray-500 mb-2">Contact Us</p>
-              <p className="text-primary font-medium mb-1">info@credibleblooms.com</p>
-              <p className="text-primary font-medium">+254 712 345 678</p>
-            </div>
+          <div className="mt-auto pt-8 text-center">
+            <p className="text-base text-gray-600 mb-2">Contact Us</p>
+            <p className="text-purple-800 font-medium mb-1">info@credibleblooms.com</p>
+            <p className="text-purple-800 font-medium">+254 712 345 678</p>
           </div>
         </div>
       </div>
