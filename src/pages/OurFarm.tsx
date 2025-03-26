@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
@@ -53,22 +52,16 @@ const OurFarm = () => {
                 </p>
               </div>
               
-              <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger 
-                  value="cb1" 
-                  onClick={() => setActiveTab("cb1")}
-                  className={`text-sm ${activeTab === "cb1" ? "bg-purple/20" : ""}`}
-                >
-                  Main Farm (CB1)
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="cb2" 
-                  onClick={() => setActiveTab("cb2")}
-                  className={`text-sm ${activeTab === "cb2" ? "bg-purple/20" : ""}`}
-                >
-                  Crops Farm (CB2)
-                </TabsTrigger>
-              </TabsList>
+              <Tabs value={activeTab} onValueChange={setActiveTab}>
+                <TabsList className="grid w-full grid-cols-2 mb-8">
+                  <TabsTrigger value="cb1" className={`text-sm ${activeTab === "cb1" ? "bg-purple/20" : ""}`}>
+                    Main Farm (CB1)
+                  </TabsTrigger>
+                  <TabsTrigger value="cb2" className={`text-sm ${activeTab === "cb2" ? "bg-purple/20" : ""}`}>
+                    Crops Farm (CB2)
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
             </div>
             
             <div className="w-full md:w-3/5">
