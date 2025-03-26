@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -61,7 +62,7 @@ const Navbar = () => {
             <OptimizedImage 
               src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png" 
               alt="Credible Blooms Logo" 
-              className="h-16 w-auto" 
+              className="h-10 w-auto" 
               priority={true}
             />
           </Link>
@@ -110,7 +111,7 @@ const Navbar = () => {
                 <OptimizedImage 
                   src="/lovable-uploads/7a20dd3a-a5d2-40bb-9445-897a611f76a2.png" 
                   alt="Credible Blooms Logo" 
-                  className="h-12 w-auto" 
+                  className="h-8 w-auto" 
                   priority={true}
                 />
               </Link>
