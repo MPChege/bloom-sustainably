@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Toaster } from "sonner";
+import { Toaster as SonnerToaster } from "sonner";
 
 // Layouts
 import Navbar from "./components/Navbar";
@@ -47,7 +47,7 @@ function App() {
             </main>
             <Footer />
           </div>
-          <Toaster position="top-center" richColors />
+          <SonnerToaster position="top-center" richColors />
         </Router>
       </CurrencyProvider>
     </LanguageProvider>
