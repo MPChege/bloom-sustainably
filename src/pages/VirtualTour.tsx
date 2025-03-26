@@ -113,7 +113,7 @@ const VirtualTour = () => {
         overlay="medium"
       />
 
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 max-w-6xl">
         {/* Tour Navigation */}
         <div className="mb-12 text-center">
           <div className="inline-flex bg-purple-200/30 rounded-full p-1.5 backdrop-blur-sm">
